@@ -1,0 +1,54 @@
+let perl_fold = 1
+let perl_fold_blocks = 1
+
+set wildmode=longest,list,full
+set number
+set wildmenu
+set autoindent
+set ruler
+set showmatch
+
+syntax on
+
+highlight LineNr cterm=NONE ctermfg=DarkGrey ctermbg=none
+highlight StatusLine   ctermfg=White ctermbg=Red   cterm=bold
+highlight StatusLineNC ctermfg=White ctermbg=Black cterm=none
+
+" :Diff
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! Diff call s:DiffWithSaved()
+
+" \mw to mark a window, \pw to swap marked and current
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf 
+endfunction
+
+nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
+nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set number
+    " autocmd WinLeave * set nonumber
+augroup END
