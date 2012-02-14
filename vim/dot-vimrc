@@ -6,6 +6,9 @@ set number
 set wildmenu
 set autoindent
 set ruler
+set expandtab
+set shiftwidth=4
+set softtabstop=4
 set showmatch
 
 syntax on
@@ -52,3 +55,6 @@ augroup BgHighlight
     autocmd WinEnter * set number
     " autocmd WinLeave * set nonumber
 augroup END
+
+let g:session_autosave = "yes"
+let g:session_autoload = "yes"
