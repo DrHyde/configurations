@@ -70,7 +70,7 @@ let g:session_autoload = "yes"
 "
 " Courtesy of TehJim xxx *muwhaa*
 "
-function! g:perlTidyForGirls(...)                              
+function! g:perlTidyWithoutMovingTheCursor(...)                              
     let b:cursorPos = getpos('.')                              
                                                                
     " If we were called with params...                         
@@ -85,7 +85,7 @@ function! g:perlTidyForGirls(...)
     redraw!                                                    
     call cursor(b:cursorPos[1], b:cursorPos[2])                
 endfunction                                                    
-command -range=% -nargs=* Tidy call g:perlTidyForGirls(<args>) 
+command -range=% -nargs=* Tidy call g:perlTidyWithoutMovingTheCursor(<args>) 
 :nmap <C-t> :Tidy<CR>                                          
 :vmap <C-t> :!perltidy<CR>                                     
 
