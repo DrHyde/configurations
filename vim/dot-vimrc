@@ -60,4 +60,32 @@ augroup END
 let g:session_autosave = "yes"
 let g:session_autoload = "yes"
 
-command -range=% -nargs=* Tidy <line1>,<line2>!perltidy <args>
+" A command to perltidy and return the cursor whence it came.
+" This allows 3 modes of use:
+"    - In normal mode Ctl+t or :Tidy will tidy the whole buffer
+"    - In :command mode, you can say :Tidy 4,11 to tidy line 4 to 11
+"    - In Visual mode, hit Ctr+t or :Tidy to tidy the selected block
+" 
+" Change the <C-t> mappings at the bottom to choose a different shortcut. ;)
+"
+" Courtesy of TehJim xxx *muwhaa*
+"
+function! g:perlTidyForGirls(...)                              
+    let b:cursorPos = getpos('.')                              
+                                                               
+    " If we were called with params...                         
+    if a:0 == 2                                                
+        execute "".a:1.",".a:2."!perltidy"                     
+                                                               
+    " In normal mode, we want to do the whole buffer           
+    else                                                       
+        :%!perltidy                                            
+    endif                                                      
+                                                               
+    redraw!                                                    
+    call cursor(b:cursorPos[1], b:cursorPos[2])                
+endfunction                                                    
+command -range=% -nargs=* Tidy call g:perlTidyForGirls(<args>) 
+:nmap <C-t> :Tidy<CR>                                          
+:vmap <C-t> :!perltidy<CR>                                     
+
