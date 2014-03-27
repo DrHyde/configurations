@@ -59,3 +59,5 @@ augroup END
 
 let g:session_autosave = "yes"
 let g:session_autoload = "yes"
+
+command -range=% -nargs=* Tidy <line1>,<line2>!perltidy <args>
