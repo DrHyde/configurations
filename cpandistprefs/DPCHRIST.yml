@@ -1,0 +1,5 @@
+---
+comment: "Ignore DPCHRIST"
+match:
+  distribution: "DPCHRIST"
+disabled: 1

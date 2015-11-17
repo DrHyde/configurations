@@ -1,0 +1,8 @@
+---
+comment: "Auto-test EV"
+match:
+  distribution: "^MLEHMANN/EV-3"
+pl:
+  expect:
+    - "Skip further questions and use defaults"
+    - "\n"

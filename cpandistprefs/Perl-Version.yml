@@ -1,0 +1,8 @@
+---
+comment: "Auto-test Perl-Version"
+match:
+  distribution: "^ANDYA/Perl-Version"
+pl:
+  expect:
+    - "Install perl-reversion script"
+    - "\n"

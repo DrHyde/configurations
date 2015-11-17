@@ -1,0 +1,7 @@
+---
+comment: "Ignore Catalyst on netbsd, cos it takes too long"
+match:
+  distribution: "Catalyst"
+  perlconfig:
+    archname: "alpha-netbsd"
+disabled: 1

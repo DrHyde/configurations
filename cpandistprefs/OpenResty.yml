@@ -1,0 +1,5 @@
+---
+comment: "Ignore OpenResty"
+match:
+  distribution: "OpenResty"
+disabled: 1

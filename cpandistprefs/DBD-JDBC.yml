@@ -1,0 +1,5 @@
+---
+comment: "Ignore DBD-JDBC"
+match:
+  distribution: "^VIZDOM/DBD-JDBC-"
+disabled: 1

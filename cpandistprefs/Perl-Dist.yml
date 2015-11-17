@@ -1,0 +1,5 @@
+---
+comment: "Ignore Perl-Dist, which breaks stuff"
+match:
+  distribution: "Perl-Dist"
+disabled: 1

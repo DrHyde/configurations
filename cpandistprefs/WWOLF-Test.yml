@@ -1,0 +1,5 @@
+---
+comment: "Ignore WWOLF/Test"
+match:
+  distribution: "WWOLF/Test"
+disabled: 1

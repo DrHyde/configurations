@@ -1,0 +1,5 @@
+---
+comment: "Ignore Net-Google"
+match:
+  distribution: "^BSTILWELL/Net-Google"
+disabled: 1

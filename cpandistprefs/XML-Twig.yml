@@ -1,0 +1,16 @@
+---
+comment: "Auto-test XML::Twig"
+match:
+  distribution: "^MIROD/XML-Twig-3.3"
+pl:
+  expect:
+    - "Do you want to install 'xml_pp'"
+    - "n\n"
+    - "Do you want to install 'xml_grep'"
+    - "n\n"
+    - "Do you want to install 'xml_split'"
+    - "n\n"
+    - "Do you want to install 'xml_merge'"
+    - "n\n"
+    - "Do you want to install 'xml_spellcheck'"
+    - "n\n"

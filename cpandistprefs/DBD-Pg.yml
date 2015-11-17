@@ -1,0 +1,5 @@
+---
+comment: "Ignore DBD-Pg"
+match:
+  distribution: "DBD-Pg"
+disabled: 1

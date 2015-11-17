@@ -1,0 +1,8 @@
+---
+comment: "Auto-test Carp::Clan"
+match:
+  distribution: "^JJORE/Carp-Clan-5.9"
+pl:
+  expect:
+    - "Add Object::Deadly 0.08\+ to prerequisites for testing"
+    - "\n"

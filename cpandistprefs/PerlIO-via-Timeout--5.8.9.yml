@@ -1,0 +1,7 @@
+---
+comment: "Ignore DAMS/PerlIO-via-Timeout on 5.8.9, cos it breaks"
+match:
+  distribution: "DAMS/PerlIO-via-Timeout"
+  perlconfig:
+    version: "5.8.9"
+disabled: 1

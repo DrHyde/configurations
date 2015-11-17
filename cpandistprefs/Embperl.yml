@@ -1,0 +1,10 @@
+---
+comment: "Auto-test Embperl"
+match:
+  distribution: "^GRICHTER/Embperl-2.2"
+pl:
+  expect:
+    - "Build with support for Apache mod_perl"
+    - "n\n"
+    - "Enter path of XALAN base directory or single dot for not using XALAN"
+    - "\n"

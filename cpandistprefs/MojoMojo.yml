@@ -1,0 +1,5 @@
+---
+comment: "Ignore MojoMojo"
+match:
+  distribution: "^MRAMBERG/MojoMojo"
+disabled: 1

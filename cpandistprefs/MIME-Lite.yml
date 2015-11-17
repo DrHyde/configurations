@@ -1,0 +1,8 @@
+---
+comment: "Auto-test MIME::Lite"
+match:
+  distribution: "^RJBS/MIME-Lite-3"
+pl:
+  expect:
+    - "Add prereqs"
+    - "\n"

@@ -1,0 +1,7 @@
+---
+comment: "Ignore BINGOS/IPC-Cmd-0* on 5.6.2, cos it breaks"
+match:
+  distribution: "BINGOS/IPC-Cmd-0"
+  perlconfig:
+    version: "5.6.2"
+disabled: 1

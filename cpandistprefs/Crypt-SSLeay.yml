@@ -1,0 +1,10 @@
+---
+comment: "Auto-test Crypt-SSLeay"
+match:
+  distribution: "^DLAND/Crypt-SSLeay-0.56"
+pl:
+  expect:
+    - "Which SSL install path do you want to use"
+    - "\n"
+    - "Do you want to run the live tests"
+    - "\n"

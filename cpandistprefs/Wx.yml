@@ -1,0 +1,5 @@
+---
+comment: "Ignore Wx"
+match:
+  distribution: "^.*/.*[wW]x"
+disabled: 1

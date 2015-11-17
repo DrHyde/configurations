@@ -1,0 +1,5 @@
+---
+comment: "Ignore Test-Apocalypse"
+match:
+  distribution: "^APOCAL/Test-Apocalypse-1.77"
+disabled: 1

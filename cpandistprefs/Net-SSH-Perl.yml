@@ -1,0 +1,14 @@
+---
+comment: "Auto-test Net::SSH::Perl"
+match:
+  distribution: "^DBROBINS/Net-SSH-Perl-1.3"
+pl:
+  expect:
+    - "Which protocol\(s\) do you plan to use"
+    - "\n"
+    - "Enter your choices, separated by spaces"
+    - "\n"
+    - "Would you like to install it"
+    - "\n"
+    - "Would you like to install it"
+    - "\n"

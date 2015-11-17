@@ -1,0 +1,5 @@
+---
+comment: "Ignore Curses::Widgets's annoying tests"
+match:
+  distribution: "^CORLISS/CursesWidgets-1"
+disabled: 1

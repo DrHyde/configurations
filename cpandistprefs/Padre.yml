@@ -1,0 +1,5 @@
+---
+comment: "Ignore Padre"
+match:
+  distribution: "^.*/(.*-)?Padre.*"
+disabled: 1

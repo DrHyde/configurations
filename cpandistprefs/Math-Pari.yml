@@ -1,0 +1,8 @@
+---
+comment: "Auto-test Math::Pari"
+match:
+  distribution: "^ILYAZ/modules/Math-Pari-2"
+pl:
+  expect:
+    - "Fetch"
+    - "y\n"

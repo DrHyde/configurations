@@ -1,0 +1,5 @@
+---
+comment: "Ignore Gearman"
+match:
+  distribution: "Gearman"
+disabled: 1

@@ -1,0 +1,5 @@
+---
+comment: "Ignore Acme-Mom-Yours"
+match:
+  distribution: "^ADAMK/Acme-Mom-Yours"
+disabled: 1

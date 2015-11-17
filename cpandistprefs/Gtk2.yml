@@ -1,0 +1,5 @@
+---
+comment: "Ignore Gtk2"
+match:
+  distribution: "^.*/.*Gtk2"
+disabled: 1

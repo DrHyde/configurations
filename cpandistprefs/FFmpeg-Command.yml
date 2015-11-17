@@ -1,0 +1,7 @@
+---
+comment: "Ignore MIZZY/FFmpeg-Command-0* on netbsd, cos it breaks"
+match:
+  distribution: "MIZZY/FFmpeg-Command-0"
+  perlconfig:
+    archname: "alpha-netbsd"
+disabled: 1

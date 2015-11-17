@@ -1,0 +1,5 @@
+---
+comment: "Ignore Device-Velleman-K8055-Fuse"
+match:
+  distribution: "Device-Velleman-K8055-Fuse"
+disabled: 1

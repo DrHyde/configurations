@@ -1,0 +1,5 @@
+---
+comment: "Ignore RT*"
+match:
+  distribution: "(/RT-|/RTx-)"
+disabled: 1

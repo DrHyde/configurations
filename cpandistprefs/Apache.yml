@@ -1,0 +1,5 @@
+---
+comment: "Ignore Apache"
+match:
+  distribution: "^.*/Apache.*"
+disabled: 1

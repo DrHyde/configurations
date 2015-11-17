@@ -1,0 +1,8 @@
+---
+comment: "Auto-test HTML-DBTable"
+match:
+  distribution: "^EBRUNI/HTML-DBTable-0.05"
+pl:
+  expect:
+    - "Do you wish to skip database testing"
+    - "y\n"

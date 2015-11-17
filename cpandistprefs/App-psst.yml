@@ -1,0 +1,5 @@
+---
+comment: "Ignore App-psst"
+match:
+  distribution: "^MCAST/App-psst"
+disabled: 1

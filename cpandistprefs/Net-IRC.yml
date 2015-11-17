@@ -1,0 +1,5 @@
+---
+comment: "Net-IRC has been abandoned"
+match:
+  distribution: "^APEIRON/Net-IRC"
+disabled: 1

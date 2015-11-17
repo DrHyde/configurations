@@ -1,0 +1,8 @@
+---
+comment: "Auto-test HTML-Menu-TreeView"
+match:
+  distribution: "^LZE/HTML-Menu-TreeView"
+pl:
+  expect:
+    - "Where is your Document root"
+    - "cruft\n"

@@ -1,0 +1,5 @@
+---
+comment: "Ignore Acme-BadExample"
+match:
+  distribution: "^ADAMK/Acme-BadExample"
+disabled: 1

@@ -1,0 +1,11 @@
+---
+comment: "Auto-test libwww-perl"
+match:
+  distribution: "^GAAS/libwww-perl-5.8"
+pl:
+  eexpect:
+    mode: anyorder
+    reuse: 1
+    talk:
+      - "Do you want to"
+      - "\n"

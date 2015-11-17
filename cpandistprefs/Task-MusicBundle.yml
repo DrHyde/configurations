@@ -1,0 +1,5 @@
+---
+comment: "Ignore Task-MusicBundle"
+match:
+  distribution: "^GENE/Task-MusicBundle"
+disabled: 1

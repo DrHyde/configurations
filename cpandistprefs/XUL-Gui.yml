@@ -1,0 +1,5 @@
+---
+comment: "Ignore XUL-Gui"
+match:
+  distribution: "XUL-Gui"
+disabled: 1

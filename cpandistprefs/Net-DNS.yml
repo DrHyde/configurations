@@ -1,0 +1,8 @@
+---
+comment: "Auto-test Net::DNS"
+match:
+  distribution: "^OLAF/Net-DNS"
+pl:
+  expect:
+    - "Do you want to enable these tests"
+    - "\n"
