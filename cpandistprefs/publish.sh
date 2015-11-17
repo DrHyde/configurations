@@ -3,5 +3,6 @@
 cd ~/.cpandistprefs
 
 for i in bytemark pigsty ; do
-  ssh $i "cd .cpandistprefs;git pull;./rebuild.sh"
+  echo Updating $i
+  ssh $i "cd configurations;git pull;cd cpandistprefs;./rebuild.sh"
 done
