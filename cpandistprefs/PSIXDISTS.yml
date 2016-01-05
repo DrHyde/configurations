@@ -1,0 +1,5 @@
+---
+comment: "Ignore PSIXDISTS"
+match:
+  distribution: "PSIXDISTS"
+disabled: 1
