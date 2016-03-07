@@ -1,0 +1,5 @@
+---
+comment: "Ignore Perl6 stuff"
+match:
+  distribution: "/Perl6/"
+disabled: 1
