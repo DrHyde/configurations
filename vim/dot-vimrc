@@ -54,7 +54,7 @@ nmap <silent> <leader>pw :call DoWindowSwap()<CR>
 augroup BgHighlight
     autocmd!
     autocmd WinEnter * set number
-    " autocmd WinLeave * set nonumber
+    autocmd WinLeave * set nonumber
 augroup END
 
 let g:session_autosave = "yes"
@@ -70,7 +70,7 @@ let g:session_autoload = "yes"
 "
 " Courtesy of TehJim xxx *muwhaa*
 "
-function! g:perlTidyWithoutMovingTheCursor(...)                              
+function! g:PerlTidyWithoutMovingTheCursor(...)
     let b:cursorPos = getpos('.')                              
                                                                
     " If we were called with params...                         
@@ -85,7 +85,7 @@ function! g:perlTidyWithoutMovingTheCursor(...)
     redraw!                                                    
     call cursor(b:cursorPos[1], b:cursorPos[2])                
 endfunction                                                    
-command -range=% -nargs=* Tidy call g:perlTidyWithoutMovingTheCursor(<args>) 
+command -range=% -nargs=* Tidy call g:PerlTidyWithoutMovingTheCursor(<args>)
 :nmap <C-t> :Tidy<CR>                                          
 :vmap <C-t> :!perltidy<CR>                                     
 
