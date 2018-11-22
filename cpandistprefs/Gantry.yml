@@ -1,0 +1,10 @@
+---
+comment: "Auto-test Gantry"
+match:
+  distribution: "^TKEEFER/Gantry-3.51"
+pl:
+  expect:
+    - "Path for Gantry templates"
+    - "cruft\n"
+    - "cruft does not exist, should I make it"
+    - "\n"

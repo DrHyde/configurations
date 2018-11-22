@@ -1,0 +1,5 @@
+---
+comment: "Ignore Crixa-0.01, it broke CPAN"
+match:
+  distribution: "Crixa-0.01"
+disabled: 1

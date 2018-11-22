@@ -1,0 +1,8 @@
+---
+comment: "Auto-test Mail::Sender"
+match:
+  distribution: "^JENDA/Mail-Sender-0.8"
+make:
+  expect:
+    - "Specify defaults for Mail::Sender"
+    - "\n"

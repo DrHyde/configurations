@@ -1,0 +1,7 @@
+---
+comment: "Ignore POE on 5.6.2, cos it hangs"
+match:
+  distribution: "RCAPUTO/POE-"
+  perlconfig:
+    version: "5.6.2"
+disabled: 1

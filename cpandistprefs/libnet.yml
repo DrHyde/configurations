@@ -1,0 +1,8 @@
+---
+comment: "Auto-test libnet"
+match:
+  distribution: "GBARR/libnet-1"
+pl:
+  expect:
+    - "Do you want to modify/update your configuration"
+    - "\n"

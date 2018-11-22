@@ -1,0 +1,5 @@
+---
+comment: "Ignore CPAN-Reporter-Smoker"
+match:
+  distribution: "^DAGOLDEN/CPAN-Reporter-Smoker"
+disabled: 1

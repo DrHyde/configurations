@@ -1,0 +1,18 @@
+---
+comment: "Auto-test Config::Loader"
+match:
+  distribution: "^DRTECH/Config-Loader-1"
+pl:
+  expect:
+    - "Press ENTER to continue"
+    - "\n"
+    - "Install"
+    - "\n"
+    - "Install"
+    - "\n"
+    - "Install"
+    - "\n"
+    - "Install"
+    - "\n"
+    - "Install"
+    - "\n"

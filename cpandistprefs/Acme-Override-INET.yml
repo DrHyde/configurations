@@ -1,0 +1,5 @@
+---
+comment: "Ignore Acme-Override-INET"
+match:
+  distribution: "Acme-Override-INET"
+disabled: 1

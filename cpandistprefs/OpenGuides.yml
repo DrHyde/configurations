@@ -1,0 +1,5 @@
+---
+comment: "Ignore OpenGuides"
+match:
+  distribution: "OpenGuides"
+disabled: 1

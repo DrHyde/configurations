@@ -1,0 +1,5 @@
+---
+comment: "Ignore FreeHAL"
+match:
+  distribution: "FreeHAL"
+disabled: 1

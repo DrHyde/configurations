@@ -1,0 +1,5 @@
+---
+comment: "Ignore Foorum"
+match:
+  distribution: "Foorum"
+disabled: 1

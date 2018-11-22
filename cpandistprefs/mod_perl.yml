@@ -1,0 +1,5 @@
+---
+comment: "Ignore mod_perl et al"
+match:
+  distribution: "^((SHAY|PHRED|PGOLLUCCI|GOZER)/mod_perl|GEOFF/libapreq)"
+disabled: 1

@@ -1,0 +1,5 @@
+---
+comment: "Ignore Task-BeLike-*"
+match:
+  distribution: "Task-BeLike"
+disabled: 1

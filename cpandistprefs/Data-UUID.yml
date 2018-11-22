@@ -1,0 +1,10 @@
+---
+comment: "Auto-test Data::UUID"
+match:
+  distribution: "^RJBS/Data-UUID-1.1"
+pl:
+  expect:
+    - "UUID state storage"
+    - "\n"
+    - "default umask"
+    - "\n"

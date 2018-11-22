@@ -1,0 +1,5 @@
+---
+comment: "Ignore Javascript stuff"
+match:
+  distribution: "Java[sS]cript"
+disabled: 1

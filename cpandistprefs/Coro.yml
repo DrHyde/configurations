@@ -1,0 +1,8 @@
+---
+comment: "Auto-test Coro"
+match:
+  distribution: "^MLEHMANN/Coro-[345]"
+pl:
+  expect:
+    - "Skip further questions and use defaults"
+    - "\n"

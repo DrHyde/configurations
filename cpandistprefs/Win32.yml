@@ -1,0 +1,5 @@
+---
+comment: "Ignore Win32"
+match:
+  distribution: "Win32"
+disabled: 1

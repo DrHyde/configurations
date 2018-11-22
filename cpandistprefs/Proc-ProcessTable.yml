@@ -1,0 +1,7 @@
+---
+comment: "Ignore DURIST/Proc-ProcessTable-0* on freebsd, cos it breaks"
+match:
+  distribution: "DURIST/Proc-ProcessTable-0"
+  perlconfig:
+    archname: "freebsd"
+disabled: 1

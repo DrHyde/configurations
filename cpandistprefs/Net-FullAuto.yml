@@ -1,0 +1,5 @@
+---
+comment: "Net-FullAuto has a retarded installer"
+match:
+  distribution: "^REEDFISH/Net-FullAuto"
+disabled: 1

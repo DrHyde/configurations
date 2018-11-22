@@ -1,0 +1,5 @@
+---
+comment: "Ignore DROLSKY/Alzabo-GUI-Mason-0.11"
+match:
+  distribution: "^DROLSKY/Alzabo-GUI-Mason-0.11"
+disabled: 1

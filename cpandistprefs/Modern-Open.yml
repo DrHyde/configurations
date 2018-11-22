@@ -1,0 +1,5 @@
+---
+comment: "Ignore Modern-Open - it breaks warnings.pm"
+match:
+  distribution: INA/Modern/Open/Modern-Open-\d
+disabled: 1

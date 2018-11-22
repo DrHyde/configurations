@@ -1,0 +1,8 @@
+---
+comment: "Auto-test Mail::SpamAssassin"
+match:
+  distribution: "^JMASON/Mail-SpamAssassin-3.2"
+pl:
+  expect:
+    - "default text:"
+    - "\n"

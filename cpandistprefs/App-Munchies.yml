@@ -1,0 +1,5 @@
+---
+comment: "Ignore App-Munchies"
+match:
+  distribution: "App-Munchies"
+disabled: 1

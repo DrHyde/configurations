@@ -1,0 +1,7 @@
+---
+comment: "Ignore (ADAMK|TODDR)/IPC-Run-0* on netbsd, cos it breaks"
+match:
+  distribution: "(ADAMK|TODDR)/IPC-Run-0"
+  perlconfig:
+    archname: "alpha-netbsd"
+disabled: 1

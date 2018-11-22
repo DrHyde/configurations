@@ -1,0 +1,5 @@
+---
+comment: "Ignore CPAN-Index"
+match:
+  distribution: "CPAN-Index"
+disabled: 1

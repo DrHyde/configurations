@@ -1,0 +1,5 @@
+---
+comment: "Ignore Git-LongList nonsense"
+match:
+  distribution: "(Task|Bundle)-Git-LongList.*"
+disabled: 1

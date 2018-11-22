@@ -1,0 +1,7 @@
+---
+comment: "Ignore TIMB/Devel-NYTProf on pigsty cos it breaks (timing issues)"
+match:
+  distribution: "TIMB/Devel-NYTProf"
+  perlconfig:
+    osvers: "2.6.18-4-xen-amd64"
+disabled: 1

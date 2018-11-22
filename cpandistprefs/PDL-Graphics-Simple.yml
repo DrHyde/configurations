@@ -1,0 +1,5 @@
+---
+comment: "Ignore PDL-Graphics-Simple"
+match:
+  distribution: "PDL-Graphics-Simple"
+disabled: 1

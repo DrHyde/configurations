@@ -1,0 +1,5 @@
+---
+comment: "Ignore Cisco-Management"
+match:
+  distribution: "Cisco-Management"
+disabled: 1
