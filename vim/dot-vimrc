@@ -70,7 +70,6 @@ let g:session_autoload = "yes"
 "
 " Courtesy of TehJim xxx *muwhaa*
 "
-function! g:PerlTidyWithoutMovingTheCursor(...)
 function! g:PerlTidyWithoutMovingTheCursor(...)                              
     let b:cursorPos = getpos('.')                              
                                                                
