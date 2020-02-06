@@ -1,0 +1,5 @@
+---
+comment: "Ignore CANID/Data-RecordStore-6.0"
+match:
+  distribution: "CANID/Data-RecordStore-6.0"
+disabled: 1
