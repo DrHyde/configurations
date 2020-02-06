@@ -15,8 +15,8 @@ set showmatch
 syntax on
 
 highlight LineNr cterm=NONE ctermfg=DarkGrey ctermbg=none
-highlight StatusLine   ctermfg=White ctermbg=Red   cterm=bold
-highlight StatusLineNC ctermfg=White ctermbg=Black cterm=none
+highlight StatusLine   ctermfg=White ctermbg=Red  cterm=bold
+highlight StatusLineNC ctermfg=White ctermbg=Blue cterm=none
 
 " :Diff
 function! s:DiffWithSaved()
