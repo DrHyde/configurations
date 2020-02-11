@@ -14,6 +14,10 @@ set showmatch
 
 syntax on
 
+" the default is too dark for a dark terminal background
+highlight vimComment ctermfg=LightBlue
+highlight perlComment ctermfg=LightBlue
+
 highlight LineNr cterm=NONE ctermfg=DarkGrey ctermbg=none
 highlight StatusLine   ctermfg=White ctermbg=Red  cterm=bold
 highlight StatusLineNC ctermfg=White ctermbg=Blue cterm=none
