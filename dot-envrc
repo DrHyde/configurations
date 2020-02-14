@@ -1,0 +1,2 @@
+# for perl project checkouts
+export PERL5LIB=lib
