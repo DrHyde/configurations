@@ -1,0 +1,4 @@
+for bcfile in ~/.bash_completion.d/* ; do
+  echo sourcing $bcfile
+  . $bcfile
+done
