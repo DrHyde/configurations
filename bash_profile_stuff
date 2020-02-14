@@ -1,0 +1,17 @@
+export PATH=$HOME/bin:/usr/local/sbin:$PATH
+
+source ~/perl5/perlbrew/etc/bashrc
+source ~/.bash_completion
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash" || true
+
+PS1='\w \$ \[$(
+    it2setkeylabel set status "$(
+        (
+            git log >/dev/null 2>&1 && echo repo $(basename $(git rev-parse --show-toplevel)) ... branch $(git rev-parse --abbrev-ref HEAD)
+        ) || pwd
+    )"
+)\]'
+
+# must be last
+eval "$(direnv hook bash)"
