@@ -1,0 +1,2 @@
+# bash
+complete -W "$(perlbrew list|sed 's/^..//')" perlbrew
