@@ -1,0 +1,13 @@
+# bash
+
+complete -F __make_bash_completions make
+
+__make_bash_completions () {
+    COMPREPLY=();
+    local thisword="${COMP_WORDS[COMP_CWORD]}";
+
+    # if there's only one word on the command line
+    if [ "$COMP_CWORD" -eq 1 ]; then
+        COMPREPLY=($(compgen -W "$(grep ^[[:alpha:]] Makefile |sed 's/:.*//')" -- "$thisword"));
+    fi
+}
