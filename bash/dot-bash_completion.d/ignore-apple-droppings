@@ -1,0 +1,1 @@
+export FIGNORE="$FIGNORE:.DS_Store:.AppleDouble"
