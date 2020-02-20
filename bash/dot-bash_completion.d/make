@@ -8,6 +8,6 @@ __make_bash_completions () {
 
     # if there's only one word on the command line
     if [ "$COMP_CWORD" -eq 1 ]; then
-        COMPREPLY=($(compgen -W "$(grep ^[[:alpha:]] Makefile |sed 's/:.*//')" -- "$thisword"));
+        COMPREPLY=($(compgen -W "$(grep ^[[:alpha:]] Makefile |sed 's/[^_[[:alpha:]].*//')" -- "$thisword"));
     fi
 }
