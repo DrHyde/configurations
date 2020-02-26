@@ -18,6 +18,8 @@ function main {
     install_symlink $HOME/.bash_completion.d $CHECKOUT_DIR/bash/dot-bash_completion.d
     install_symlink $HOME/.vim   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc $CHECKOUT_DIR/vim/dot-vimrc
+
+    grep bash_completion ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_completion' >> ~/.profile
 }
 
 function install_symlink {
