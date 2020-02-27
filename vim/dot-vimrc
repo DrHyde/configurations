@@ -19,6 +19,7 @@ highlight vimComment ctermfg=LightBlue
 highlight perlComment ctermfg=LightBlue
 highlight shComment ctermfg=LightBlue
 highlight rubyComment ctermfg=LightBlue
+highlight confComment ctermfg=LightBlue
 
 highlight LineNr cterm=NONE ctermfg=DarkGrey ctermbg=none
 highlight StatusLine   ctermfg=White ctermbg=Red  cterm=bold
