@@ -19,7 +19,8 @@ function main {
     install_symlink $HOME/.vim   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc $CHECKOUT_DIR/vim/dot-vimrc
 
-    grep bash_completion ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_completion' >> ~/.profile
+    grep bash_completion ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_completion'  >> ~/.profile
+    grep EDITOR          ~/.profile >/dev/null 2>&1 || echo 'export EDITOR=`which vim`' >> ~/.profile
 }
 
 function install_symlink {
