@@ -5,7 +5,7 @@
 # vim/dot-vim                > ~/.vim
 # vim/dot-vimrc              > ~/.vimrc
 
-CHECKOUT_DIR=$(dirname $(pwd)/$0)
+CHECKOUT_DIR="$( cd "$(dirname "$0")"; pwd -P)"
 
 red='\e[1;31m'   # bold red
 yellow='\e[0;33m'
@@ -41,13 +41,17 @@ function install {
 }
 
 function wtf {
-    echo WTF!?!?!
+    printf "${red}WTF!?!?!$NC\n"
 }
 
 function look_for_updates {
-    echo
-    echo Looking for updates \(Not yet implemented\)
-    echo
+    cd $CHECKOUT_DIR
+    git fetch -q origin
+    if [ "$(git log -1 --pretty=format:%H origin/master)" != "$(git log -1 --pretty=format:%H)" ]; then
+        echo
+        printf "${red}Your configuration isn\'t the same as Github$NC\n"
+        echo
+    fi
 }
 
 function install_symlink {
