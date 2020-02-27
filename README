@@ -1,3 +1,12 @@
 This is going to be just a bunch of config files for various
 tools that I might want to have easy access to from all over
 the place.  It is probably of no interest whatsoever to you.
+
+To use it ...
+
+```
+git clone git@github.com:DrHyde/configurations.git
+configurations/install.sh
+```
+
+You might have to twiddle the URL to https://github.com/DrHyde/configurations.git if you're not me.
