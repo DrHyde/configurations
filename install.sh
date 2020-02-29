@@ -35,6 +35,7 @@ function install {
 
     grep bash_completion ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_completion'  >> ~/.profile
     grep EDITOR          ~/.profile >/dev/null 2>&1 || echo 'export EDITOR=`which vim`' >> ~/.profile
+    grep SHELLCHECK_OPTS ~/.profile >/dev/null 2>&1 || echo 'export SHELLCHECK_OPTS=-C' >> ~/.profile
 
     grep -- --look-for-updates ~/.profile >/dev/null 2>&1 || \
         echo "$CHECKOUT_DIR/install.sh --look-for-updates" >> ~/.profile
