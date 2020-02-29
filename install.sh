@@ -67,4 +67,6 @@ function install_symlink {
     )
 }
 
-main "$@"
+if [ "$UID" != "0" ]; then
+    main "$@"
+fi
