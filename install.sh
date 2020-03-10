@@ -47,8 +47,13 @@ function wtf {
 
 function look_for_updates {
     cd $CHECKOUT_DIR
-    git fetch -q origin
-    if [ "$(git log -1 --pretty=format:%H origin/master)" != "$(git log -1 --pretty=format:%H)" ]; then
+    timeout 3 git fetch -q origin
+
+    if [ "$?" != "0" ]; then
+        echo
+        printf "${red}Timed out trying to talk to github to see if your configuration is up to date$NC\n"
+        echo
+    elif [ "$(git log -1 --pretty=format:%H origin/master)" != "$(git log -1 --pretty=format:%H)" ]; then
         echo
         printf "${red}Your configuration isn\'t the same as Github$NC\n"
         echo
