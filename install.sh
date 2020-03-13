@@ -47,7 +47,7 @@ function wtf {
 
 function look_for_updates {
     cd $CHECKOUT_DIR
-    timeout 3 git fetch -q origin
+    timeout 5 git fetch -q origin
 
     if [ "$?" != "0" ]; then
         echo
