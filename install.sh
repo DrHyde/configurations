@@ -68,6 +68,18 @@ function look_for_updates {
         fi
     done
     echo
+
+    if [ "$(grep HOME/.bashrc $HOME/.profile)" == "" ]; then
+        printf "${red}.profile needs to source .bashrc thus: $NC\n"
+        cat << 'SOURCE_BASHRC_SNIPPET'
+if [ -n "$BASH_VERSION" ]; then
+    if [ -f "$HOME/.bashrc" ]; then
+	    . "$HOME/.bashrc"
+    fi
+fi
+SOURCE_BASHRC_SNIPPET
+        echo
+    fi
 }
 
 function install_symlink {
