@@ -58,6 +58,16 @@ function look_for_updates {
         printf "${red}Your configuration isn\'t the same as Github$NC\n"
         echo
     fi
+
+    for wanted in tldr fzf; do
+        if [ "$(which $wanted)" == "" ]; then
+            printf "${red}Install '$wanted'$NC\n"
+        elif [ "$wanted" == "fzf" ]; then
+            grep fzf $HOME/.profile $HOME/.bashrc >/dev/null 2>&1 || \
+              printf "${red}Install fzf keybindings (probably run /usr/local/opt/fzf/install)$NC\n"
+        fi
+    done
+    echo
 }
 
 function install_symlink {
