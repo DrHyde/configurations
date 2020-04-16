@@ -3,6 +3,7 @@ let perl_fold_blocks = 1
 
 set wildmode=longest,list,full
 set number
+set relativenumber
 set wildmenu
 set autoindent
 set ruler
@@ -11,6 +12,10 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set showmatch
+set incsearch
+set laststatus=2
+set nojoinspaces
+set cursorline
 
 syntax on
 
@@ -24,6 +29,8 @@ highlight confComment ctermfg=LightBlue
 highlight LineNr cterm=NONE ctermfg=DarkGrey ctermbg=none
 highlight StatusLine   ctermfg=White ctermbg=Red  cterm=bold
 highlight StatusLineNC ctermfg=White ctermbg=Blue cterm=none
+
+highlight CursorLine term=bold cterm=bold ctermbg=254
 
 " :Diff
 function! s:DiffWithSaved()
