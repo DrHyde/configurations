@@ -36,7 +36,7 @@ highlight LineNr cterm=NONE ctermfg=DarkGrey ctermbg=none
 highlight StatusLine   ctermfg=White ctermbg=Red  cterm=bold
 highlight StatusLineNC ctermfg=White ctermbg=Blue cterm=none
 
-highlight CursorLine term=bold cterm=bold ctermbg=254
+highlight CursorLine term=bold cterm=bold ctermbg=242
 
 " :Diff
 function! s:DiffWithSaved()
