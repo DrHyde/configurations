@@ -1,0 +1,8 @@
+git() {
+    if [[ "$1" == "log" ]]; then
+        shift
+        $(which git) log --graph "$@"
+    else
+        $(which git) "$@"
+    fi
+} 

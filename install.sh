@@ -29,11 +29,14 @@ function main {
 
 function install {
     install_symlink $HOME/.bash_completion       $CHECKOUT_DIR/bash/dot-bash_completion
-    install_symlink $HOME/.bash_completion.d $CHECKOUT_DIR/bash/dot-bash_completion.d
-    install_symlink $HOME/.vim   $CHECKOUT_DIR/vim/dot-vim
-    install_symlink $HOME/.vimrc $CHECKOUT_DIR/vim/dot-vimrc
+    install_symlink $HOME/.bash_completion.d     $CHECKOUT_DIR/bash/dot-bash_completion.d
+    install_symlink $HOME/.bash_functions        $CHECKOUT_DIR/bash/dot-bash_functions
+    install_symlink $HOME/.bash_functions.d      $CHECKOUT_DIR/bash/dot-bash_functions.d
+    install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
+    install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
 
     grep bash_completion ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_completion'  >> ~/.profile
+    grep bash_functions ~/.profile  >/dev/null 2>&1 || echo '. $HOME/.bash_functions'  >> ~/.profile
     grep EDITOR          ~/.profile >/dev/null 2>&1 || echo 'export EDITOR=`which vim`' >> ~/.profile
     grep SHELLCHECK_OPTS ~/.profile >/dev/null 2>&1 || echo 'export SHELLCHECK_OPTS=-C' >> ~/.profile
 
@@ -79,6 +82,10 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 SOURCE_BASHRC_SNIPPET
         echo
+    fi
+
+    if [ "$(grep bash_functions $HOME/.profile)" == "" ]; then
+        printf "${red}.profile needs to source bash functions, run install.sh$NC\n";
     fi
 }
 

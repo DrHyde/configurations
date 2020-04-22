@@ -1,0 +1,4 @@
+for funcfile in ~/.bash_functions.d/* ; do
+  echo sourcing $funcfile
+  . $funcfile
+done
