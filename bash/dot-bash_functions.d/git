@@ -2,6 +2,15 @@ git() {
     if [[ "$1" == "log" ]]; then
         shift
         $(which git) log --graph "$@"
+    elif [[ "$1" == "commit" ]]; then
+        shift
+        for i in "$@"; do
+            if [ "$i" == "-a" ] || [ "$i" == "--all" ]; then
+                echo NO\! SHAN\'T\! $i is BAD\!
+                return 1
+            fi
+        done
+        $(which git) commit "$@"
     else
         $(which git) "$@"
     fi
