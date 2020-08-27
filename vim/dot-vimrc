@@ -27,6 +27,16 @@ augroup END
 
 syntax on
 
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-n>"
+    endif
+endfunction
+
 " the default is too dark for a dark terminal background
 highlight vimComment ctermfg=LightBlue
 highlight perlComment ctermfg=LightBlue
