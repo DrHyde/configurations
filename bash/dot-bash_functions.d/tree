@@ -1,9 +1,27 @@
 #!sh
 tree() {
-    $(which tree) $(cat ~/.treerc 2>/dev/null) "$@"    
-    # if [[ "$#" == "1" && "$1" == *.local ]]; then
-    #     dig "$1" @224.0.0.251 -p 5353 |grep -i "^$1"
-    # else
-    #     $(which host) "$@"
-    # fi
+    perl -E '
+        my $tree_binary = shift;
+        my @options = ();
+        my @ignore_list = ();
+        while(@ARGV) {
+            my $this_arg = shift;
+            if($this_arg ne "-I") {
+                push @options, $this_arg;
+            } else {
+                push @ignore_list, shift;
+            }
+        }
+        if(@ignore_list) {
+            push @options, "-I", join("|",
+                grep { length($_) }
+                map {
+                     $_ eq "\\\$FIGNORE" ? grep { $_ } split(":", $ENV{FIGNORE}) :
+                                           $_
+                } @ignore_list
+            )
+        }
+
+        exec $tree_binary, @options;
+    ' $(which tree) $(cat ~/.treerc 2>/dev/null) "$@"    
 } 
