@@ -25,6 +25,8 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
+autocmd FileType perl setlocal iskeyword+=:
+
 syntax on
 
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
