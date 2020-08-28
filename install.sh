@@ -63,8 +63,10 @@ function look_for_updates {
         echo
     fi
 
-    for wanted in tldr fzf; do
+    for wanted in tldr fzf ctags; do
         if [ "$(which $wanted)" == "" ]; then
+            printf "${red}Install '$wanted'$NC\n"
+        elif [ "$(which $wanted)" == "/usr/bin/$wanted" ]; then
             printf "${red}Install '$wanted'$NC\n"
         elif [ "$wanted" == "fzf" ]; then
             grep fzf $HOME/.profile $HOME/.bashrc >/dev/null 2>&1 || \
