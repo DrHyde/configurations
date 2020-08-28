@@ -3,7 +3,7 @@ tree() {
     perl -E '
         my $tree_binary = shift;
         my @options = ();
-        my @ignore_list = ();
+        my @ignore_list = split(":", $ENV{TREE_IGNORE});
         while(@ARGV) {
             my $this_arg = shift;
             if($this_arg ne "-I") {
@@ -16,7 +16,7 @@ tree() {
             push @options, "-I", join("|",
                 grep { length($_) }
                 map {
-                     $_ eq "\\\$FIGNORE" ? grep { $_ } split(":", $ENV{FIGNORE}) :
+                     $_ eq "\\\$FIGNORE" ? split(":", $ENV{FIGNORE}) :
                                            $_
                 } @ignore_list
             )
