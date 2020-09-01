@@ -1,6 +1,7 @@
 export PATH=$HOME/bin:/usr/local/sbin:$PATH
 export SHELLCHECK_OPTS='-C'
 export LESS=-R
+export TREE_IGNORE=.git:.envrc
 
 source ~/perl5/perlbrew/etc/bashrc
 source ~/.bash_completion
