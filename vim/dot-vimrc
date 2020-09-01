@@ -25,10 +25,9 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
-autocmd FileType perl setlocal iskeyword+=:
-
 syntax on
 
+" intelligent tab-completion
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 function! InsertTabWrapper()
     let col = col('.') - 1
@@ -38,6 +37,11 @@ function! InsertTabWrapper()
         return "\<c-n>"
     endif
 endfunction
+" make tab-completion work better for perl
+autocmd FileType perl setlocal iskeyword+=:
+
+" use the FZF plugin; path assumes fzf was installed using Homebrew
+set rtp+=/usr/local/opt/fzf
 
 " the default is too dark for a dark terminal background
 highlight vimComment ctermfg=LightBlue
