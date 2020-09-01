@@ -9,4 +9,5 @@ git clone git@github.com:DrHyde/configurations.git
 configurations/install.sh
 ```
 
-You might have to twiddle the URL to https://github.com/DrHyde/configurations.git if you're not me.
+You might have to twiddle the URL to https://github.com/DrHyde/configurations.git if you're not me,
+and the contents of `.envrc` will be wrong for you too.
