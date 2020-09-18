@@ -1,5 +1,9 @@
 git() {
-    if [[ "$1" == "log" ]]; then
+    if [[ "$1" == "pullall" ]]; then
+        for i in *; do (cd $i; git pull) done
+    elif [[ "$1" == "pushall" ]]; then
+        for i in *; do (cd $i; git push) done
+    elif [[ "$1" == "log" ]]; then
         shift
         $(which git) log --graph "$@"
     elif [[ "$1" == "commit" ]]; then
