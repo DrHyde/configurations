@@ -1,10 +1,10 @@
 git() {
     if [[ "$1" == "pullall" ]]; then
-        for i in *; do (echo $i;cd $i; git pull) done
+        _gitall pull
     elif [[ "$1" == "pushall" ]]; then
-        for i in *; do (echo $i;cd $i; git push) done
+        _gitall push
     elif [[ "$1" == "statusall" ]]; then
-        for i in *; do (echo $i;cd $i; git status) done
+        _gitall status
     elif [[ "$1" == "log" ]]; then
         shift
         $(which git) log --graph "$@"
@@ -21,3 +21,15 @@ git() {
         $(which git) "$@"
     fi
 } 
+
+_gitall() {
+    for i in *; do
+        if [[ -d $i ]]; then
+            echo $i
+            (
+                cd $i
+                git $1 | sed 's/^/    /'
+            )
+        fi
+    done
+}
