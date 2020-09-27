@@ -1,8 +1,10 @@
 git() {
     if [[ "$1" == "pullall" ]]; then
-        for i in *; do (cd $i; git pull) done
+        for i in *; do (echo $i;cd $i; git pull) done
     elif [[ "$1" == "pushall" ]]; then
-        for i in *; do (cd $i; git push) done
+        for i in *; do (echo $i;cd $i; git push) done
+    elif [[ "$1" == "statusall" ]]; then
+        for i in *; do (echo $i;cd $i; git status) done
     elif [[ "$1" == "log" ]]; then
         shift
         $(which git) log --graph "$@"
