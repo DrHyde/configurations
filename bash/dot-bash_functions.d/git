@@ -28,7 +28,7 @@ _gitall() {
             echo $i
             (
                 cd $i
-                git $1 | sed 's/^/    /'
+                git $1 2>&1| sed 's/^/    /'
             )
         fi
     done
