@@ -3,6 +3,8 @@ set nocompatible
 let perl_fold = 1
 let perl_fold_blocks = 1
 
+set nofileignorecase
+set nowildignorecase
 set wildmode=longest,list,full
 set wildmenu
 set autoindent
