@@ -63,7 +63,7 @@ function look_for_updates {
         echo
     fi
 
-    for wanted in tldr fzf ctags; do
+    for wanted in rg tldr fzf ctags; do
         if [ "$(which $wanted)" == "" ]; then
             printf "${red}Install '$wanted'$NC\n"
         elif [ "$(which $wanted)" == "/usr/bin/$wanted" ]; then
