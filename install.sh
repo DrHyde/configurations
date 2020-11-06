@@ -32,6 +32,7 @@ function install {
     install_symlink $HOME/.bash_completion.d     $CHECKOUT_DIR/bash/dot-bash_completion.d
     install_symlink $HOME/.bash_functions        $CHECKOUT_DIR/bash/dot-bash_functions
     install_symlink $HOME/.bash_functions.d      $CHECKOUT_DIR/bash/dot-bash_functions.d
+    install_symlink $HOME/.parallel              $CHECKOUT_DIR/dot-parallel
     install_symlink $HOME/.treerc                $CHECKOUT_DIR/dot-treerc
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
@@ -96,8 +97,10 @@ function install_symlink {
     LINK=$1
     FILE=$2
     (
-        test -L $LINK && (
-            printf "$red$LINK is already a symlink, leaving it alone$NC\n"
+        test -L $LINK
+    ) || (
+        test -e $LINK && (
+            printf "$red$LINK already exists but isn't a symlink, leaving it alone$NC\n"
         )
     ) || (
         printf "${green}Create symlink from $LINK to $FILE$NC\n"
