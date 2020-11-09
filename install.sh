@@ -34,6 +34,7 @@ function install {
     install_symlink $HOME/.bash_functions.d      $CHECKOUT_DIR/bash/dot-bash_functions.d
     install_symlink $HOME/.parallel              $CHECKOUT_DIR/dot-parallel
     install_symlink $HOME/.treerc                $CHECKOUT_DIR/dot-treerc
+    install_symlink $HOME/.envrc                 $CHECKOUT_DIR/dot-envrc
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
 
