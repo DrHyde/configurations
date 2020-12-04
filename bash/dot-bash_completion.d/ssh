@@ -1,0 +1,13 @@
+# bash
+
+complete -F __ssh_bash_completions ssh
+
+__ssh_bash_completions () {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts="$(sed -E 's/[, ].*//' $HOME/.ssh/known_hosts)"
+
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+}
