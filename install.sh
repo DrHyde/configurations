@@ -68,8 +68,6 @@ function look_for_updates {
     for wanted in rg tldr fzf ctags; do
         if [ "$(which $wanted)" == "" ]; then
             printf "${red}Install '$wanted'$NC\n"
-        elif [ "$(which $wanted)" == "/usr/bin/$wanted" ]; then
-            printf "${red}Install '$wanted'$NC\n"
         elif [ "$wanted" == "fzf" ]; then
             grep fzf $HOME/.profile $HOME/.bashrc >/dev/null 2>&1 || \
               printf "${red}Install fzf keybindings (probably run /usr/local/opt/fzf/install)$NC\n"
