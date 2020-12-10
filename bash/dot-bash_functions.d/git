@@ -5,6 +5,8 @@ git() {
         _gitall push
     elif [[ "$1" == "statusall" ]]; then
         _gitall status
+    elif [[ "$1" == "defaultbranch" ]]; then
+        $(which git) checkout $($(which git) remote show origin | awk '/HEAD branch/ {print $NF}')
     elif [[ "$1" == "log" ]]; then
         shift
         $(which git) log --graph "$@"
