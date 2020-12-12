@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # bash/dot-bash_completion   > ~/.bash_completion
 # bash/dot-bash_completion.d > ~/.bash_completion.d
