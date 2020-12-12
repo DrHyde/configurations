@@ -1,3 +1,0 @@
-# for perl project checkouts
-export PERL5LIB=lib
-export LESS=-FRX

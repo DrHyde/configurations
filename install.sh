@@ -34,17 +34,14 @@ function install {
     install_symlink $HOME/.bash_functions.d      $CHECKOUT_DIR/bash/dot-bash_functions.d
     install_symlink $HOME/.parallel              $CHECKOUT_DIR/dot-parallel
     install_symlink $HOME/.treerc                $CHECKOUT_DIR/dot-treerc
-    install_symlink $HOME/.envrc                 $CHECKOUT_DIR/dot-envrc
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
 
-    grep bash_completion ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_completion'  >> ~/.profile
-    grep bash_functions ~/.profile  >/dev/null 2>&1 || echo '. $HOME/.bash_functions'  >> ~/.profile
-    grep EDITOR          ~/.profile >/dev/null 2>&1 || echo 'export EDITOR=`which vim`' >> ~/.profile
-    grep SHELLCHECK_OPTS ~/.profile >/dev/null 2>&1 || echo 'export SHELLCHECK_OPTS=-C' >> ~/.profile
-
-    grep -- --look-for-updates ~/.profile >/dev/null 2>&1 || \
-        echo "$CHECKOUT_DIR/install.sh --look-for-updates" >> ~/.profile
+    grep bash_completion       ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_completion'                     >> ~/.profile
+    grep bash_functions        ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_functions'                      >> ~/.profile
+    grep EDITOR                ~/.profile >/dev/null 2>&1 || echo 'export EDITOR=`which vim`'                    >> ~/.profile
+    grep SHELLCHECK_OPTS       ~/.profile >/dev/null 2>&1 || echo 'export SHELLCHECK_OPTS=-C'                    >> ~/.profile
+    grep -- --look-for-updates ~/.profile >/dev/null 2>&1 ||  echo "$CHECKOUT_DIR/install.sh --look-for-updates" >> ~/.profile
 }
 
 function wtf {
@@ -69,8 +66,8 @@ function look_for_updates {
         if [ "$(which $wanted)" == "" ]; then
             printf "${red}Install '$wanted'$NC\n"
         elif [ "$wanted" == "fzf" ]; then
-            grep fzf $HOME/.profile $HOME/.bashrc >/dev/null 2>&1 || \
-              printf "${red}Install fzf keybindings (probably run /usr/local/opt/fzf/install)$NC\n"
+            grep fzf $HOME/.profile >/dev/null 2>&1 || \
+              printf "${red}Install fzf keybindings in .profile (probably run /usr/local/opt/fzf/install)$NC\n"
         fi
     done
     echo
