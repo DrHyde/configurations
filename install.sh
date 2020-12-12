@@ -41,6 +41,10 @@ function install {
     grep bash_functions        ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_functions'                      >> ~/.profile
     grep EDITOR                ~/.profile >/dev/null 2>&1 || echo 'export EDITOR=`which vim`'                    >> ~/.profile
     grep SHELLCHECK_OPTS       ~/.profile >/dev/null 2>&1 || echo 'export SHELLCHECK_OPTS=-C'                    >> ~/.profile
+    grep LESS                  ~/.profile >/dev/null 2>&1 || echo 'export LESS=-FRX'                             >> ~/.profile
+    grep PS1                   ~/.profile >/dev/null 2>&1 || echo "export PS1='\\h:\\w \$ '"                     >> ~/.profile
+    grep PROMPT_COMMAND        ~/.profile >/dev/null 2>&1 || echo set PROMPT_COMMAND in .profile
+    # export PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}: $(realpath .)\007"'
     grep -- --look-for-updates ~/.profile >/dev/null 2>&1 ||  echo "$CHECKOUT_DIR/install.sh --look-for-updates" >> ~/.profile
 }
 
