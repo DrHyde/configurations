@@ -67,7 +67,7 @@ function look_for_updates {
     fi
 
     for wanted in rg tldr fzf ctags; do
-        if [ "$(which $wanted)" == "" ]; then
+        if [[ "$(which $wanted)" == "" || "$(which $wanted)" == "no $wanted in"* ]]; then
             printf "${red}Install '$wanted'$NC\n"
         elif [ "$wanted" == "fzf" ]; then
             grep fzf $HOME/.profile >/dev/null 2>&1 || \
