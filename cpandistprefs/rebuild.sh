@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 for i in *yml; do
     if [[ ! -s $i.dd || $i -nt $i.dd ]]; then
