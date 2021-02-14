@@ -1,4 +1,7 @@
 git() {
+    local CURRENT_BRANCH=$($(which git) rev-parse --abbrev-ref HEAD)
+    local DEFAULT_BRANCH=$($(which git) remote show origin | awk '/HEAD branch/ {print $NF}')
+
     if [[ "$1" == "pullall" ]]; then
         _gitall pull
     elif [[ "$1" == "pushall" ]]; then
@@ -6,7 +9,7 @@ git() {
     elif [[ "$1" == "statusall" ]]; then
         _gitall status
     elif [[ "$1" == "defaultbranch" ]]; then
-        $(which git) checkout $($(which git) remote show origin | awk '/HEAD branch/ {print $NF}')
+        $(which git) checkout "$DEFAULT_BRANCH"
     elif [[ "$1" == "log" ]]; then
         shift
         $(which git) log --graph "$@"
@@ -18,6 +21,17 @@ git() {
                 return 1
             fi
         done
+
+        if [[ "$CURRENT_BRANCH" = "$DEFAULT_BRANCH" ]]; then
+          if [ "$COMMIT_TO_DEFAULT_BRANCH" ] ; then
+            echo "OK, letting you commit to $CURRENT_BRANCH"
+          else
+            echo "You should not be committing to $CURRENT_BRANCH directly, raise a PR"
+            echo "If you have a really good reason to do so, set env var COMMIT_TO_DEFAULT_BRANCH"
+            return 1;
+          fi
+        fi
+
         $(which git) commit "$@"
     else
         $(which git) "$@"
