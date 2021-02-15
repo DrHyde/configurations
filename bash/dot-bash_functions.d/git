@@ -1,15 +1,14 @@
 git() {
-    local CURRENT_BRANCH=$($(which git) rev-parse --abbrev-ref HEAD)
-    local DEFAULT_BRANCH=$($(which git) remote show origin | awk '/HEAD branch/ {print $NF}')
-
     if [[ "$1" == "pullall" ]]; then
         _gitall pull
     elif [[ "$1" == "pushall" ]]; then
         _gitall push
     elif [[ "$1" == "statusall" ]]; then
         _gitall status
+    elif [[ "$1" == "showdefaultbranch" ]]; then
+        $(which git) remote show origin | awk '/HEAD branch/ {print $NF}'
     elif [[ "$1" == "defaultbranch" ]]; then
-        $(which git) checkout "$DEFAULT_BRANCH"
+        $(which git) checkout $(git showdefaultbranch)
     elif [[ "$1" == "log" ]]; then
         shift
         $(which git) log --graph "$@"
@@ -21,6 +20,9 @@ git() {
                 return 1
             fi
         done
+
+        local DEFAULT_BRANCH=$(git showdefaultbranch)
+        local CURRENT_BRANCH=$($(which git) rev-parse --abbrev-ref HEAD)
 
         if [[ "$CURRENT_BRANCH" = "$DEFAULT_BRANCH" ]]; then
           if [ "$COMMIT_TO_DEFAULT_BRANCH" ] ; then
