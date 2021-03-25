@@ -70,7 +70,7 @@ function look_for_updates {
         echo
     fi
 
-    for wanted in rg tldr fzf ctags; do
+    for wanted in rg tldr fzf ctags ngrok; do
         if [[ "$(which $wanted)" == "" || "$(which $wanted)" == "no $wanted in"* ]]; then
             printf "${red}Install '$wanted'$NC\n"
         elif [ "$wanted" == "fzf" ]; then
