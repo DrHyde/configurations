@@ -130,7 +130,8 @@ function copy_if_not_equal {
     if [[ "$(md5sum $SOURCE|awk '{print $1}')" == "$(md5sum $TARGET|awk '{print $1}')" ]]; then
         true
     else
-        printf "${red}Updating $TARGET from $SOURCE$NC\n"
+        printf "${red}Updating $TARGET\n  from $SOURCE$NC\n"
+        echo Restart running apps to pick that up
         cp $SOURCE $TARGET
     fi
 }
