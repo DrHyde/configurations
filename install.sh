@@ -37,6 +37,9 @@ function install {
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
 
+    mkdir $HOME/Library/KeyBindings || true
+    copy_if_not_equal $CHECKOUT_DIR/karabiner/DefaultKeyBinding.dict $HOME/Library/KeyBindings/DefaultKeyBinding.dict
+
     grep bash_completion       ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_completion'                     >> ~/.profile
     grep bash_functions        ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_functions'                      >> ~/.profile
     grep EDITOR                ~/.profile >/dev/null 2>&1 || echo 'export EDITOR=`which vim`'                    >> ~/.profile
@@ -112,6 +115,17 @@ function install_symlink {
         printf "${green}Create symlink from $LINK to $FILE$NC\n"
         ln -s $FILE $LINK
     )
+}
+
+function copy_if_not_equal {
+    SOURCE=$1
+    TARGET=$2
+    if [[ "$(md5sum $SOURCE|awk '{print $1}')" == "$(md5sum $TARGET|awk '{print $1}')" ]]; then
+        true
+    else
+        printf "${red}Updating $TARGET from $SOURCE$NC\n"
+        cp $SOURCE $TARGET
+    fi
 }
 
 if [ "$UID" != "0" ]; then
