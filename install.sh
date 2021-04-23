@@ -73,9 +73,14 @@ function look_for_updates {
         echo
     fi
 
-    for wanted in rg tldr fzf ctags ngrok; do
+    for wanted in rg tldr fzf ctags ngrok karabiner; do
         if [[ "$wanted" == "ngrok" && "$(uname)" == "SunOS" ]]; then
             true
+        elif [[ "$wanted" == "karabiner" ]]; then
+            if [[ "$(uname)" == "Darwin" ]]; then
+                ps auxww|grep -v grep|grep -qi karabiner || \
+                printf "${red}Install Karabiner$NC\n"
+            fi
         elif [[ "$(which $wanted)" == "" || "$(which $wanted)" == "no $wanted in"* ]]; then
             printf "${red}Install '$wanted'$NC\n"
         elif [ "$wanted" == "fzf" ]; then
