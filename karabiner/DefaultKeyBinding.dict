@@ -1,11 +1,12 @@
 {
-    /* The Compose Key: § - use Karabiner to bind to Right-Option
+    /* In Karabiner, map From 'application' to 'non_us_backslash' for
+       the Sun keyboard, and then install this file as ~/Library/KeyBindings/DefaultKeyBinding.dict
+
+       'Application' is what Apple calls the real Compose key. 'non_us_backslash'
+       is what Apple calls the utterly useless § symbol.
+
        Reference:
          http://github.com/gnarf/osx-compose-key
-         http://lolengine.net/blog/2012/06/17/compose-key-on-os-x
-         http://heisencoder.net/2008/04/fixing-up-mac-key-bindings-for-windows.html
-         https://gist.github.com/gnarf/0d29c05b189a51894399
-         http://osxnotes.net/keybindings.html
     */
     "§" = {
         "$\UF700" = ("insertText:", "↑"); /* (Shift) Up arrow */
