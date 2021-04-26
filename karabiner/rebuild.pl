@@ -34,7 +34,9 @@ O E Œ
 o e œ
 s s ß
 GBP £
+gbp £
 EUR €
+eur €
 YOGH Ȝ
 yogh ȝ
 WYNN Ƿ
@@ -46,10 +48,9 @@ rational ℚ
 integer ℤ
 natural ℕ
 prime ℙ
-sing flat welsh
 END_OF_MAPPINGS
 
-# cope with lazy multi-char mappings like 'sing flat welsh'
+# cope with lazy multi-char mappings like 'GBP £'
 foreach my $mapping (@mappings) {
     $mapping = [
         ( map { split(//, $_) } (@{$mapping})[0 .. $#{$mapping} - 1] ),

@@ -395,10 +395,16 @@
       "^" = ("insertText:", "ê");
       "_" = ("insertText:", "ē");
       "`" = ("insertText:", "è");
+      "u" = {
+        "r" = ("insertText:", "€");
+      };
       "v" = ("insertText:", "ě");
       "~" = ("insertText:", "ẽ");
     };
     "g" = {
+      "b" = {
+        "p" = ("insertText:", "£");
+      };
       "o" = ("insertText:", "碁");
       "r" = {
         "a" = {
