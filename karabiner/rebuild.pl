@@ -59,6 +59,7 @@ foreach my $mapping (@mappings) {
 }
 
 push @mappings, _fractions(), _super_sub_scripts(), _accents(), _greek(), _emoji(),
+    [ $compose, $compose ],
     [ qw(z a l g o), "H̸̡̪̯ͨ͊̽̅̾̎Ȩ̬̩̾͛ͪ̈́̀́͘ ̶̧̨̱̹̭̯ͧ̾ͬC̷̙̲̝͖ͭ̏ͥͮ͟Oͮ͏̮̪̝͍M̲̖͊̒ͪͩͬ̚̚͜Ȇ̴̟̟͙̞ͩ͌͝S̨̥̫͎̭ͯ̿̔̀ͅ" ],
     ;
 
