@@ -19,6 +19,9 @@ use experimental 'signatures';
 use charnames ':full';
 binmode STDOUT, ':utf8';
 
+my @warnings = ();
+END { warn("$_\n") foreach @warnings; }
+
 my $compose = "§";
 
 my @mappings = ( map { s/\s*#.*//; [ split(/\s+/, $_) ] } split("\n", <<"END_OF_MAPPINGS"));
@@ -76,7 +79,7 @@ MAPPING: foreach my $mapping (@mappings) {
     while(@keys) {
         my $this_key = shift(@keys);
         if(!ref($prev_container)) {
-            warn("Clash: $this_mapping clashes with $found_mapping; ignoring\n");
+            push @warnings, "Clash: $this_mapping clashes with $found_mapping; ignoring";
             next MAPPING;
         }
         if(!exists($prev_container->{$this_key})) {
@@ -110,18 +113,18 @@ sub _convert_to_dict ($tree, $indent) {
 
 sub _greek {
     my @mappings = ();
-    foreach my $word (qw(
-        alpha beta gamma delta epsilon zeta eta theta iota kappa lambda
+    foreach my $sequence (qw(
+        alpha beta gamma delta epsilon zeta eta theta iota kappa lambda lamda
         mu nu xi omicron pi rho sigma tau upsilon phi chi psi omega
     )) {
+        # Unicode doesn't know how to spell LAMBDA
+        my $letter_name = ($sequence eq 'lambda') ? 'lamda' : $sequence;
         push @mappings, [
-            qw(G R),
-            split(//, uc($word)),
-            charnames::string_vianame('GREEK CAPITAL LETTER '.uc($word))
+            split(//, uc("gr$sequence")),
+            charnames::string_vianame('GREEK CAPITAL LETTER '.uc($letter_name))
         ], [
-            qw(g r),
-            split(//, $word),
-            charnames::string_vianame('GREEK SMALL LETTER '.uc($word))
+            split(//, "gr$sequence"),
+            charnames::string_vianame('GREEK SMALL LETTER '.uc($letter_name))
         ];
     }
     return @mappings;
