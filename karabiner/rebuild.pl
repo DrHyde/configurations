@@ -51,6 +51,13 @@ rational ℚ
 integer ℤ
 natural ℕ
 prime ℙ
+contains ∋
+element ∈
+member ∈
+subset ⊂
+superset ⊃
+union ∪
+intersection ∩
 END_OF_MAPPINGS
 
 # cope with lazy multi-char mappings like 'GBP £'
