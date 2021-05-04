@@ -81,7 +81,7 @@ function look_for_updates {
         elif [[ "$wanted" == "karabiner" ]]; then
             if [[ "$(uname)" == "Darwin" ]]; then
                 ps auxww|grep -v grep|grep -qi karabiner || \
-                printf "${red}Install Karabiner$NC\n"
+                printf "${red}Install Karabiner: brew install --cask karabiner-elements$NC\n"
             fi
         elif [[ "$(which $wanted)" == "" || "$(which $wanted)" == "no $wanted in"* ]]; then
             printf "${red}Install '$wanted'$NC\n"
