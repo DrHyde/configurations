@@ -37,6 +37,17 @@ function install {
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
 
+    (
+        cd dot-config
+        [ ! -d "$HOME/.config" ] && mkdir "$HOME/.config"
+        for file in $(find . -type f); do
+            filename=$(basename $file)
+            dirname=$(dirname $(echo $file|sed 's/^..//'))
+            [ ! -d "$HOME/.config/$dirname" ] && mkdir -p "$HOME/.config/$dirname"
+            install_symlink $HOME/.config/$dirname/$filename $CHECKOUT_DIR/dot-config/$dirname/$filename
+        done
+    )
+
     if [[ "$(uname)" == "Darwin" ]]; then
         mkdir $HOME/Library/KeyBindings 2>/dev/null || true
         copy_if_not_equal $CHECKOUT_DIR/karabiner/DefaultKeyBinding.dict $HOME/Library/KeyBindings/DefaultKeyBinding.dict
