@@ -155,9 +155,10 @@ sub _accents {
     my @mappings = ();
     foreach my $letter (qw(a c e i n o u w y A C E I N O U W Y)) {
         my %accent_table = (
-            ACUTE        => "'", GRAVE     => '`', CIRCUMFLEX => '^',
-            TILDE        => '~', DIAERESIS => ':', CEDILLA    => ',',
-            STROKE       => '/', MACRON    => '_', CARON      => 'v',
+            # FIXME eeuuww, put a map from ^ -> \\\\\\U005E and ~ -> \\\\\\U007E elsewhere
+            ACUTE        => "'",           GRAVE     => '`', CIRCUMFLEX => '\\\\\\U005E',
+            TILDE        => '\\\\\\U007E', DIAERESIS => ':', CEDILLA    => ',',
+            STROKE       => '/',           MACRON    => '_', CARON      => 'v',
             'RING ABOVE' => 'o',
         );
         foreach my $accent (keys %accent_table) {
