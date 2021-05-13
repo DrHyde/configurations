@@ -304,6 +304,7 @@
     };
     "T" = {
       "H" = ("insertText:", "Þ");
+      "M" = ("insertText:", "™");
     };
     "U" = {
       "'" = ("insertText:", "Ú");

@@ -58,6 +58,7 @@ subset ⊂
 superset ⊃
 union ∪
 intersection ∩
+TM ™
 END_OF_MAPPINGS
 
 # cope with lazy multi-char mappings like 'GBP £'
