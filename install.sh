@@ -74,7 +74,11 @@ function wtf {
 
 function look_for_updates {
     cd $CHECKOUT_DIR
-    timeout 5 git fetch -q origin
+    TIMEOUT=timeout
+    if [ "$(uname)" == "OpenBSD" ]; then
+        TIMEOUT=gtimeout
+    fi
+    $TIMEOUT 5 git fetch -q origin
 
     if [ "$?" != "0" ]; then
         echo
@@ -87,7 +91,7 @@ function look_for_updates {
     fi
 
     for wanted in rg tldr fzf ctags ngrok karabiner; do
-        if [[ "$wanted" == "ngrok" && "$(uname)" == "SunOS" ]]; then
+        if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|OpenBSD)$ ]]; then
             true
         elif [[ "$wanted" == "karabiner" ]]; then
             if [[ "$(uname)" == "Darwin" ]]; then
