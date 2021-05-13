@@ -38,7 +38,7 @@ function install {
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
 
     (
-        cd dot-config
+        cd "$CHECKOUT_DIR/dot-config"
         [ ! -d "$HOME/.config" ] && mkdir "$HOME/.config"
         for file in $(find . -type f); do
             filename=$(basename $file)
