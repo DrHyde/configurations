@@ -38,6 +38,9 @@ function install {
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
 
+    mkdir $HOME/.get_iplayer 2>/dev/null
+    install_symlink $HOME/.get_iplayer/options   $CHECKOUT_DIR/get_iplayer/options
+
     (
         cd "$CHECKOUT_DIR/dot-config"
         [ ! -d "$HOME/.config" ] && mkdir "$HOME/.config"
