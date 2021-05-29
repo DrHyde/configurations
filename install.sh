@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# bash/dot-bash_completion   > ~/.bash_completion
-# bash/dot-bash_completion.d > ~/.bash_completion.d
-# vim/dot-vim                > ~/.vim
-# vim/dot-vimrc              > ~/.vimrc
-
 CHECKOUT_DIR="$( cd "$(dirname "$0")"; pwd -P)"
 
 red='\e[1;31m'   # bold red
@@ -35,6 +30,7 @@ function install {
     install_symlink $HOME/.cpandistprefs         $CHECKOUT_DIR/cpandistprefs
     install_symlink $HOME/.parallel              $CHECKOUT_DIR/dot-parallel
     install_symlink $HOME/.treerc                $CHECKOUT_DIR/dot-treerc
+    install_symlink $HOME/.screenrc              $CHECKOUT_DIR/dot-screenrc
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
 
