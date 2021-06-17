@@ -179,13 +179,13 @@ sub _accents {
 
 sub _super_sub_scripts {
     my @mappings = ();
-    foreach my $number (0 .. 9) {
+    foreach my $character (qw(+ -), 0 .. 9) {
         push @mappings, [
-            $number, '$\\UF700', # 0, shift-up
-            charnames::string_vianame('SUPERSCRIPT '._number_name($number))
+            $character, '\\\\\\U005E', # 0, hat
+            charnames::string_vianame('SUPERSCRIPT '._character_name($character))
         ], [
-            $number, '$\\UF701', # 0, shift-down
-            charnames::string_vianame('SUBSCRIPT '._number_name($number))
+            $character, 'v', # 0, v
+            charnames::string_vianame('SUBSCRIPT '._character_name($character))
         ]
     }
     return @mappings;
@@ -197,7 +197,7 @@ sub _fractions {
         foreach my $denominator (2 .. 10) {
             if(my $char = charnames::string_vianame(
                 'VULGAR FRACTION '.
-                _number_name($numerator).' '.
+                _character_name($numerator).' '.
                 _denominator_name($denominator).
                 ($numerator == 1 ? '' : 'S')
             )) {
@@ -207,8 +207,13 @@ sub _fractions {
     }
     return @mappings;
 }
-sub _number_name ($n) {
-    [ qw(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE) ]->[$n]
+sub _character_name ($n) {
+    my $counter = 0;
+    {
+        '+' => 'PLUS SIGN',
+        '-' => 'MINUS',
+        map { $counter++ => $_ } qw(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE)
+    }->{$n};
 }
 sub _denominator_name ($n) {
     [ '', '', qw(HALF THIRD QUARTER FIFTH SIXTH SEVENTH EIGHTH NINTH TENTH) ]->[$n]
