@@ -1,7 +1,11 @@
 # bash
 
 complete -F __brew_bash_completions brew
-brew commands -q | grep ^[[:alpha:]] > ~/.brew.commands
+
+# regenerate this if more than a week old
+if test $(find ~/.brew.commands -mtime +7); then
+    brew commands -q | grep ^[[:alpha:]] > ~/.brew.commands
+fi
 
 __brew_bash_completions () {
     COMPREPLY=();
