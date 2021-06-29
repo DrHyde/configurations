@@ -1,0 +1,17 @@
+# bash
+
+# because I often tyop `bre w...` instead of `brew ...`
+bre() {
+    local firstarg="$1"
+    shift
+    case $firstarg in
+      w*)
+        firstarg="${firstarg:1}"
+        $(which brew) "$firstarg" "$@"
+        ;;
+      *)
+        echo bre: No such file or directory >&2
+        return 1
+        ;;
+    esac
+} 
