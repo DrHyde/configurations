@@ -1,1 +1,1 @@
-export FIGNORE="$FIGNORE:.DS_Store:.AppleDouble"
+export FIGNORE="$FIGNORE:.DS_Store:.AppleDouble:.AppleDB"
