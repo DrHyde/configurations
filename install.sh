@@ -34,6 +34,8 @@ function install {
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
 
+    install_symlink $HOME/bin/lls                $HOME/perlscripts/lls
+
     mkdir $HOME/.get_iplayer 2>/dev/null
     install_symlink $HOME/.get_iplayer/options   $CHECKOUT_DIR/get_iplayer/options
 
@@ -78,17 +80,26 @@ function look_for_updates {
     if [ "$(uname)" == "OpenBSD" ]; then
         TIMEOUT=gtimeout
     fi
-    $TIMEOUT 5 git fetch -q origin
 
-    if [ "$?" != "0" ]; then
-        echo
-        printf "${red}Timed out trying to talk to github to see if your configuration is up to date$NC\n"
-        echo
-    elif [ "$(git log -1 --pretty=format:%H origin/master)" != "$(git log -1 --pretty=format:%H)" ]; then
-        echo
-        printf "${red}Your configuration isn\'t the same as Github$NC\n"
-        echo
-    fi
+    for repo in configurations perlscripts; do
+        (
+            cd $HOME
+            [ ! -d "$repo" ] && git clone git@github.com:DrHyde/$repo.git
+
+            cd $repo
+            $TIMEOUT 5 git fetch -q origin
+            if [ "$?" != "0" ]; then
+                echo
+                printf "${red}Timed out trying to talk to github to see if your $repo repo is up to date$NC\n"
+                echo
+            elif [ "$(git log -1 --pretty=format:%H origin/master)" != "$(git log -1 --pretty=format:%H)" ]; then
+                echo
+                printf "${red}Your $repo repo isn\'t the same as Github$NC\n"
+                echo
+            fi
+        ) &
+    done
+    wait
 
     for wanted in rg tldr fzf ctags ngrok karabiner; do
         if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|OpenBSD)$ ]]; then
