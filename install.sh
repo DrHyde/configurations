@@ -34,7 +34,7 @@ function install {
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
 
-    install_symlink $HOME/bin/lls                $HOME/perlscripts/lls
+    install_symlink $HOME/bin/lls                $CHECKOUT_DIR/../perlscripts/lls
 
     mkdir $HOME/.get_iplayer 2>/dev/null
     install_symlink $HOME/.get_iplayer/options   $CHECKOUT_DIR/get_iplayer/options
@@ -83,7 +83,7 @@ function look_for_updates {
 
     for repo in configurations perlscripts; do
         (
-            cd $HOME
+            cd $CHECKOUT_DIR/..
             [ ! -d "$repo" ] && git clone git@github.com:DrHyde/$repo.git
 
             cd $repo
