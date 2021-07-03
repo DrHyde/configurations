@@ -34,6 +34,7 @@ function install {
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
 
+    mkdir $HOME/bin 2>/dev/null
     install_symlink $HOME/bin/lls                $CHECKOUT_DIR/../perlscripts/lls
 
     mkdir $HOME/.get_iplayer 2>/dev/null
