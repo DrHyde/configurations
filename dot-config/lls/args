@@ -1,5 +1,6 @@
 --ignore $FIGNORE
 --norecurse .git
 --default_types
+--default_icons
 --name_type pm_to_blib object
 --iso8601
