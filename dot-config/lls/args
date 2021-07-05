@@ -1,5 +1,5 @@
 --ignore $FIGNORE
---ignore local
+--ignore local/lib
 --norecurse .git
 --default_types
 --default_icons
