@@ -1,4 +1,5 @@
 --ignore $FIGNORE
+--ignore local
 --norecurse .git
 --default_types
 --default_icons
