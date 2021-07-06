@@ -28,6 +28,7 @@
 
 --colour_type data   orange
 --colour_type test   green
+--colour_type ci     lightgreen
 --colour_type c      yellow
 --colour_type perl   yellow
 --colour_type object blue
