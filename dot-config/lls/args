@@ -14,6 +14,9 @@
 --name_type cpanfile      tree
 --name_type Makefile.PL   tree
 --ext_type  bs            object
+--ext_type  pod           text
+--shebang_type perl perl
+--shebang_type raku perl
 
 --ext_type mp4 video
 --ext_type mkv video
