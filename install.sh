@@ -48,6 +48,11 @@ function install {
             dirname=$(dirname $(echo $file|sed 's/^..//'))
             [ ! -d "$HOME/.config/$dirname" ] && mkdir -p "$HOME/.config/$dirname"
             install_symlink $HOME/.config/$dirname/$filename $CHECKOUT_DIR/dot-config/$dirname/$filename
+            if [[ "$dirname" == "bat/syntaxes" ]]; then
+                echo -n "Rebuilding bat cache ... "
+                bat cache --build > /dev/null
+                echo OK
+            fi
         done
     )
 
