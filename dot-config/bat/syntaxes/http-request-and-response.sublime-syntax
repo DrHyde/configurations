@@ -5,6 +5,7 @@
 # Thanks to keith-hall, see https://github.com/sharkdp/bat/issues/1748#issuecomment-885830609
 scope: text.http-request-response
 name: HTTP Request and Response
+file_extensions: [http]
 variables:
   content_type_sep: (?=;|$)
 contexts:
