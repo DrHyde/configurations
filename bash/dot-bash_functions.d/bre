@@ -1,4 +1,4 @@
-# bash
+#!bash
 
 # because I often tyop `bre w...` instead of `brew ...`
 bre() {
