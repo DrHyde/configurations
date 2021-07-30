@@ -23,7 +23,8 @@ perlbrew_git_install () {
                 local repo="$(git rev-parse --show-toplevel)"
                 repo=$(basename "$repo");
                 local branch="$(git rev-parse --abbrev-ref HEAD)"
-                original_perlbrew install --as "git-${repo}-$branch" "$(pwd)"
+                local commit="$(git rev-parse --short HEAD)"
+                original_perlbrew install --as "git-${repo}-$branch-$commit" "$(pwd)"
             )
         ) || echo This doesn\'t look like a perl checkout
     else
