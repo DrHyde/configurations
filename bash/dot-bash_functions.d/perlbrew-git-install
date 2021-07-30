@@ -1,0 +1,33 @@
+#!bash
+
+red='\e[1;31m'   # bold red
+NC='\e[0m'       # no colour
+original_perlbrew_definition="$(declare -f perlbrew)"
+
+if [ "$original_perlbrew_definition" == "" ]; then
+    printf "${red}perlbrew isn't loaded$NC\n"
+    eval "original_perlbrew() {
+              echo no perlbrew found
+    }"
+else
+    eval "original_$original_perlbrew_definition"
+    eval 'perlbrew () {
+              perlbrew_git_install "$@"
+    }'
+fi
+
+perlbrew_git_install () {
+    if [ "$1" == "git-install" ]; then
+        (
+            git log >/dev/null 2>&1 && [ -e perly.y ] && (
+                local repo="$(git rev-parse --show-toplevel)"
+                repo=$(basename "$repo");
+                local branch="$(git rev-parse --abbrev-ref HEAD)"
+                original_perlbrew install --as "git-${repo}-$branch" $(pwd)
+            )
+        ) || echo This doesn\'t look like a perl checkout
+    else
+        original_perlbrew "$@"
+    fi
+}
+
