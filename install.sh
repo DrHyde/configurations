@@ -61,6 +61,7 @@ function install {
         copy_if_not_equal $CHECKOUT_DIR/karabiner/DefaultKeyBinding.dict $HOME/Library/KeyBindings/DefaultKeyBinding.dict
     fi
 
+    grep perlbrew              ~/.profile >/dev/null 2>&1 || echo 'source ~/perl5/perlbrew/etc/bashrc'           >> ~/.profile
     grep bash_completion       ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_completion'                     >> ~/.profile
     grep bash_functions        ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_functions'                      >> ~/.profile
     grep EDITOR                ~/.profile >/dev/null 2>&1 || echo 'export EDITOR=`which vim`'                    >> ~/.profile
@@ -74,6 +75,12 @@ function install {
     grep QUOTING_STYLE         ~/.profile >/dev/null 2>&1 || echo 'export QUOTING_STYLE=literal'                 >> ~/.profile
 
     grep -- --look-for-updates ~/.profile >/dev/null 2>&1 ||  echo "$CHECKOUT_DIR/install.sh --look-for-updates" >> ~/.profile
+
+    local perlbrew_line=$(grep -n perlbrew ~/.profile |sed 's/:.*//')
+    local bash_functions_line=$(grep -n bash_functions ~/.profile |sed 's/:.*//')
+    if [ $perlbrew_line -gt $bash_functions_line ]; then
+        printf "${red}perlbrew should be loaded before my bash_functions$NC\n"
+    fi
 }
 
 function wtf {
