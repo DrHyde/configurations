@@ -33,6 +33,8 @@
 --icon_type audio ♬
 --colour_type audio  orange
 
+--ext_type rar compressed
+
 --colour_type data       orange
 --colour_type test       green
 --colour_type ci         lightgreen
