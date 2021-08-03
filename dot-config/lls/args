@@ -23,6 +23,7 @@
 --colour_type  shell         goldenrod
 
 --ext_type mp4 video
+--ext_type m4v video
 --ext_type mkv video
 --icon_type video 
 --colour_type video  magenta
