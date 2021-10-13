@@ -147,6 +147,7 @@ sub _emoji {
         map { [ $_->[0], charnames::string_vianame($_->[1]) ] } (
             [ 'cricket', 'CRICKET BAT AND BALL' ],
             [ 'rugby',   'RUGBY FOOTBALL'       ],
+            [ 'heart',   'BLACK HEART SUIT'     ],
         )
     );
 }
