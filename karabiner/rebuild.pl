@@ -25,8 +25,6 @@ END { warn("$_\n") foreach @warnings; }
 my $compose = "§";
 
 my @mappings = ( map { s/\s*#.*//; [ split(/\s+/, $_) ] } split("\n", <<"END_OF_MAPPINGS"));
-l - ł
-L - Ł
 d - ð
 D - Ð
 T H Þ
@@ -154,13 +152,17 @@ sub _emoji {
 
 sub _accents {
     my @mappings = ();
-    foreach my $letter (qw(a c e i n o u w y A C E I N O U W Y)) {
+    foreach my $letter ( ( 'a' .. 'z' ), ( 'A' .. 'Z' ) ) {
         my %accent_table = (
-            # FIXME eeuuww, put a map from ^ -> \\\\\\U005E and ~ -> \\\\\\U007E elsewhere
-            ACUTE        => "'",           GRAVE     => '`', CIRCUMFLEX => '\\\\\\U005E',
-            TILDE        => '\\\\\\U007E', DIAERESIS => ':', CEDILLA    => ',',
-            STROKE       => '/',           MACRON    => '_', CARON      => 'v',
-            'RING ABOVE' => 'o',
+            # maps:
+            #   ^ -> \\\\\\U005E
+            #   ~ -> \\\\\\U007E
+            #   " -> \\\\\\U0022
+            ACUTE          => "'",           GRAVE     => '`', CIRCUMFLEX => '\\\\\\U005E',
+            TILDE          => '\\\\\\U007E', DIAERESIS => ':', CEDILLA    => ',',
+            STROKE         => '/',           MACRON    => '_', CARON      => 'v',
+            'RING ABOVE'   => 'o',
+            'DOUBLE ACUTE' => '\\\\\\U0022',
         );
         foreach my $accent (keys %accent_table) {
             if(my $char = charnames::string_vianame(
