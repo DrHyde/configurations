@@ -17,10 +17,26 @@ use warnings;
 use utf8;
 use experimental 'signatures';
 use charnames ':full';
+
 binmode STDOUT, ':utf8';
 
+my $output_file = shift || '-';
+my $out_fh;
+if($output_file ne '-') {
+    open $out_fh, '>', $output_file
+        || die("Couldn't write to $output_file: $!\n");
+    binmode $out_fh, ':utf8';
+    select $out_fh;
+}
+
 my @warnings = ();
-END { warn("$_\n") foreach @warnings; }
+END {
+    warn("$_\n") foreach @warnings;
+
+    if($output_file ne '-') {
+        exec(qw(plutil -lint), $output_file);
+    }
+}
 
 my $compose = "§";
 
