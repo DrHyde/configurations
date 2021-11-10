@@ -72,6 +72,7 @@ subset ⊂
 superset ⊃
 union ∪
 intersection ∩
+degree °
 TM ™
 END_OF_MAPPINGS
 

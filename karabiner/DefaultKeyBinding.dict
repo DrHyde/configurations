@@ -491,6 +491,15 @@
       "," = ("insertText:", "ḑ");
       "-" = ("insertText:", "ð");
       "/" = ("insertText:", "đ");
+      "e" = {
+        "g" = {
+          "r" = {
+            "e" = {
+              "e" = ("insertText:", "°");
+            };
+          };
+        };
+      };
       "v" = ("insertText:", "ď");
     };
     "e" = {
