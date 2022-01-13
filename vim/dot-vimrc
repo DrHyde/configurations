@@ -18,6 +18,8 @@ set incsearch
 set laststatus=2
 set nojoinspaces
 set cursorline
+set splitright
+set splitbelow
 
 set number
 set relativenumber
