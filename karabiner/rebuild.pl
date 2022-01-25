@@ -73,7 +73,8 @@ superset ⊃
 union ∪
 intersection ∩
 degree °
-TM ™
+tm ™
+copy ©
 END_OF_MAPPINGS
 
 # cope with lazy multi-char mappings like 'GBP £'

@@ -373,7 +373,6 @@
       "," = ("insertText:", "Ţ");
       "/" = ("insertText:", "Ŧ");
       "H" = ("insertText:", "Þ");
-      "M" = ("insertText:", "™");
       "v" = ("insertText:", "Ť");
     };
     "U" = {
@@ -472,6 +471,9 @@
               };
             };
           };
+        };
+        "p" = {
+          "y" = ("insertText:", "©");
         };
       };
       "r" = {
@@ -897,6 +899,7 @@
       "/" = ("insertText:", "ŧ");
       ":" = ("insertText:", "ẗ");
       "h" = ("insertText:", "þ");
+      "m" = ("insertText:", "™");
       "v" = ("insertText:", "ť");
     };
     "u" = {
