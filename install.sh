@@ -19,7 +19,13 @@ function main {
         fi
     elif [ "$#" == "2" ]; then
         if [ "$1" == "--update" ]; then
-            (cd $CHECKOUT_DIR/../$2; git pull; ./install.sh)
+            (
+                cd $CHECKOUT_DIR/../$2
+                git pull
+                if [ "$2" == "configurations" ]; then
+                    ./install.sh
+                fi
+            )
         else
             wtf
         fi
