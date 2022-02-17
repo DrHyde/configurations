@@ -117,7 +117,7 @@ function look_for_updates {
     done
     wait
 
-    for wanted in rg tldr fzf ctags ngrok karabiner; do
+    for wanted in rg tldr tree fzf ctags ngrok karabiner; do
         if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|OpenBSD)$ ]]; then
             true
         elif [[ "$wanted" == "karabiner" ]]; then
