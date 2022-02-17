@@ -38,6 +38,7 @@ function install {
 
     mkdir $HOME/bin 2>/dev/null
     install_symlink $HOME/bin/lls                $CHECKOUT_DIR/../perlscripts/lls
+    install_symlink $HOME/bin/charnames          $CHECKOUT_DIR/../perlscripts/charnames
 
     mkdir $HOME/.get_iplayer 2>/dev/null
     install_symlink $HOME/.get_iplayer/options   $CHECKOUT_DIR/get_iplayer/options
