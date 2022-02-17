@@ -14,6 +14,8 @@ function main {
     elif [ "$#" == "1" ]; then
         if [ "$1" == "--look-for-updates" ]; then
             look_for_updates
+        elif [ "$1" == "--update" ]; then
+            (cd $CHECKOUT_DIR; git pull; ./install.sh)
         else
             wtf
         fi
@@ -108,6 +110,7 @@ function look_for_updates {
             elif [ "$(git log -1 --pretty=format:%H origin/master)" != "$(git log -1 --pretty=format:%H)" ]; then
                 echo
                 printf "${red}Your $repo repo isn\'t the same as Github$NC\n"
+                printf "Try ${green}$CHECKOUT_DIR/install.sh --update${NC}\n"
                 echo
             fi
         ) &
