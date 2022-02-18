@@ -120,8 +120,8 @@ function look_for_updates {
                 echo
             elif [ "$(git log -1 --pretty=format:%H origin/master)" != "$(git log -1 --pretty=format:%H)" ]; then
                 echo
-                printf "${red}Your $repo repo isn\'t the same as Github$NC\n"
-                printf "Try ${green}$CHECKOUT_DIR/install.sh --update $repo${NC}\n"
+                printf "${red}Your $repo repo isn\'t the same as Github.$NC Try:\n"
+                printf "  ${green}$CHECKOUT_DIR/install.sh --update $repo${NC}\n"
                 echo
             fi
         ) &
