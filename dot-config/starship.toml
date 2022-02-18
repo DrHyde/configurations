@@ -1,0 +1,29 @@
+# format = "$all$directory$character"
+
+add_newline = false
+
+[directory]
+truncation_length = 0
+truncate_to_repo = true
+truncation_symbol = " …/"
+
+[git_branch]
+format = "[on $branch ]($style)"
+
+[custom.c]
+extensions = ["c", "h"]
+format = "using C "
+
+[perl]
+format = "using [$symbol($version) ]($style)"
+detect_extensions = []
+
+[character]
+success_symbol = "[\\$](bold green)"
+error_symbol   = "[\\$](bold red)"
+
+[line_break]
+disabled = true
+
+[cmd_duration]
+disabled = true

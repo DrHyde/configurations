@@ -60,7 +60,12 @@ function install {
             filename=$(basename $file)
             dirname=$(dirname $(echo $file|sed 's/^..//'))
             [ ! -d "$HOME/.config/$dirname" ] && mkdir -p "$HOME/.config/$dirname"
-            install_symlink $HOME/.config/$dirname/$filename $CHECKOUT_DIR/dot-config/$dirname/$filename
+            if [[ $filename == "starship.toml" ]]; then
+                # need to copy this so we don't wake up the disk on every prompt
+                copy_if_not_equal $CHECKOUT_DIR/dot-config/$dirname/$filename $HOME/.config/$dirname/$filename
+            else
+                install_symlink $HOME/.config/$dirname/$filename $CHECKOUT_DIR/dot-config/$dirname/$filename
+            fi
             if [[ "$dirname" == "bat/syntaxes" ]]; then
                 echo -n "Rebuilding bat cache ... "
                 bat cache --build > /dev/null
@@ -184,7 +189,6 @@ function copy_if_not_equal {
         true
     else
         printf "${red}Updating $TARGET\n  from $SOURCE$NC\n"
-        echo Restart running apps to pick that up
         cp $SOURCE $TARGET
     fi
 }
