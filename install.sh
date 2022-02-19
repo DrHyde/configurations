@@ -185,7 +185,7 @@ function install_symlink {
 function copy_if_not_equal {
     SOURCE=$1
     TARGET=$2
-    if [[ "$(md5sum $SOURCE|awk '{print $1}')" == "$(md5sum $TARGET|awk '{print $1}')" ]]; then
+    if [[ "$(cksum $SOURCE|awk '{print $1}')" == "$(cksum $TARGET|awk '{print $1}')" ]]; then
         true
     else
         printf "${red}Updating $TARGET\n  from $SOURCE$NC\n"
