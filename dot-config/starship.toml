@@ -11,7 +11,7 @@ truncation_symbol = " …/"
 format = "[on $branch ]($style)"
 
 [custom.c]
-extensions = ["c", "h"]
+extensions = ["c", "h", "xs"]
 format = "using C "
 
 [perl]
