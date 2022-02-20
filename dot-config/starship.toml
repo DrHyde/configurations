@@ -10,9 +10,10 @@ truncation_symbol = " …/"
 [git_branch]
 format = "[on $branch ]($style)"
 
-[custom.c]
-extensions = ["c", "h", "xs"]
-format = "using C "
+# [custom.c]
+# extensions = ["c", "h", "xs"]
+# format = "using [C $output ](149 bold)"
+# command = "cc --version|awk '/clang/ { printf \"clang \" } /Free Software Foundation/ { printf \"gcc \" }'; cc -dumpversion"
 
 [perl]
 format = "using [$symbol($version) ]($style)"
