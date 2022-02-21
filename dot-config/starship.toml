@@ -17,7 +17,7 @@ format = "[on $branch ]($style)"
 
 [perl]
 format = "using [$symbol($version) ]($style)"
-detect_extensions = []
+detect_extensions = ["pl", "pm"]
 
 [character]
 success_symbol = "[\\$](bold green)"
