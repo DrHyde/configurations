@@ -75,6 +75,11 @@ intersection ∩
 degree °
 tm ™
 copy ©
+box □
+tick ✅
+right ✅
+cross  ❌
+wrong  ❌
 END_OF_MAPPINGS
 
 # cope with lazy multi-char mappings like 'GBP £'
