@@ -107,7 +107,7 @@ function add {
     local add="$1"
 
     echo "$add" >> ~/.profile
-    printf "${green}Added $add to end of .profile\n"
+    printf "${green}Added $add to end of .profile${NC}\n"
 }
 
 function add_after {
