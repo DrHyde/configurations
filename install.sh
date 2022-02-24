@@ -79,22 +79,22 @@ function install {
         copy_if_not_equal $CHECKOUT_DIR/karabiner/DefaultKeyBinding.dict $HOME/Library/KeyBindings/DefaultKeyBinding.dict
     fi
 
-    grep perlbrew              ~/.profile >/dev/null 2>&1 || echo 'source ~/perl5/perlbrew/etc/bashrc'           >> ~/.profile
-    grep bash_completion       ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_completion'                     >> ~/.profile
-    grep bash_functions        ~/.profile >/dev/null 2>&1 || echo '. $HOME/.bash_functions'                      >> ~/.profile
-    grep EDITOR                ~/.profile >/dev/null 2>&1 || echo 'export EDITOR=`which vim`'                    >> ~/.profile
-    grep SHELLCHECK_OPTS       ~/.profile >/dev/null 2>&1 || echo 'export SHELLCHECK_OPTS=-C'                    >> ~/.profile
-    grep LESS                  ~/.profile >/dev/null 2>&1 || echo 'export LESS=-FRX'                             >> ~/.profile
-    grep PS1                   ~/.profile >/dev/null 2>&1 || echo "export PS1='\\h:\\w \$ '"                     >> ~/.profile
+    grep perlbrew              ~/.profile >/dev/null 2>&1 || add 'source ~/perl5/perlbrew/etc/bashrc'
+    grep bash_completion       ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_completion'
+    grep bash_functions        ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_functions'
+    grep EDITOR                ~/.profile >/dev/null 2>&1 || add 'export EDITOR=`which vim`'
+    grep SHELLCHECK_OPTS       ~/.profile >/dev/null 2>&1 || add 'export SHELLCHECK_OPTS=-C'
+    grep LESS                  ~/.profile >/dev/null 2>&1 || add 'export LESS=-FRX'
+    grep PS1                   ~/.profile >/dev/null 2>&1 || add "export PS1='\\h:\\w \$ '"
     grep FZF_DEFAULT_OPTS      ~/.profile >/dev/null 2>&1 || add_after fzf "export FZF_DEFAULT_OPTS=--no-mouse"
+    grep 'shopt -s checkhash'  ~/.profile >/dev/null 2>&1 || add "shopt -s checkhash"
 
     grep PROMPT_COMMAND        ~/.profile >/dev/null 2>&1 || echo set PROMPT_COMMAND in .profile
     # this must be before direnv, starship etc
     # export PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}: $(realpath .)\007"'
 
-    grep QUOTING_STYLE         ~/.profile >/dev/null 2>&1 || echo 'export QUOTING_STYLE=literal'                 >> ~/.profile
-
-    grep -- --look-for-updates ~/.profile >/dev/null 2>&1 ||  echo "$CHECKOUT_DIR/install.sh --look-for-updates" >> ~/.profile
+    grep QUOTING_STYLE         ~/.profile >/dev/null 2>&1 || add 'export QUOTING_STYLE=literal'
+    grep -- --look-for-updates ~/.profile >/dev/null 2>&1 || add "$CHECKOUT_DIR/install.sh --look-for-updates"
 
     local perlbrew_line=$(grep -n perlbrew ~/.profile |sed 's/:.*//')
     local bash_functions_line=$(grep -n bash_functions ~/.profile |sed 's/:.*//')
@@ -103,9 +103,16 @@ function install {
     fi
 }
 
+function add {
+    local add="$1"
+
+    echo "$add" >> ~/.profile
+    printf "${green}Added $add to end of .profile\n"
+}
+
 function add_after {
-    local lookfor=$1
-    local add=$2
+    local lookfor="$1"
+    local add="$2"
 
     cp $HOME/.profile "$HOME/.profile-$lookfor-backup"
     awk "{ print } /$lookfor/ { print \"$add\" }" < ~/.profile > ~/.$$ && \
