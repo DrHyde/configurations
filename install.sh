@@ -86,8 +86,10 @@ function install {
     grep SHELLCHECK_OPTS       ~/.profile >/dev/null 2>&1 || echo 'export SHELLCHECK_OPTS=-C'                    >> ~/.profile
     grep LESS                  ~/.profile >/dev/null 2>&1 || echo 'export LESS=-FRX'                             >> ~/.profile
     grep PS1                   ~/.profile >/dev/null 2>&1 || echo "export PS1='\\h:\\w \$ '"                     >> ~/.profile
+    grep FZF_DEFAULT_OPTS      ~/.profile >/dev/null 2>&1 || add_after fzf "export FZF_DEFAULT_OPTS=--no-mouse"
 
     grep PROMPT_COMMAND        ~/.profile >/dev/null 2>&1 || echo set PROMPT_COMMAND in .profile
+    # this must be before direnv, starship etc
     # export PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}: $(realpath .)\007"'
 
     grep QUOTING_STYLE         ~/.profile >/dev/null 2>&1 || echo 'export QUOTING_STYLE=literal'                 >> ~/.profile
@@ -99,6 +101,17 @@ function install {
     if [ $perlbrew_line -gt $bash_functions_line ]; then
         printf "${red}perlbrew should be loaded before my bash_functions$NC\n"
     fi
+}
+
+function add_after {
+    local lookfor=$1
+    local add=$2
+
+    cp $HOME/.profile "$HOME/.profile-$lookfor-backup"
+    awk "{ print } /$lookfor/ { print \"$add\" }" < ~/.profile > ~/.$$ && \
+      mv ~/.$$ ~/.profile && \
+      printf "${green}Added $add to .profile after $lookfor$NC\n" &&
+      printf "  backup at ~/.profile-$lookfor-backup\n"
 }
 
 function wtf {
