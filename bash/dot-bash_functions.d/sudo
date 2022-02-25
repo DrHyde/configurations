@@ -1,0 +1,4 @@
+sudo() {
+    # this over-rides starship temporarily
+    PS1='\h:\w \$ ' $(which sudo) "$@"
+} 
