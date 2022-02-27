@@ -206,7 +206,7 @@ function install_symlink {
 function copy_if_not_equal {
     SOURCE=$1
     TARGET=$2
-    if [[ "$(cksum $SOURCE|awk '{print $1}')" == "$(cksum $TARGET|awk '{print $1}')" ]]; then
+    if [[ "$(cksum $SOURCE|awk '{print $1}')" == "$((cksum $TARGET|awk '{print $1}') 2>/dev/null)" ]]; then
         true
     else
         printf "${red}Updating $TARGET\n  from $SOURCE$NC\n"
