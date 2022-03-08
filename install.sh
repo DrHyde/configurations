@@ -52,6 +52,7 @@ function install {
     install_symlink $HOME/bin/charnames          $CHECKOUT_DIR/../perlscripts/charnames
     install_symlink $HOME/bin/git-rmbranch       $CHECKOUT_DIR/../shellscripts/git-rmbranch
     install_symlink $HOME/bin/ffverify           $CHECKOUT_DIR/../shellscripts/ffverify
+    install_symlink $HOME/bin/rotator            $CHECKOUT_DIR/../perlscripts/rotator
 
     mkdir $HOME/.get_iplayer 2>/dev/null
     install_symlink $HOME/.get_iplayer/options   $CHECKOUT_DIR/get_iplayer/options
