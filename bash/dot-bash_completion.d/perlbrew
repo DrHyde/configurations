@@ -14,5 +14,9 @@ __perlbrew_bash_completions () {
         COMPREPLY=($(compgen -W "$(perlbrew list|sed 's/^..//')" -- "$thisword"));
     elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "use" ]]; then
         COMPREPLY=($(compgen -W "$(perlbrew list|sed 's/^..//')" -- "$thisword"));
+    elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "exec" ]]; then
+        COMPREPLY=($(compgen -W "--with" -- "$thisword"));
+    elif [[ "$COMP_CWORD" -eq 3 && "${COMP_WORDS[1]}" == "exec" && "${COMP_WORDS[2]}" == "--with" ]]; then
+        COMPREPLY=($(compgen -W "$(perlbrew list|sed 's/^..//')" -- "$thisword"));
     fi
 }
