@@ -35,17 +35,19 @@ git() {
             fi
         done
 
-        local DEFAULT_BRANCH=$(git showdefaultbranch)
-        local CURRENT_BRANCH=$($(which git) rev-parse --abbrev-ref HEAD)
+        if [[ "$1" != "--amend" ]]; then
+            local DEFAULT_BRANCH=$(git showdefaultbranch)
+            local CURRENT_BRANCH=$($(which git) rev-parse --abbrev-ref HEAD)
 
-        if [[ "$CURRENT_BRANCH" = "$DEFAULT_BRANCH" ]]; then
-          if [ "$COMMIT_TO_DEFAULT_BRANCH" ] ; then
-            echo "OK, letting you commit to $CURRENT_BRANCH"
-          else
-            echo "You should not be committing to $CURRENT_BRANCH directly, raise a PR"
-            echo "If you have a really good reason to do so, set env var COMMIT_TO_DEFAULT_BRANCH"
-            return 1;
-          fi
+            if [[ "$CURRENT_BRANCH" = "$DEFAULT_BRANCH" ]]; then
+              if [ "$COMMIT_TO_DEFAULT_BRANCH" ] ; then
+                echo "OK, letting you commit to $CURRENT_BRANCH"
+              else
+                echo "You should not be committing to $CURRENT_BRANCH directly, raise a PR"
+                echo "If you have a really good reason to do so, set env var COMMIT_TO_DEFAULT_BRANCH"
+                return 1;
+              fi
+            fi
         fi
 
         $(which git) commit "$@"
