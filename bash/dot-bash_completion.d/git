@@ -2630,19 +2630,29 @@ _git_reset ()
 	__git_complete_refs
 }
 
+# the `return`s in the `case` and the if ... fi block
+# are cargo-culted from _git_commit, so we can more quickly
+# `git restore` changed files
 _git_restore ()
 {
 	case "$cur" in
 	--conflict=*)
 		__gitcomp "diff3 merge" "" "${cur##--conflict=}"
+        return
 		;;
 	--source=*)
 		__git_complete_refs --cur="${cur##--source=}"
+        return
 		;;
 	--*)
 		__gitcomp_builtin restore
+        return
 		;;
 	esac
+
+	if __git rev-parse --verify --quiet HEAD >/dev/null; then
+		__git_complete_index_file "--committable"
+	fi
 }
 
 __git_revert_inprogress_options=$__git_sequencer_inprogress_options
