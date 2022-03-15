@@ -2896,7 +2896,7 @@ _git_restore ()
 	esac
 
 	if __git rev-parse --verify --quiet HEAD >/dev/null; then
-		__git_complete_index_file "--committable"
+		__git_complete_index_file "--modified"
 	fi
 }
 
