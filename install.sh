@@ -192,6 +192,9 @@ SOURCE_BASHRC_SNIPPET
     if [ "$(grep bash_functions $HOME/.profile)" == "" ]; then
         printf "${red}.profile needs to source bash functions, run install.sh$NC\n";
     fi
+    if [ $( $SHELL -c 'echo $BASH_VERSINFO' ) -lt 5 ]; then
+        printf "${red}Consider upgrading to bash 5$NC\n"
+    fi
 }
 
 function install_symlink {
