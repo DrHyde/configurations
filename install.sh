@@ -41,6 +41,7 @@ function install {
     install_symlink $HOME/.bash_functions.d      $CHECKOUT_DIR/bash/dot-bash_functions.d
     install_symlink $HOME/.cpandistprefs         $CHECKOUT_DIR/cpandistprefs
     install_symlink $HOME/.parallel              $CHECKOUT_DIR/dot-parallel
+    install_symlink $HOME/.perldb                $CHECKOUT_DIR/dot-perldb
     install_symlink $HOME/.treerc                $CHECKOUT_DIR/dot-treerc
     install_symlink $HOME/.screenrc              $CHECKOUT_DIR/dot-screenrc
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim

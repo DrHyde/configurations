@@ -1,0 +1,127 @@
+# from https://gist.github.com/Ovid/919234335d7fc27fca3ec63e6f3782ce
+package Ovids::Debugger;
+
+# vim: syntax=perl
+
+=head1 NAME
+
+.perldb - Customize your Perl debugger
+
+=head1 USAGE
+
+Save this file in your home directory as C<.perldb>. When you run the Perl
+debugger on some code (C<< perl -d some_code.pl >>), it will read this file
+and use it to customize your debugger experience.
+
+=head1 FEATURES
+
+=head2 Simpler Output
+
+Ever return from a method in the debugger and groan as several hundred lines
+of object internals scroll page? We now use C<Data::Printer> for the C<x> and
+C<r> commands. These presents you with just the information you need and
+that's all.
+
+=head2 {{v
+
+The C<{{> command tells the debugger to run the command that follows before
+every prompt. In this case, we use the "v"erbose command. With this, instead
+of seeing a single line of code at a time, we get a verbose window of several
+lines of code, making it much easier to see our context:
+
+    28          );
+    29:         $DB::single = 1;
+    30 
+    31==>       $winston->update( { wallet => 10 } );
+    32:         $winston->bank_account->update(
+    33              {   credits => 100,
+    34                  debits  => 0,
+    35              }
+    36          );
+    37:         $winston->clear_messages;
+
+The C<< ==> >> points to the line of code we're about to run.
+
+=head2 $DB::deep
+
+This number tells the Perl debugger to automatically break at a certain
+recursion depth. By default this is 100. Code using heavy recursion often goes
+much higher. We set this to 5,000 to avoid having the debugger constantly
+halting in recursive functions.
+
+=head2 DB::Skip
+
+We use this module to have the debugger automatically skip over the internals
+of many modules we don't actually want to debug (such as getting lost in the
+guts of Moose).
+
+=cut
+
+$DB::deep = 5000;
+my $skip;
+my @classes;
+
+BEGIN {
+    @classes = sort ( 'Catalyst',
+        'Moose',
+        'DateTime::Format',
+        'DBIx::Class',
+        'Eval::Closure',
+        'Class::MOP',
+        'Attribute::Handlers',
+        'SQL::Abstract',
+        'Test::',
+        'Try::Tiny',
+        'mro',
+        'Class::Accessor',
+        'Test2',
+    );
+    
+    # show the location of the debugger. This is useful if they're using a custom debugger.
+    my $debugger = $INC{'perl5db.pl'} || die 'PANIC: debugger not found in %INC!';
+    print "\nUsing debugger '$debugger'\n";
+    
+    if ( $ENV{DB_ALLOW} ) {
+        if ( ':all' eq $ENV{DB_ALLOW} ) {
+            @classes = ();
+        }
+        else {
+            @classes = grep { !/$ENV{DB_ALLOW}/ } @classes;
+        }
+    }
+    my $classes = join "\n    " => @classes;
+    my $re      = join '|'      => @classes;
+    $skip = "^(?:$re)";
+    print STDERR <<"END" unless $ENV{NO_DB_SKIP};
+
+Debugger skipping:
+
+    $classes
+
+See ~/.perldb if you don't like this behavior, or set NO_DB_SKIP=1
+
+END
+}
+
+unless ( $ENV{NO_DB_SKIP} ) {
+    eval "use DB::Skip pkgs => [qr/$skip/]" if @classes;
+}
+
+# send output to STDOUT. A number of test tools capture STDERR and swallow output!
+use Data::Printer sort_keys => 1, colored => 1, output => 'stdout';
+
+sub DB::afterinit {
+    no warnings 'once';
+
+    # give me a window of lines instead of a single line
+    # Thanks to "haj" for including EMACS (http://blogs.perl.org/users/ovid/2019/01/improving-perl-debugger-variable-output.html#comment-1806985)
+    push @DB::typeahead => "{{v"
+      unless $ENV{INSIDE_EMACS} || $DB::already_curly_curly_v++;
+}
+
+# this is usually set by dumpvars.pl (called from the debugger). But if it's
+# already defined, the debugger uses our version
+sub ::dumpValue {
+    my ( $value, $maxdepth ) = @_;
+    p $value;
+}
