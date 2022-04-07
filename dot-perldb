@@ -1,4 +1,5 @@
 # from https://gist.github.com/Ovid/919234335d7fc27fca3ec63e6f3782ce
+use DB::Skip (); # want to fail loudly if this isn't installed
 package Ovids::Debugger;
 
 # vim: syntax=perl
