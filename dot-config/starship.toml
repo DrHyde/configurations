@@ -10,6 +10,11 @@ truncation_symbol = " …/"
 [git_branch]
 format = "[on $branch ]($style)"
 
+[custom.git_lfs]
+format = "[($output )](bold purple)"
+when = "[ -e .git/config ]"
+command = "grep -q ^.lfs .git/config && echo git lfs"
+
 [c]
 detect_extensions = ["c", "h", "xs"]
 format = "using [$symbol($name $version )]($style)"
