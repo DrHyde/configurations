@@ -17,7 +17,8 @@ command = "grep -q ^.lfs .git/config && echo git lfs"
 
 [c]
 detect_extensions = ["c", "h", "xs"]
-format = "using [$symbol($name $version )]($style)"
+# format = "using [$symbol($name $version )]($style)"
+format = "using [$symbol]($style)"
 
 [perl]
 format = "using [$symbol ($version )]($style)"
