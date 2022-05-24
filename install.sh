@@ -90,7 +90,7 @@ function install {
     grep perlbrew              ~/.profile >/dev/null 2>&1 || add 'source ~/perl5/perlbrew/etc/bashrc'
     grep bash_completion       ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_completion'
     grep bash_functions        ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_functions'
-    grep EDITOR                ~/.profile >/dev/null 2>&1 || add 'export EDITOR=`which vim`'
+    grep EDITOR                ~/.profile >/dev/null 2>&1 || add 'export EDITOR=`which vim 2>/dev/null || which vi`'
     grep SHELLCHECK_OPTS       ~/.profile >/dev/null 2>&1 || add 'export SHELLCHECK_OPTS=-C'
     grep LESS                  ~/.profile >/dev/null 2>&1 || add 'export LESS=-FRX'
     grep PS1                   ~/.profile >/dev/null 2>&1 || add "export PS1='\\h:\\w \$ '"
@@ -133,11 +133,18 @@ function wtf {
     printf "${red}WTF!?!?!$NC\n"
 }
 
+function notimeout {
+    shift
+    "$@"
+}
+
 function look_for_updates {
     cd $CHECKOUT_DIR
     TIMEOUT=timeout
     if [ "$(uname)" == "OpenBSD" ]; then
         TIMEOUT=gtimeout
+    elif [ "$(uname)" == "AIX" ]; then
+        TIMEOUT=notimeout
     fi
 
     for repo in configurations shellscripts perlscripts; do
@@ -169,7 +176,7 @@ function look_for_updates {
                 ps auxww|grep -v grep|grep -qi karabiner || \
                 printf "${red}Install Karabiner: brew install --cask karabiner-elements$NC\n"
             fi
-        elif [[ "$(which $wanted)" == "" || "$(which $wanted)" == "no $wanted in"* ]]; then
+        elif [[ "$(which $wanted 2>/dev/null)" == "" || "$(which $wanted 2>/dev/null)" == "no $wanted in"* ]]; then
             printf "${red}Install '$wanted'$NC\n"
         elif [[ "$wanted" == "starship" && $(starship -V) < "starship 1.6.2" ]]; then
             printf "${red}Upgrade '$wanted'$NC\n"
