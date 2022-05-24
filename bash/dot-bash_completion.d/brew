@@ -1,10 +1,15 @@
 #!bash
 
-complete -F __brew_bash_completions brew
+if [[ "$(which brew 2>/dev/null)" != "" ]]; then
+    complete -F __brew_bash_completions brew
 
-# regenerate this if more than a week old
-if [ ! -f ~/.brew.commands ] || [ $(find ~/.brew.commands -maxdepth 0 -mtime +7) ]; then
-    brew commands -q | grep ^[[:alpha:]] > ~/.brew.commands
+    # because I often tyop `bre w...` instead of `brew ...`
+    complete -F __bre_w_bash_completions bre
+
+    # regenerate this if more than a week old
+    if [ ! -f ~/.brew.commands ] || [ $(find ~/.brew.commands -maxdepth 0 -mtime +7) ]; then
+        brew commands -q | grep ^[[:alpha:]] > ~/.brew.commands
+    fi
 fi
 
 __brew_bash_completions () {
@@ -17,8 +22,6 @@ __brew_bash_completions () {
     fi
 }
 
-# because I often tyop `bre w...` instead of `brew ...`
-complete -F __bre_w_bash_completions bre
 __bre_w_bash_completions () {
     COMPREPLY=();
     local thisword="${COMP_WORDS[COMP_CWORD]}";
