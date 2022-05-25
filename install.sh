@@ -56,6 +56,7 @@ function install {
     install_symlink $HOME/bin/ffverify           $CHECKOUT_DIR/../shellscripts/ffverify
     install_symlink $HOME/bin/fps                $CHECKOUT_DIR/../shellscripts/fps
     install_symlink $HOME/bin/rotator            $CHECKOUT_DIR/../perlscripts/rotator
+    install_symlink $HOME/bin/shtimeout          $CHECKOUT_DIR/../shellscripts/shtimeout
     install_symlink $HOME/bin/50-2-25            $CHECKOUT_DIR/../shellscripts/50-2-25
 
     mkdir $HOME/.get_iplayer 2>/dev/null
