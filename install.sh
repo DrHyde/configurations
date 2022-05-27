@@ -170,7 +170,7 @@ function look_for_updates {
     done
     wait
 
-    for wanted in rg tldr tree fzf ctags ngrok karabiner starship; do
+    for wanted in rg tldr tree img2sixel fzf ctags ngrok karabiner starship; do
         if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|OpenBSD)$ ]]; then
             true
         elif [[ "$wanted" == "karabiner" ]]; then
@@ -179,7 +179,11 @@ function look_for_updates {
                 printf "${red}Install Karabiner: brew install --cask karabiner-elements$NC\n"
             fi
         elif [[ "$(which $wanted 2>/dev/null)" == "" || "$(which $wanted 2>/dev/null)" == "no $wanted in"* ]]; then
-            printf "${red}Install '$wanted'$NC\n"
+            if [[ "$wanted" == "img2sixel" && "$(uname)" == "Darwin" ]]; then
+                printf "${red}Install libsixel: brew install libsixel$NC\n"
+            else
+                printf "${red}Install '$wanted'$NC\n"
+            fi
         elif [[ "$wanted" == "starship" && $(starship -V) < "starship 1.6.2" ]]; then
             printf "${red}Upgrade '$wanted'$NC\n"
         elif [ "$wanted" == "fzf" ]; then
