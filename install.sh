@@ -58,7 +58,8 @@ function install {
     install_symlink $HOME/bin/rotator            $CHECKOUT_DIR/../perlscripts/rotator
     install_symlink $HOME/bin/shtimeout          $CHECKOUT_DIR/../shellscripts/shtimeout
     install_symlink $HOME/bin/50-2-25            $CHECKOUT_DIR/../shellscripts/50-2-25
-    install_symlink $HOME/bin/imgcat             $CHECKOUT_DIR/../shellscripts/imgcat
+    which img2sixel >/dev/null 2>&1 && \
+        install_symlink $HOME/bin/imgcat         $(which img2sixel)
 
     mkdir $HOME/.get_iplayer 2>/dev/null
     install_symlink $HOME/.get_iplayer/options   $CHECKOUT_DIR/get_iplayer/options
