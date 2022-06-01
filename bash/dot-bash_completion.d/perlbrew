@@ -8,7 +8,7 @@ __perlbrew_bash_completions () {
 
     # if there's only one word on the command line
     if [ "$COMP_CWORD" -eq 1 ]; then
-        COMPREPLY=($(compgen -W "install uninstall available list use switch exec install-patchperl install-cpanm git-install" -- "$thisword"));
+        COMPREPLY=($(compgen -W "install uninstall list-modules clone-modules available list use switch exec install-patchperl install-cpanm git-install" -- "$thisword"));
     # otherwise if we've got two words, and element 1 in the 0-based list is "switch" or "use"
     elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "switch" ]]; then
         COMPREPLY=($(compgen -W "$(perlbrew list|sed 's/^..//')" -- "$thisword"));
