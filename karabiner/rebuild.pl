@@ -170,6 +170,7 @@ sub _emoji {
             [ 'cricket', 'CRICKET BAT AND BALL' ],
             [ 'rugby',   'RUGBY FOOTBALL'       ],
             [ 'heart',   'BLACK HEART SUIT'     ],
+            [ 'unicorn', 'UNICORN FACE'         ],
         )
     );
 }
