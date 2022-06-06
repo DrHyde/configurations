@@ -61,6 +61,16 @@ function install {
     which img2sixel >/dev/null 2>&1 && \
         install_symlink $HOME/bin/imgcat         $(which img2sixel)
 
+    which hardlink >/dev/null 2>&1 && (
+        if [[ "$(uname)" == "Darwin" ]]; then
+            if [ "$(uname -p)" == "i386" ]; then
+                install_hardlink /usr/local/share/man/man1/hardlink.1 /usr/local/opt/util-linux/share/man/man1/hardlink.1
+            else
+                printf "  ${red}ARGH I DON'T KNOW HOW TO LINK$NC\n"
+            fi
+        fi
+    )
+
     mkdir $HOME/.get_iplayer 2>/dev/null
     install_symlink $HOME/.get_iplayer/options   $CHECKOUT_DIR/get_iplayer/options
 
@@ -171,7 +181,7 @@ function look_for_updates {
     done
     wait
 
-    for wanted in rg tldr tree img2sixel hyperfine fzf ctags ngrok karabiner starship; do
+    for wanted in rg tldr tree img2sixel hyperfine hardlink fzf ctags ngrok karabiner starship; do
         if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|OpenBSD)$ ]]; then
             true
         elif [[ "$wanted" == "karabiner" ]]; then
@@ -181,7 +191,18 @@ function look_for_updates {
             fi
         elif [[ "$(which $wanted 2>/dev/null)" == "" || "$(which $wanted 2>/dev/null)" == "no $wanted in"* ]]; then
             if [[ "$wanted" == "img2sixel" && "$(uname)" == "Darwin" ]]; then
-                printf "${red}Install libsixel: brew install libsixel$NC\n"
+                printf "${red}Install libsixel:\n  brew install libsixel$NC\n"
+            elif [[ "$wanted" == "hardlink" && "$(uname)" == "Darwin" ]]; then
+                printf "${red}Install util-linux then link the 'hardlink' binary and manpage:\n"
+                printf "  brew install util-linux\n"
+                printf "  ${CHECKOUT_DIR}/install.sh\n"
+                if [ "$(uname -p)" == "i386" ]; then
+                    printf "  (cd /usr/local; ln -s ../opt/util-linux/bin/hardlink bin/hardlink)"
+                else
+                    printf "  ARGH I DON'T KNOW HOW TO LINK"
+                fi
+                printf "$NC\n"
+                printf "  yes, that's util-linux, on a Mac"
             else
                 printf "${red}Install '$wanted'$NC\n"
             fi
@@ -227,6 +248,23 @@ function install_symlink {
         printf "${green}Create symlink from $LINK to $FILE$NC\n"
         ln -s $FILE $LINK
     )
+}
+
+function install_hardlink {
+    NEW=$1
+    SOURCE=$2
+
+    source_inode=$(stat -f %i "$SOURCE" 2>/dev/null)
+    new_inode=$(stat -f %i "$NEW" 2>/dev/null)
+    if [[ "$new_inode" == "" ]]; then
+        printf "${green}Create hard link from $SOURCE to $NEW$NC\n"
+        ln "$SOURCE" "$NEW"
+    elif [[ "$new_inode" != "$source_inode" ]]; then
+        printf "${green}Delete incorrect $NEW$NC\n"
+        rm "$NEW"
+        printf "${green}Create hard link from $SOURCE to $NEW$NC\n"
+        ln "$SOURCE" "$NEW"
+    fi
 }
 
 function copy_if_not_equal {
