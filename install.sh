@@ -171,7 +171,7 @@ function look_for_updates {
     done
     wait
 
-    for wanted in rg tldr tree img2sixel fzf ctags ngrok karabiner starship; do
+    for wanted in rg tldr tree img2sixel hyperfine fzf ctags ngrok karabiner starship; do
         if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|OpenBSD)$ ]]; then
             true
         elif [[ "$wanted" == "karabiner" ]]; then
