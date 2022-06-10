@@ -59,12 +59,16 @@ yogh ȝ
 WYNN Ƿ
 wynn ƿ
 aleph ℵ
+
+# sets
 complex ℂ
 real ℝ
 rational ℚ
 integer ℤ
 natural ℕ
 prime ℙ
+
+# set relationships
 contains ∋
 element ∈
 member ∈
@@ -72,6 +76,16 @@ subset ⊂
 superset ⊃
 union ∪
 intersection ∩
+
+# logic
+exists ∃
+implies ⇒
+not ¬
+and ∧
+or ∨
+xor ⊻
+logictherefore ∴
+
 degree °
 tm ™
 copy ©
