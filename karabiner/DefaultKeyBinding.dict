@@ -456,6 +456,20 @@
       "\\\U005E" = ("insertText:", "ĉ");
       "o" = {
         "m" = {
+          "b" = {
+            "i" = {
+              "'" = ("insertText:", "́");
+              "," = ("insertText:", "̧");
+              ":" = ("insertText:", "̈");
+              "\\\U0022" = ("insertText:", "̋");
+              "\\\U005E" = ("insertText:", "̂");
+              "\\\U007E" = ("insertText:", "̃");
+              "_" = ("insertText:", "̄");
+              "`" = ("insertText:", "̀");
+              "o" = ("insertText:", "̊");
+              "v" = ("insertText:", "̌");
+            };
+          };
           "p" = {
             "l" = {
               "e" = {

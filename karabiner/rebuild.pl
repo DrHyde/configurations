@@ -177,19 +177,27 @@ sub _emoji {
 
 sub _accents {
     my @mappings = ();
-    foreach my $letter ( ( 'a' .. 'z' ), ( 'A' .. 'Z' ) ) {
-        my %accent_table = (
-            # maps:
-            #   ^ -> \\\\\\U005E
-            #   ~ -> \\\\\\U007E
-            #   " -> \\\\\\U0022
-            ACUTE          => "'",           GRAVE     => '`', CIRCUMFLEX => '\\\\\\U005E',
-            TILDE          => '\\\\\\U007E', DIAERESIS => ':', CEDILLA    => ',',
-            STROKE         => '/',           MACRON    => '_', CARON      => 'v',
-            'RING ABOVE'   => 'o',
-            'DOUBLE ACUTE' => '\\\\\\U0022',
-        );
-        foreach my $accent (keys %accent_table) {
+    my %accent_table = (
+        # maps:
+        #   ^ -> \\\\\\U005E
+        #   ~ -> \\\\\\U007E
+        #   " -> \\\\\\U0022
+        # keys are the XXX in LATIN SMALL LETTER $ WITH XXX
+        # values are tuple of keystroke and XXX in COMBINING XXX
+        ACUTE          => [ "'",           "ACUTE ACCENT"        ],
+        GRAVE          => [ '`',           "GRAVE ACCENT"        ],
+        CIRCUMFLEX     => [ '\\\\\\U005E', "CIRCUMFLEX ACCENT"   ],
+        TILDE          => [ '\\\\\\U007E', "TILDE"               ],
+        DIAERESIS      => [ ':',           "DIAERESIS"           ],
+        CEDILLA        => [ ',',           "CEDILLA"             ],
+        STROKE         => [ '/',           undef                 ], # no combining char
+        MACRON         => [ '_',           "MACRON"              ],
+        CARON          => [ 'v',           "CARON"               ],
+        'RING ABOVE'   => [ 'o',           "RING ABOVE"          ],
+        'DOUBLE ACUTE' => [ '\\\\\\U0022', "DOUBLE ACUTE ACCENT" ],
+    );
+    foreach my $accent (keys %accent_table) {
+        foreach my $letter ( ( 'a' .. 'z' ), ( 'A' .. 'Z' ) ) {
             if(my $char = charnames::string_vianame(
                 'LATIN '.
                 ($letter eq uc($letter) ? 'CAPITAL' : 'SMALL').' '.
@@ -198,8 +206,13 @@ sub _accents {
                 'WITH '.
                 $accent
             )) {
-                push @mappings, [ $letter, $accent_table{$accent}, $char ];
+                push @mappings, [ $letter, $accent_table{$accent}->[0], $char ];
             }
+        }
+        if(defined($accent_table{$accent}->[1])) {
+            push @mappings, [ qw(c o m b i), $accent_table{$accent}->[0],
+                charnames::string_vianame('COMBINING '.$accent_table{$accent}->[1])
+            ];
         }
     }
     return @mappings;
