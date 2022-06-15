@@ -23,8 +23,6 @@ function main {
                 cd $CHECKOUT_DIR/../$2
                 git pull
                 if [ "$2" == "configurations" ]; then
-                    git submodule init
-                    git pull --recurse-submodules
                     ./install.sh
                 fi
             )
@@ -38,6 +36,10 @@ function main {
 
 function install {
     # if vimrc is newer than our vim bundles we probably need to install plugins
+    if [ ! -e vim/dot-vim/bundle/Vundle.vim/autoload ]; then
+        git submodule init
+        git pull --recurse-submodules
+    fi
     if [ vim/dot-vimrc -nt vim/dot-vim/bundle ]; then
         printf "${green}Installing vim plugins${NC}\n"
         vim -c PluginInstall -c q -c q . >/dev/null 2>&1
