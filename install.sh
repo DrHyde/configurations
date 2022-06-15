@@ -23,6 +23,8 @@ function main {
                 cd $CHECKOUT_DIR/../$2
                 git pull
                 if [ "$2" == "configurations" ]; then
+                    git submodule init
+                    git submodule update
                     ./install.sh
                 fi
             )
