@@ -39,6 +39,8 @@ Plugin 'tpope/vim-characterize'   " ga to show Unicode char name etc
 Plugin 'airblade/vim-gitgutter'   " show git status per line in the gutter
                                   " ]c / [c to jump around between hunks
 Plugin 'mileszs/ack.vim'          " :Ack
+Plugin 'xolox/vim-misc', {'name': 'xolox-vim-misc'} " deps for xolox/vim-session
+Plugin 'xolox/vim-session'        " :SaveSession / :OpenSession / :DeleteSession
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
