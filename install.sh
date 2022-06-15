@@ -24,7 +24,7 @@ function main {
                 git pull
                 if [ "$2" == "configurations" ]; then
                     git submodule init
-                    git submodule update
+                    git pull --recurse-submodules
                     ./install.sh
                 fi
             )
