@@ -134,6 +134,13 @@ function! s:DiffWithSaved()
 endfunction
 com! Diff call s:DiffWithSaved()
 
+" :Vterm
+function! s:VerticalTerm()
+    vspl
+    term ++curwin
+endfunction
+com! Vterm call s:VerticalTerm()
+
 " \mw to mark a window, \pw to swap marked and current
 function! MarkWindowSwap()
     let g:markedWinNum = winnr()
