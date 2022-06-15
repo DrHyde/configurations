@@ -40,10 +40,9 @@ function install {
         git submodule init
         git pull --recurse-submodules
     fi
-    if [ vim/dot-vimrc -nt vim/dot-vim/bundle ]; then
-        printf "${green}Installing vim plugins${NC}\n"
-        vim -c PluginInstall -c q -c q . >/dev/null 2>&1
-    fi
+
+    printf "${green}Installing/updating vim plugins (in background)${NC}\n"
+    vim -c PluginInstall -c q -c q . >/dev/null 2>&1 &
 
     install_symlink $HOME/.bash_completion       $CHECKOUT_DIR/bash/dot-bash_completion
     install_symlink $HOME/.bash_completion.d     $CHECKOUT_DIR/bash/dot-bash_completion.d
@@ -132,6 +131,7 @@ function install {
     if [ $perlbrew_line -gt $bash_functions_line ]; then
         printf "${red}perlbrew should be loaded before my bash_functions$NC\n"
     fi
+    wait
 }
 
 function add {
