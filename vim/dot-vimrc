@@ -33,6 +33,8 @@ Plugin 'VundleVim/Vundle.vim'
 " " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
+Plugin 'vim-perl/vim-perl'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -92,6 +94,8 @@ function! InsertTabWrapper()
 endfunction
 " make tab-completion work better for perl
 autocmd FileType perl setlocal iskeyword+=:
+autocmd FileType perl setlocal complete+=klib/*,kt/*,klocal/*
+autocmd FileType perl setlocal complete-=i
 
 " use the FZF plugin; path assumes fzf was installed using Homebrew
 set rtp+=/usr/local/opt/fzf
