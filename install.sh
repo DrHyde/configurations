@@ -37,6 +37,12 @@ function main {
 }
 
 function install {
+    # if vimrc is newer than our vim bundles we probably need to install plugins
+    if [ vim/dot-vimrc -nt vim/dot-vim/bundle ]; then
+        printf "${green}Installing vim plugins${NC}\n"
+        vim -c PluginInstall -c q -c q . >/dev/null 2>&1
+    fi
+
     install_symlink $HOME/.bash_completion       $CHECKOUT_DIR/bash/dot-bash_completion
     install_symlink $HOME/.bash_completion.d     $CHECKOUT_DIR/bash/dot-bash_completion.d
     install_symlink $HOME/.bash_functions        $CHECKOUT_DIR/bash/dot-bash_functions

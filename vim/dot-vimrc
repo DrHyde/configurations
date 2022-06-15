@@ -34,6 +34,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 Plugin 'vim-perl/vim-perl'
+Plugin 'yggdroot/indentline'
 Plugin 'tpope/vim-characterize'   " ga to show Unicode char name etc
 Plugin 'airblade/vim-gitgutter'   " show git status per line in the gutter
                                   " ]c / [c to jump around between hunks
@@ -111,6 +112,7 @@ highlight shComment ctermfg=LightBlue
 highlight rubyComment ctermfg=LightBlue
 highlight confComment ctermfg=LightBlue
 
+highlight SignColumn      ctermbg=Black
 highlight GitGutterAdd    ctermbg=Black   ctermfg=Green
 highlight GitGutterChange ctermbg=Black   ctermfg=Yellow
 highlight GitGutterDelete ctermbg=Black   ctermfg=Red
