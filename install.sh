@@ -35,7 +35,7 @@ function main {
 }
 
 function install {
-    # if vimrc is newer than our vim bundles we probably need to install plugins
+    # if we can't find Vundle then we need to pull down the submodule
     if [ ! -e vim/dot-vim/bundle/Vundle.vim/autoload ]; then
         git submodule init
         git pull --recurse-submodules
