@@ -41,6 +41,10 @@ Plugin 'airblade/vim-gitgutter'   " show git status per line in the gutter
 Plugin 'mileszs/ack.vim'          " :Ack
 Plugin 'xolox/vim-misc', {'name': 'xolox-vim-misc'} " deps for xolox/vim-session
 Plugin 'xolox/vim-session'        " :SaveSession / :OpenSession / :DeleteSession
+Plugin 'bling/vim-airline'        " status bar. Replaces ...
+    " set laststatus=2
+    " highlight StatusLine   ctermfg=White ctermbg=Red  cterm=bold
+    " highlight StatusLineNC ctermfg=White ctermbg=Blue cterm=none
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -74,7 +78,6 @@ set softtabstop=4
 set tabstop=4
 set showmatch
 set incsearch
-set laststatus=2
 set nojoinspaces
 set cursorline
 set splitright
@@ -123,8 +126,6 @@ highlight GitGutterChange ctermbg=Black   ctermfg=Yellow
 highlight GitGutterDelete ctermbg=Black   ctermfg=Red
 
 highlight LineNr cterm=NONE ctermfg=DarkGrey ctermbg=none
-highlight StatusLine   ctermfg=White ctermbg=Red  cterm=bold
-highlight StatusLineNC ctermfg=White ctermbg=Blue cterm=none
 
 highlight CursorLine term=bold cterm=bold ctermbg=242
 
