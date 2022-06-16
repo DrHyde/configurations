@@ -45,6 +45,9 @@ Plugin 'bling/vim-airline'        " status bar. Replaces ...
     " set laststatus=2
     " highlight StatusLine   ctermfg=White ctermbg=Red  cterm=bold
     " highlight StatusLineNC ctermfg=White ctermbg=Blue cterm=none
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'        " make fugitive's GBrowse work with github
+Plugin 'tommcdo/vim-fubitive'     " ... and likewise for Bitbucket
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
