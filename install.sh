@@ -235,7 +235,7 @@ function look_for_updates {
     done
     wait
 
-    for wanted in rg tldr tree img2sixel hyperfine hardlink fzf ctags ngrok karabiner starship; do
+    for wanted in rg tldr tree img2sixel hyperfine hardlink fzf ctags ngrok karabiner ; do
         if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|OpenBSD)$ ]]; then
             true
         elif [[ "$wanted" == "karabiner" ]]; then
@@ -260,8 +260,6 @@ function look_for_updates {
             else
                 printf "${red}Install '$wanted'$NC\n"
             fi
-        elif [[ "$wanted" == "starship" && $(starship -V) < "starship 1.6.2" ]]; then
-            printf "${red}Upgrade '$wanted'$NC\n"
         elif [ "$wanted" == "fzf" ]; then
             grep fzf $HOME/.profile >/dev/null 2>&1 || \
               printf "${red}Install fzf keybindings in .profile (probably run /usr/local/opt/fzf/install)$NC\n"
