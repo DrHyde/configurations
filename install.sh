@@ -8,6 +8,13 @@ green='\e[1;32m'
 blue='\e[1;34m'
 NC='\e[0m'       # no colour
 
+TIMEOUT=$(which timeout)
+if [ "$(uname)" == "OpenBSD" ]; then
+    TIMEOUT=gtimeout
+elif [ "$(uname)" == "AIX" ]; then
+    TIMEOUT=notimeout
+fi
+
 function main {
     if [ "$#" == "0" ]; then
         install
@@ -35,15 +42,6 @@ function main {
 }
 
 function install {
-    # if we can't find Vundle then we need to pull down the submodule
-    if [ ! -e vim/dot-vim/bundle/Vundle.vim/autoload ]; then
-        git submodule init
-        git pull --recurse-submodules
-    fi
-
-    printf "${green}Installing/updating vim plugins (in background)${NC}\n"
-    vim -c PluginInstall -c q -c q . >/dev/null 2>&1 &
-
     install_symlink $HOME/.bash_completion       $CHECKOUT_DIR/bash/dot-bash_completion
     install_symlink $HOME/.bash_completion.d     $CHECKOUT_DIR/bash/dot-bash_completion.d
     install_symlink $HOME/.bash_functions        $CHECKOUT_DIR/bash/dot-bash_functions
@@ -55,6 +53,8 @@ function install {
     install_symlink $HOME/.screenrc              $CHECKOUT_DIR/dot-screenrc
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
+
+    check_vim_plugins
 
     mkdir $HOME/bin 2>/dev/null
     install_symlink $HOME/bin/lls                $CHECKOUT_DIR/../perlscripts/lls
@@ -161,14 +161,56 @@ function notimeout {
     "$@"
 }
 
+function check_vim_plugins {
+    (
+        cd $HOME/.vim/bundle
+        # if we can't find Vundle then we need to pull down the submodule
+        if [ ! -e Vundle.vim/autoload ]; then
+            git submodule init
+            git pull --recurse-submodules
+        fi
+
+        for i in $(grep ^Plugin ../../dot-vimrc |awk '{print $2}'|sed "s/^.*\///;s/'.*//"); do
+            local DIR=$i
+            if [ "$i" == "vim-misc" ]; then
+                DIR=xolox-vim-misc
+            fi
+            if [ ! -e "$DIR" ]; then
+                printf "${red}Your $i vim plugin is missing.$NC Try (once)\n"
+                printf "  ${green}:PluginInstall$NC\n"
+            fi
+
+        done
+
+        # now check if any installed modules need updating
+        for i in *; do
+            (
+                if [ "$i" != "Vundle.vim" ]; then
+                    cd $i
+                    local BRANCH=master
+                    if [ "$i" == "vim-perl" ]; then
+                        BRANCH=dev
+                    fi
+
+                    $TIMEOUT 5 git fetch -q origin
+                    if [ "$?" != "0" ]; then
+                        echo
+                        printf "${red}Timed out trying to check if vim plugin $i is up to date$NC\n"
+                        echo
+                    elif [ "$(git log -1 --pretty=format:%H origin/$BRANCH)" != "$(git log -1 --pretty=format:%H)" ]; then
+                        printf "${red}Your $i vim plugin is out of date.$NC Try\n"
+                        printf "  ${green}:PluginUpdate $i$NC\n"
+                    fi
+                fi
+            ) &
+        done
+
+        wait
+    )
+}
+
 function look_for_updates {
     cd $CHECKOUT_DIR
-    TIMEOUT=timeout
-    if [ "$(uname)" == "OpenBSD" ]; then
-        TIMEOUT=gtimeout
-    elif [ "$(uname)" == "AIX" ]; then
-        TIMEOUT=notimeout
-    fi
 
     for repo in configurations shellscripts perlscripts; do
         (
@@ -176,12 +218,14 @@ function look_for_updates {
             [ ! -d "$repo" ] && git clone git@github.com:DrHyde/$repo.git
 
             cd $repo
+            local BRANCH=master
+
             $TIMEOUT 5 git fetch -q origin
             if [ "$?" != "0" ]; then
                 echo
                 printf "${red}Timed out trying to talk to github to see if your $repo repo is up to date$NC\n"
                 echo
-            elif [ "$(git log -1 --pretty=format:%H origin/master)" != "$(git log -1 --pretty=format:%H)" ]; then
+            elif [ "$(git log -1 --pretty=format:%H origin/$BRANCH)" != "$(git log -1 --pretty=format:%H)" ]; then
                 echo
                 printf "${red}Your $repo repo isn\'t the same as Github.$NC Try:\n"
                 printf "  ${green}$CHECKOUT_DIR/install.sh --update $repo${NC}\n"
