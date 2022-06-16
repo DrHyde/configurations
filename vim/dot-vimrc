@@ -62,6 +62,8 @@ filetype plugin indent on    " required
 
 " -------------------- Vundle setup end
 
+let g:airline_theme='darkimproved'
+
 let perl_fold = 1
 let perl_fold_blocks = 1
 
