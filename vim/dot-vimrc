@@ -139,12 +139,18 @@ function! s:DiffWithSaved()
 endfunction
 com! Diff call s:DiffWithSaved()
 
-" :Vterm
+" :VTerm
 function! s:VerticalTerm()
     vspl
-    term ++curwin
+    term ++curwin ++close bash -l
 endfunction
-com! Vterm call s:VerticalTerm()
+" :Term
+function! s:HorizontalTerm()
+    spl
+    term ++curwin ++close bash -l
+endfunction
+com! VTerm call s:VerticalTerm()
+com! Term call s:HorizontalTerm()
 
 " \mw to mark a window, \pw to swap marked and current
 function! MarkWindowSwap()
