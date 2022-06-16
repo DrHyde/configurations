@@ -105,6 +105,8 @@ autocmd FileType perl setlocal iskeyword+=:
 autocmd FileType perl setlocal complete+=klib/*,kt/*,klocal/*
 autocmd FileType perl setlocal complete-=i
 
+autocmd FileType perl,sh,rust,c,cpp,xs,markdown,vim setlocal signcolumn=yes
+
 " use the FZF plugin; path assumes fzf was installed using Homebrew
 set rtp+=/usr/local/opt/fzf
 
@@ -115,7 +117,7 @@ highlight shComment ctermfg=LightBlue
 highlight rubyComment ctermfg=LightBlue
 highlight confComment ctermfg=LightBlue
 
-highlight SignColumn      ctermbg=Black
+highlight SignColumn      ctermbg=17
 highlight GitGutterAdd    ctermbg=Black   ctermfg=Green
 highlight GitGutterChange ctermbg=Black   ctermfg=Yellow
 highlight GitGutterDelete ctermbg=Black   ctermfg=Red
