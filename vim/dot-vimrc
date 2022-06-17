@@ -48,6 +48,9 @@ Plugin 'bling/vim-airline'        " status bar. Replaces ...
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'        " make fugitive's GBrowse work with github
 Plugin 'tommcdo/vim-fubitive'     " ... and likewise for Bitbucket
+Plugin 'pseewald/anyfold'         " folding. Replaces ...
+    " let perl_fold = 1
+    " let perl_fold_blocks = 1
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -66,9 +69,6 @@ filetype plugin indent on    " required
 " -------------------- Vundle setup end
 
 let g:airline_theme='darkimproved'
-
-let perl_fold = 1
-let perl_fold_blocks = 1
 
 set updatetime=100      " otherwise gitgutter is a bit rubbish
 set nofileignorecase
@@ -113,8 +113,12 @@ autocmd FileType perl setlocal iskeyword+=:
 autocmd FileType perl setlocal complete+=klib/*,kt/*,klocal/*
 autocmd FileType perl setlocal complete-=i
 
+" for gitgutter
 autocmd FileType perl,sh,rust,c,cpp,xs,markdown,vim setlocal signcolumn=yes
 
+" for anyfold
+autocmd Filetype * AnyFoldActivate  " for all filetypes
+set foldlevel=99                    " all open by default
 " use the FZF plugin; path assumes fzf was installed using Homebrew
 set rtp+=/usr/local/opt/fzf
 
