@@ -3,4 +3,4 @@
 # not really a function, having it as a function would mess with
 # job control
 
-alias sudo="PS1='\h:\w \$ ' sudo"
+alias sudo="PS1='\h:\w # ' sudo"
