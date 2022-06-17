@@ -165,3 +165,5 @@ if get(g:, 'loaded_ctrlp', 0)
         \ [ '#ffffff' , '#875fd7' , 231 , 98  , ''     ],
         \ [ '#5f00af' , '#ffffff' , 55  , 231 , 'bold' ])
 endif
+
+let g:airline_symbols.readonly = ''
