@@ -71,7 +71,6 @@ let g:gitsessions_auto_create_sessions = 1
 
 let g:airline_theme='darkimproved'
 
-set updatetime=100      " otherwise gitgutter is a bit rubbish
 set nofileignorecase
 set nowildignorecase
 set wildmode=longest,list,full
@@ -116,10 +115,20 @@ autocmd FileType perl setlocal complete-=i
 
 " for gitgutter
 autocmd FileType perl,sh,rust,c,cpp,xs,markdown,vim setlocal signcolumn=yes
+set updatetime=100      " otherwise gitgutter is a bit rubbish
+let g:gitgutter_map_keys = 0
+nmap ) <Plug>(GitGutterNextHunk)
+nmap ( <Plug>(GitGutterPrevHunk)
+" mnemonic: Git Hunk Stage
+nmap ghs <Plug>(GitGutterStageHunk)
+" mnemonic: Git Hunk Revert
+nmap ghr <Plug>(GitGutterUndoHunk)
 
 " for anyfold
-autocmd Filetype * AnyFoldActivate  " for all filetypes
-set foldlevel=99                    " all open by default
+autocmd Filetype * AnyFoldActivate     " for all filetypes
+set foldlevel=99                       " all open by default
+set foldtext=gitgutter#fold#foldtext() " indicate changed code in folds
+
 " use the FZF plugin; path assumes fzf was installed using Homebrew
 set rtp+=/usr/local/opt/fzf
 
