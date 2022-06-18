@@ -53,6 +53,7 @@ function install {
     install_symlink $HOME/.screenrc              $CHECKOUT_DIR/dot-screenrc
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
+    install_symlink $HOME/.vimrc-basic           $CHECKOUT_DIR/vim/dot-vimrc-basic
 
     check_vim_plugins
 
@@ -67,6 +68,14 @@ function install {
     install_symlink $HOME/bin/rotator            $CHECKOUT_DIR/../perlscripts/rotator
     install_symlink $HOME/bin/shtimeout          $CHECKOUT_DIR/../shellscripts/shtimeout
     install_symlink $HOME/bin/50-2-25            $CHECKOUT_DIR/../shellscripts/50-2-25
+
+    if [ "$(whoami)" == "dcantrell" ]; then
+        # need a slightly different config at work
+        cat $CHECKOUT_DIR/dot-gitconfig | sed 's/david@cantrell.org.uk/david.cantrell@broadbean.com/' > $HOME/.gitconfig
+    else
+        install_symlink $HOME/.gitconfig         $CHECKOUT_DIR/dot-gitconfig
+    fi
+
     which img2sixel >/dev/null 2>&1 && \
         install_symlink $HOME/bin/imgcat         $(which img2sixel)
 

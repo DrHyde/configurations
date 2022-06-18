@@ -1,0 +1,16 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+name = David Cantrell
+email = david@cantrell.org.uk
+[push]
+	default = simple
+[pull]
+	rebase = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	editor = vim -u ~/.vimrc-basic

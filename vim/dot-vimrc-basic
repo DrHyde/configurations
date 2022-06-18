@@ -1,0 +1,39 @@
+set nocompatible
+
+let &rtp = substitute(&rtp, '\.vim\>', '.vim-basic', 'g')
+
+set nofileignorecase
+set nowildignorecase
+set wildmode=longest,list,full
+set wildmenu
+set autoindent
+set ruler
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set showmatch
+set incsearch
+set nojoinspaces
+set cursorline
+set splitright
+set splitbelow
+
+set number
+set relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+syntax on
+
+" " the default is too dark for a dark terminal background
+" highlight vimComment ctermfg=LightBlue
+" highlight perlComment ctermfg=LightBlue
+" highlight shComment ctermfg=LightBlue
+" highlight rubyComment ctermfg=LightBlue
+" highlight confComment ctermfg=LightBlue
+highlight LineNr cterm=NONE ctermfg=DarkGrey ctermbg=none
+highlight CursorLine term=bold cterm=bold ctermbg=242
