@@ -232,3 +232,6 @@ command -range=% -nargs=* Tidy call g:PerlTidyWithoutMovingTheCursor(<args>)
 nmap <C-t> :Tidy<CR>
 vmap <C-t> :!perltidy<CR>
 
+" C-j/k to scroll the whole buffer without moving cursor
+nmap <C-j> <C-y>
+nmap <C-k> <C-e>
