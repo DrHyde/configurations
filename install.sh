@@ -170,6 +170,27 @@ function notimeout {
     "$@"
 }
 
+function is_repo_up_to_date {
+    local repo=$1; shift
+    local branch=$1; shift
+    local timeout_text=$1; shift
+    local out_of_date_text=$1; shift
+    local try_text=$1; shift
+
+    cd $repo
+    $TIMEOUT 5 git fetch -q origin
+    if [ "$?" != "0" ]; then
+        echo
+        printf "${red}${timeout_text}$NC\n"
+        echo
+    elif [ "$(git log -1 --pretty=format:%H origin/$BRANCH)" != "$(git log -1 --pretty=format:%H)" ]; then
+        echo
+        printf "${red}${out_of_date_text}$NC\n"
+        printf "  Try: ${green}${try_text}$NC\n"
+        echo
+    fi
+}
+
 function check_vim_plugins {
     (
         cd $HOME/.vim/bundle
@@ -195,21 +216,15 @@ function check_vim_plugins {
         for i in *; do
             (
                 if [ "$i" != "Vundle.vim" ]; then
-                    cd $i
                     local BRANCH=master
                     if [ "$i" == "vim-perl" ]; then
                         BRANCH=dev
                     fi
 
-                    $TIMEOUT 5 git fetch -q origin
-                    if [ "$?" != "0" ]; then
-                        echo
-                        printf "${red}Timed out trying to check if vim plugin $i is up to date$NC\n"
-                        echo
-                    elif [ "$(git log -1 --pretty=format:%H origin/$BRANCH)" != "$(git log -1 --pretty=format:%H)" ]; then
-                        printf "${red}Your $i vim plugin is out of date.$NC Try\n"
-                        printf "  ${green}:PluginUpdate $i$NC\n"
-                    fi
+                    is_repo_up_to_date $i $BRANCH \
+                        "Timed out trying to check if vim plugin $i is up to date" \
+                        "Your $i vim plugin is out of date" \
+                        ":PluginUpdate $i"
                 fi
             ) &
         done
@@ -226,22 +241,16 @@ function look_for_updates {
             cd $CHECKOUT_DIR/..
             [ ! -d "$repo" ] && git clone git@github.com:DrHyde/$repo.git
 
-            cd $repo
             local BRANCH=master
 
-            $TIMEOUT 5 git fetch -q origin
-            if [ "$?" != "0" ]; then
-                echo
-                printf "${red}Timed out trying to talk to github to see if your $repo repo is up to date$NC\n"
-                echo
-            elif [ "$(git log -1 --pretty=format:%H origin/$BRANCH)" != "$(git log -1 --pretty=format:%H)" ]; then
-                echo
-                printf "${red}Your $repo repo isn\'t the same as Github.$NC Try:\n"
-                printf "  ${green}$CHECKOUT_DIR/install.sh --update $repo${NC}\n"
-                echo
-            fi
+            is_repo_up_to_date $repo $BRANCH \
+                "Timed out trying to talk to github to see if your $repo repo is up to date" \
+                "Your $repo repo isn\'t the same as Github." \
+                "$CHECKOUT_DIR/install.sh --update $repo"
         ) &
     done
+    check_vim_plugins &
+
     wait
 
     for wanted in rg tldr tree img2sixel hyperfine hardlink fzf ctags ngrok karabiner ; do
