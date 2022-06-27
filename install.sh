@@ -227,6 +227,9 @@ function check_vim_plugins {
                         ":PluginUpdate $i"
                 fi
             ) &
+            if [ "$(uname)" == "SunOS" ]; then
+                sleep 1
+            fi
         done
 
         wait
