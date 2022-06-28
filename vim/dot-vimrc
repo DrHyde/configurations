@@ -115,7 +115,7 @@ autocmd FileType perl setlocal complete+=klib/*,kt/*,klocal/*
 autocmd FileType perl setlocal complete-=i
 
 " for gitgutter
-autocmd FileType perl,sh,rust,c,cpp,xs,markdown,vim,conf setlocal signcolumn=yes
+autocmd FileType perl,sh,sql,rust,c,cpp,xs,markdown,vim,conf setlocal signcolumn=yes
 set updatetime=100      " otherwise gitgutter is a bit rubbish
 let g:gitgutter_map_keys = 0
 nmap ) <Plug>(GitGutterNextHunk)
