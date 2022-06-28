@@ -70,6 +70,7 @@ filetype plugin indent on    " required
 let g:gitsessions_auto_create_sessions = 1
 
 let g:airline_theme='darkimproved'
+let g:airline_symbols.maxlinenr = ''
 
 set nofileignorecase
 set nowildignorecase
