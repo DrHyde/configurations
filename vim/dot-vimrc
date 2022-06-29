@@ -239,3 +239,7 @@ vmap <C-t> :!perltidy<CR>
 " C-j/k to scroll the whole buffer without moving cursor
 nmap <C-j> <C-y>
 nmap <C-k> <C-e>
+" p/P to auto-reindent what is pasted
+" https://vim.fandom.com/wiki/Format_pasted_text_automatically
+nnoremap p ]p
+nnoremap P ]P
