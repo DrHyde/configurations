@@ -192,7 +192,7 @@ function! DoWindowSwap()
     "Switch to dest and shuffle source->dest
     exe curNum . "wincmd w"
     "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' markedBuf 
+    exe 'hide buf' markedBuf
 endfunction
 
 nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
@@ -212,29 +212,32 @@ let g:session_autoload = "yes"
 "    - In normal mode Ctl+t or :Tidy will tidy the whole buffer
 "    - In :command mode, you can say :4,11 Tidy to tidy line 4 to 11
 "    - In Visual mode, hit Ctr+t or :Tidy to tidy the selected block
-" 
+"
 " Change the <C-t> mappings at the bottom to choose a different shortcut. ;)
 "
 " Courtesy of TehJim xxx *muwhaa*
 "
-function! g:PerlTidyWithoutMovingTheCursor(...)                              
-    let b:cursorPos = getpos('.')                              
-                                                               
-    " If we were called with params...                         
-    if a:0 == 2                                                
-        execute "".a:1.",".a:2."!perltidy"                     
-                                                               
-    " In normal mode, we want to do the whole buffer           
-    else                                                       
-        :%!perltidy                                            
-    endif                                                      
-                                                               
-    redraw!                                                    
-    call cursor(b:cursorPos[1], b:cursorPos[2])                
-endfunction                                                    
+function! g:PerlTidyWithoutMovingTheCursor(...)
+    let b:cursorPos = getpos('.')
+
+    " If we were called with params...
+    if a:0 == 2
+        execute "".a:1.",".a:2."!perltidy"
+
+    " In normal mode, we want to do the whole buffer
+    else
+        :%!perltidy
+    endif
+
+    redraw!
+    call cursor(b:cursorPos[1], b:cursorPos[2])
+endfunction
 command -range=% -nargs=* Tidy call g:PerlTidyWithoutMovingTheCursor(<args>)
 nmap <C-t> :Tidy<CR>
 vmap <C-t> :!perltidy<CR>
+
+" Strip trailing spaces (mnemonic: Kill Space Invaders)
+nmap ksi :keeppatterns :let _w=winsaveview()<Bar>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>call winrestview(_w)<CR>
 
 " C-j/k to scroll the whole buffer without moving cursor
 nmap <C-j> <C-y>
