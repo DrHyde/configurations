@@ -252,3 +252,17 @@ nmap <C-k> <C-e>
 " https://vim.fandom.com/wiki/Format_pasted_text_automatically
 nnoremap p ]p
 nnoremap P ]P
+
+" vim-commentary
+"
+" the default mappings are silly. The mere existence of this  will
+" prevent the plugin from creating them.
+nmap gc <nop>
+" com<movement> to comment out a bunch of lines
+xmap com  <Plug>Commentary
+nmap com  <Plug>Commentary
+omap com  <Plug>Commentary
+" <number>comc to comment out <number> lines
+nmap comc <Plug>CommentaryLine
+" comu to uncomment the current commented block
+nmap comu <Plug>Commentary<Plug>Commentary
