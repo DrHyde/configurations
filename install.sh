@@ -186,7 +186,7 @@ function is_repo_up_to_date {
     elif [ "$(git log -1 --pretty=format:%H origin/$BRANCH)" != "$(git log -1 --pretty=format:%H)" ]; then
         echo
         printf "${red}${out_of_date_text}$NC\n"
-        printf "  Try: ${green}${try_text}$NC\n"
+        printf "  Try:\n    ${green}${try_text}$NC\n"
         echo
     fi
 }
@@ -206,8 +206,8 @@ function check_vim_plugins {
                 DIR=xolox-vim-misc
             fi
             if [ ! -e "$DIR" ]; then
-                printf "${red}Your $i vim plugin is missing.$NC Try (once)\n"
-                printf "  ${green}:PluginInstall$NC\n"
+                printf "${red}Your $i vim plugin is missing.$NC\n"
+                printf "  Try:\n    ${green}vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginInstall' -c 'qall'$NC\n"
             fi
 
         done
@@ -224,7 +224,7 @@ function check_vim_plugins {
                     is_repo_up_to_date $i $BRANCH \
                         "Timed out trying to check if vim plugin $i is up to date" \
                         "Your $i vim plugin is out of date" \
-                        ":PluginUpdate $i"
+                        "vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginUpdate $i' -c 'qall'"
                 fi
             ) &
             if [ "$(uname)" == "SunOS" ]; then
