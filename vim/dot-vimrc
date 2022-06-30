@@ -51,6 +51,7 @@ Plugin 'pseewald/anyfold'         " folding. Replaces ...
     " let perl_fold = 1
     " let perl_fold_blocks = 1
 Plugin 'tpope/vim-commentary'     " gc<motion> to comment out a bunch of lines, or gc in visual mode
+Plugin 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
