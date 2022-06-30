@@ -130,9 +130,9 @@ let g:gitgutter_map_keys = 0
 nmap ) <Plug>(GitGutterNextHunk)
 nmap ( <Plug>(GitGutterPrevHunk)
 " mnemonic: Git Hunk Stage
-nmap ghs <Plug>(GitGutterStageHunk)
+nmap <leader>ghs <Plug>(GitGutterStageHunk)
 " mnemonic: Git Hunk Revert
-nmap ghr <Plug>(GitGutterUndoHunk)
+nmap <leader>ghr <Plug>(GitGutterUndoHunk)
 
 " for anyfold
 autocmd Filetype * AnyFoldActivate     " for all filetypes
@@ -260,10 +260,10 @@ nnoremap P ]P
 " prevent the plugin from creating them.
 nmap gc <nop>
 " com<movement> to comment out a bunch of lines
-xmap com  <Plug>Commentary
-nmap com  <Plug>Commentary
-omap com  <Plug>Commentary
+xmap <leader>com  <Plug>Commentary
+nmap <leader>com  <Plug>Commentary
+omap <leader>com  <Plug>Commentary
 " <number>comc to comment out <number> lines
-nmap comc <Plug>CommentaryLine
+nmap <leader>comc <Plug>CommentaryLine
 " comu to uncomment the current commented block
-nmap comu <Plug>Commentary<Plug>Commentary
+nmap <leader>comu <Plug>Commentary<Plug>Commentary
