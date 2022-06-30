@@ -31,6 +31,9 @@ function main {
                 git pull
                 if [ "$2" == "configurations" ]; then
                     ./install.sh
+                    if [ -f "local-post-install.sh" ]; then
+                        ./local-post-install.sh
+                    fi
                 fi
             )
         else
