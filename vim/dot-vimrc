@@ -117,6 +117,10 @@ autocmd FileType perl setlocal iskeyword+=:
 autocmd FileType perl setlocal complete+=klib/*,kt/*,klocal/*
 autocmd FileType perl setlocal complete-=i
 
+" { and } go to start/end of sub if in a perl sub
+autocmd FileType perl nnoremap <buffer> { $?sub.*{<CR>
+autocmd FileType perl nnoremap <buffer> } $?sub.*{<CR>%
+
 " for gitgutter
 autocmd FileType perl,sh,sql,rust,c,cpp,xs,markdown,vim,conf setlocal signcolumn=yes
 set updatetime=100      " otherwise gitgutter is a bit rubbish
