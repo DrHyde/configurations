@@ -130,6 +130,7 @@ nmap ghr <Plug>(GitGutterUndoHunk)
 
 " for anyfold
 autocmd Filetype * AnyFoldActivate     " for all filetypes
+let g:anyfold_fold_display=0           " don't show anyfold's minimal fold info, use normal foldtext
 set foldlevel=99                       " all open by default
 set foldtext=gitgutter#fold#foldtext() " indicate changed code in folds
 
