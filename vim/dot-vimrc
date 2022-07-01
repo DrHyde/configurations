@@ -34,6 +34,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 Plugin 'vim-perl/vim-perl'
+Plugin 'rust-lang/rust.vim'
 Plugin 'yggdroot/indentline'
 Plugin 'tpope/vim-characterize'   " ga to show Unicode char name etc
 Plugin 'airblade/vim-gitgutter'   " show git status per line in the gutter
@@ -119,9 +120,23 @@ autocmd FileType perl setlocal iskeyword+=:
 autocmd FileType perl setlocal complete+=klib/*,kt/*,klocal/*
 autocmd FileType perl setlocal complete-=i
 
-" { and } go to start/end of sub if in a perl sub
-autocmd FileType perl nnoremap <buffer> { $?sub.*{<CR>
-autocmd FileType perl nnoremap <buffer> } $?sub.*{<CR>%
+" auto-inserting line breaks in code is hateful
+autocmd FileType perl,sh,sql,rust,c,cpp,xs,markdown,vim,conf setlocal textwidth=0
+
+" { and } go to start/end of sub in perl
+autocmd FileType perl nnoremap <buffer> { $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('sub.*{', 'cbe')<CR>
+autocmd FileType perl nnoremap <buffer> } $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('sub.*{', 'cbe')<CR>%
+" {f and }f go to start/end of fn in rust
+autocmd FileType rust nnoremap <buffer> {f $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('fn.*{', 'cbe')<CR>
+autocmd FileType rust nnoremap <buffer> }f $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('fn.*{', 'cbe')<CR>%
+" {i and }i go to start/end of impl in rust
+autocmd FileType rust nnoremap <buffer> {i $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('impl.*{', 'cbe')<CR>
+autocmd FileType rust nnoremap <buffer> }i $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('impl.*{', 'cbe')<CR>%
+" {s and }s go to start/end of struct in rust
+autocmd FileType rust nnoremap <buffer> {s $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('struct.*{', 'cbe')<CR>
+autocmd FileType rust nnoremap <buffer> }s $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('struct.*{', 'cbe')<CR>%
+" {}u goes back whence we came
+autocmd FileType perl,rust nnoremap <buffer> {}u :call winrestview(dc_brace_jump_w)<CR>
 
 " for gitgutter
 autocmd FileType perl,sh,sql,rust,c,cpp,xs,markdown,vim,conf setlocal signcolumn=yes
@@ -244,7 +259,7 @@ nmap <C-t> :Tidy<CR>
 vmap <C-t> :!perltidy<CR>
 
 " Strip trailing spaces (mnemonic: Kill Space Invaders)
-nmap <leader>ksi :let _w=winsaveview()<Bar>:keeppatterns :%s/\s\+$//e<Bar>call winrestview(_w)<CR>
+nmap <leader>ksi :let dc_ksi_w=winsaveview()<Bar>:keeppatterns :%s/\s\+$//e<Bar>call winrestview(dc_ksi_w)<CR>
 
 " C-j/k to scroll the whole buffer without moving cursor
 nmap <C-j> <C-y>
