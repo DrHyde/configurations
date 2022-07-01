@@ -244,7 +244,7 @@ nmap <C-t> :Tidy<CR>
 vmap <C-t> :!perltidy<CR>
 
 " Strip trailing spaces (mnemonic: Kill Space Invaders)
-nmap ksi :keeppatterns :let _w=winsaveview()<Bar>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>call winrestview(_w)<CR>
+nmap <leader>ksi :let _w=winsaveview()<Bar>:keeppatterns :%s/\s\+$//e<Bar>call winrestview(_w)<CR>
 
 " C-j/k to scroll the whole buffer without moving cursor
 nmap <C-j> <C-y>
