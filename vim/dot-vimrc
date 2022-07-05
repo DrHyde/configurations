@@ -159,11 +159,14 @@ set foldtext=gitgutter#fold#foldtext() " indicate changed code in folds
 set rtp+=/usr/local/opt/fzf
 
 " the default is too dark for a dark terminal background
-highlight vimComment ctermfg=LightBlue
+highlight vimComment  ctermfg=LightBlue
 highlight perlComment ctermfg=LightBlue
-highlight shComment ctermfg=LightBlue
+highlight shComment   ctermfg=LightBlue
 highlight rubyComment ctermfg=LightBlue
 highlight confComment ctermfg=LightBlue
+
+" red on black, and still visible when the current line is highlighted
+hi        Todo        ctermfg=9 ctermbg=0
 
 highlight SignColumn      ctermbg=17
 highlight GitGutterAdd    ctermbg=Black   ctermfg=Green
