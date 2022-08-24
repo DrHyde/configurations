@@ -1,2 +1,4 @@
-output .
+subtitles 1
 tvmode hd
+subsembed 1
+output .
