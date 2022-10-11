@@ -234,7 +234,7 @@ let g:session_autoload = "yes"
 
 " A command to perltidy and return the cursor whence it came.
 " This allows 3 modes of use:
-"    - In normal mode Ctl+t or :Tidy will tidy the whole buffer
+"    - In normal mode :Tidy will tidy the whole buffer
 "    - In :command mode, you can say :4,11 Tidy to tidy line 4 to 11
 "    - In Visual mode, hit Ctr+t or :Tidy to tidy the selected block
 "
@@ -257,8 +257,7 @@ function! g:PerlTidyWithoutMovingTheCursor(...)
     redraw!
     call cursor(b:cursorPos[1], b:cursorPos[2])
 endfunction
-command -range=% -nargs=* Tidy call g:PerlTidyWithoutMovingTheCursor(<args>)
-nmap <C-t> :Tidy<CR>
+command -range=% -nargs=* Tidy call g:PerlTidyWithoutMovingTheCursor(<line1>,<line2>)
 vmap <C-t> :!perltidy<CR>
 
 " Strip trailing spaces (mnemonic: Kill Space Invaders)
