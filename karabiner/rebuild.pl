@@ -229,6 +229,10 @@ sub _accents {
             ];
         }
     }
+    # strikethrough, handled all special like because d- is ð
+    push @mappings, [ qw(c o m b i -),
+        charnames::string_vianame('COMBINING LONG STROKE OVERLAY')
+    ];
     return @mappings;
 }
 

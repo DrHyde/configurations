@@ -463,6 +463,7 @@
             "i" = {
               "'" = ("insertText:", "́");
               "," = ("insertText:", "̧");
+              "-" = ("insertText:", "̶");
               ":" = ("insertText:", "̈");
               "\\\U0022" = ("insertText:", "̋");
               "\\\U005E" = ("insertText:", "̂");
