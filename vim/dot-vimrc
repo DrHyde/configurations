@@ -38,7 +38,6 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'yggdroot/indentline'
 Plugin 'tpope/vim-characterize'   " ga to show Unicode char name etc
 Plugin 'airblade/vim-gitgutter'   " show git status per line in the gutter
-                                  " ]c / [c to jump around between hunks
 Plugin 'mileszs/ack.vim'          " :Ack
 Plugin 'DrHyde/gitsessions.vim'   " fork of wting/gitsessions.vim which can also auto-create sessions
 Plugin 'bling/vim-airline'        " status bar. Replaces ...
@@ -148,6 +147,17 @@ nmap ( <Plug>(GitGutterPrevHunk)
 nmap <leader>ghs <Plug>(GitGutterStageHunk)
 " mnemonic: Git Hunk Revert
 nmap <leader>ghr <Plug>(GitGutterUndoHunk)
+function! g:GGbase(...)
+    " called with no args?
+    if a:0 == 0
+        let g:gitgutter_diff_base = ""
+    else
+        let g:gitgutter_diff_base = a:1
+    endif
+    " now force gitgutter to update
+    GitGutter
+endfunction
+command! -nargs=* GGbase call g:GGbase(<q-args>)
 
 " for anyfold
 autocmd Filetype * AnyFoldActivate     " for all filetypes
@@ -257,7 +267,7 @@ function! g:PerlTidyWithoutMovingTheCursor(...)
     redraw!
     call cursor(b:cursorPos[1], b:cursorPos[2])
 endfunction
-command -range=% -nargs=* Tidy call g:PerlTidyWithoutMovingTheCursor(<line1>,<line2>)
+command! -range=% -nargs=* Tidy call g:PerlTidyWithoutMovingTheCursor(<line1>,<line2>)
 vmap <C-t> :!perltidy<CR>
 
 " Strip trailing spaces (mnemonic: Kill Space Invaders)
