@@ -23,7 +23,7 @@ function main {
             look_for_updates
         elif [ "$1" == "--updateall" ]; then
             for repo in shellscripts perlscripts configurations; do
-                ./install.sh --update $repo
+                $CHECKOUT_DIR/install.sh --update $repo
             done
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginInstall' -c 'qall'
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginUpdate' -c 'qall'
