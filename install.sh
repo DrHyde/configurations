@@ -21,6 +21,12 @@ function main {
     elif [ "$#" == "1" ]; then
         if [ "$1" == "--look-for-updates" ]; then
             look_for_updates
+        elif [ "$1" == "--updateall" ]; then
+            for repo in shellscripts perlscripts configurations; do
+                ./install.sh --update $repo
+            done
+            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginInstall' -c 'qall'
+            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginUpdate' -c 'qall'
         else
             wtf
         fi
@@ -307,7 +313,7 @@ function look_for_updates {
         cat << 'SOURCE_BASHRC_SNIPPET'
 if [ -n "$BASH_VERSION" ]; then
     if [ -f "$HOME/.bashrc" ]; then
-	    . "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
 fi
 SOURCE_BASHRC_SNIPPET
