@@ -16,6 +16,7 @@ elif [ "$(uname)" == "AIX" ]; then
 fi
 
 function main {
+    local run_post_install=0
     if [ "$#" == "0" ]; then
         install
     elif [ "$#" == "1" ]; then
@@ -27,6 +28,7 @@ function main {
             done
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginInstall' -c 'qall'
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginUpdate' -c 'qall'
+            run_post_install=1
         else
             wtf
         fi
@@ -37,9 +39,7 @@ function main {
                 git pull
                 if [ "$2" == "configurations" ]; then
                     ./install.sh
-                    if [ -f "local-post-install.sh" ]; then
-                        ./local-post-install.sh
-                    fi
+                    run_post_install=1
                 fi
             )
         else
@@ -47,6 +47,12 @@ function main {
         fi
     else
         wtf
+    fi
+
+    if [ "$run_post_install" == "1" ]; then
+        if [ -f "local-post-install.sh" ]; then
+            ./local-post-install.sh
+        fi
     fi
 }
 

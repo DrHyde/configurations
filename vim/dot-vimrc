@@ -40,6 +40,7 @@ Plugin 'tpope/vim-characterize'   " ga to show Unicode char name etc
 Plugin 'airblade/vim-gitgutter'   " show git status per line in the gutter
 Plugin 'mileszs/ack.vim'          " :Ack
 Plugin 'DrHyde/gitsessions.vim'   " fork of wting/gitsessions.vim which can also auto-create sessions
+Plugin 'preservim/tagbar'
 Plugin 'bling/vim-airline'        " status bar. Replaces ...
     " set laststatus=2
     " highlight StatusLine   ctermfg=White ctermbg=Red  cterm=bold
@@ -76,6 +77,8 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.maxlinenr = ''
+let g:airline#extensions#branch#displayed_head_limit = 20
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
 set nofileignorecase
 set nowildignorecase
