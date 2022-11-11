@@ -80,6 +80,10 @@ let g:airline_symbols.maxlinenr = ''
 let g:airline#extensions#branch#displayed_head_limit = 20
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
+let g:tagbar_position='vertical rightb'
+let g:tagbar_autoclose=1
+nmap <leader>tbt :TagbarToggle<CR>
+
 set nofileignorecase
 set nowildignorecase
 set wildmode=longest,list,full
