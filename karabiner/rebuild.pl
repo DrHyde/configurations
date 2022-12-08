@@ -92,6 +92,7 @@ copy ©
 box □
 tick ✅
 right ✅
+warning ⚠️
 cross  ❌
 wrong  ❌
 infinity ∞
