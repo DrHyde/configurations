@@ -33,6 +33,7 @@ Plugin 'VundleVim/Vundle.vim'
 " " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
+Plugin 'tpope/vim-sensible'
 Plugin 'vim-perl/vim-perl'
 Plugin 'rust-lang/rust.vim'
 Plugin 'yggdroot/indentline'
@@ -42,6 +43,7 @@ Plugin 'mileszs/ack.vim'          " :Ack
 Plugin 'DrHyde/gitsessions.vim'   " fork of wting/gitsessions.vim which can also auto-create sessions
 Plugin 'preservim/tagbar'
 Plugin 'bling/vim-airline'        " status bar. Replaces ...
+    " set ruler
     " set laststatus=2
     " highlight StatusLine   ctermfg=White ctermbg=Red  cterm=bold
     " highlight StatusLineNC ctermfg=White ctermbg=Blue cterm=none
@@ -56,9 +58,6 @@ Plugin 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -87,10 +86,8 @@ nmap <leader>tbt :TagbarToggle<CR>
 set nofileignorecase
 set nowildignorecase
 set wildmode=longest,list,full
-set wildmenu
 set autoindent
-set ruler
-set expandtab
+" set expandtab     " vim-sensible sets smarttab instead
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
@@ -109,8 +106,6 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
-syntax on
-
 " intelligent tab-completion
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 function! InsertTabWrapper()
@@ -124,7 +119,12 @@ endfunction
 " make tab-completion work better for perl
 autocmd FileType perl setlocal iskeyword+=:
 autocmd FileType perl setlocal complete+=klib/*,kt/*,klocal/*
-autocmd FileType perl setlocal complete-=i
+
+" this is done for us by vim-sensible, but I might decide to change that in the
+" future and turn it on globally, in which case this is needed for perl
+" projects
+"
+" autocmd FileType perl setlocal complete-=i
 
 " auto-inserting line breaks in code is hateful
 autocmd FileType perl,sh,sql,rust,c,cpp,xs,markdown,vim,conf setlocal textwidth=0
