@@ -84,6 +84,7 @@ function install {
     install_symlink $HOME/bin/rotator            $CHECKOUT_DIR/../perlscripts/rotator
     install_symlink $HOME/bin/shtimeout          $CHECKOUT_DIR/../shellscripts/shtimeout
     install_symlink $HOME/bin/50-2-25            $CHECKOUT_DIR/../shellscripts/50-2-25
+    install_symlink $HOME/bin/m4a-2-mp3          $CHECKOUT_DIR/../shellscripts/m4a-2-mp3
     install_symlink $HOME/bin/bytemark.command   $CHECKOUT_DIR/../shellscripts/bytemark.command
     install_symlink $HOME/bin/duckpond.command   $CHECKOUT_DIR/../shellscripts/duckpond.command
     install_symlink $HOME/bin/get-operavision.sh $CHECKOUT_DIR/../shellscripts/get-operavision.sh
