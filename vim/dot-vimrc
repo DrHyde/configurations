@@ -87,7 +87,6 @@ set nofileignorecase
 set nowildignorecase
 set wildmode=longest,list,full
 set autoindent
-" set expandtab     " vim-sensible sets smarttab instead
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
@@ -97,6 +96,9 @@ set nojoinspaces
 set cursorline
 set splitright
 set splitbelow
+
+set expandtab     " vim-sensible sets smarttab instead, undo that nonsense
+set nosmarttab
 
 set number
 set relativenumber
