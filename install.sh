@@ -78,6 +78,7 @@ function install {
     install_symlink $HOME/bin/charnames          $CHECKOUT_DIR/../perlscripts/charnames
     install_symlink $HOME/bin/gh-get-issues      $CHECKOUT_DIR/../perlscripts/gh-get-issues
     install_symlink $HOME/bin/git-rmbranch       $CHECKOUT_DIR/../shellscripts/git-rmbranch
+    install_symlink $HOME/bin/killall            $CHECKOUT_DIR/../shellscripts/killall
     install_symlink $HOME/bin/ffaddsubs          $CHECKOUT_DIR/../shellscripts/ffaddsubs
     install_symlink $HOME/bin/ffverify           $CHECKOUT_DIR/../shellscripts/ffverify
     install_symlink $HOME/bin/fps                $CHECKOUT_DIR/../shellscripts/fps
