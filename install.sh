@@ -72,7 +72,9 @@ function install {
 
     check_vim_plugins
 
-    mkdir $HOME/bin 2>/dev/null
+    mkdir -p $HOME/bin/lib 2>/dev/null
+    install_symlink $HOME/bin/lib/stdbashlib     $CHECKOUT_DIR/../shellscripts/lib/stdbashlib
+
     install_symlink $HOME/bin/lls                $CHECKOUT_DIR/../perlscripts/lls
     install_symlink $HOME/bin/as_check           $CHECKOUT_DIR/../perlscripts/as_check
     install_symlink $HOME/bin/charnames          $CHECKOUT_DIR/../perlscripts/charnames
