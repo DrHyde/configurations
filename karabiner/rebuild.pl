@@ -261,7 +261,7 @@ sub _fractions {
                 _denominator_name($denominator).
                 ($numerator == 1 ? '' : 'S')
             )) {
-                push @mappings, [ $numerator, split(//, $denominator), $char ];
+                push @mappings, [ $numerator, '/', split(//, $denominator), $char ];
             }
         }
     }

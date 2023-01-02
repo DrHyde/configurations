@@ -9,46 +9,58 @@
       "v" = ("insertText:", "₋");
     };
     "0" = {
-      "3" = ("insertText:", "↉");
+      "/" = {
+        "3" = ("insertText:", "↉");
+      };
       "\\\U005E" = ("insertText:", "⁰");
       "v" = ("insertText:", "₀");
     };
     "1" = {
-      "1" = {
-        "0" = ("insertText:", "⅒");
+      "/" = {
+        "1" = {
+          "0" = ("insertText:", "⅒");
+        };
+        "2" = ("insertText:", "½");
+        "3" = ("insertText:", "⅓");
+        "4" = ("insertText:", "¼");
+        "5" = ("insertText:", "⅕");
+        "6" = ("insertText:", "⅙");
+        "7" = ("insertText:", "⅐");
+        "8" = ("insertText:", "⅛");
+        "9" = ("insertText:", "⅑");
       };
-      "2" = ("insertText:", "½");
-      "3" = ("insertText:", "⅓");
-      "4" = ("insertText:", "¼");
-      "5" = ("insertText:", "⅕");
-      "6" = ("insertText:", "⅙");
-      "7" = ("insertText:", "⅐");
-      "8" = ("insertText:", "⅛");
-      "9" = ("insertText:", "⅑");
       "\\\U005E" = ("insertText:", "¹");
       "v" = ("insertText:", "₁");
     };
     "2" = {
-      "3" = ("insertText:", "⅔");
-      "5" = ("insertText:", "⅖");
+      "/" = {
+        "3" = ("insertText:", "⅔");
+        "5" = ("insertText:", "⅖");
+      };
       "\\\U005E" = ("insertText:", "²");
       "v" = ("insertText:", "₂");
     };
     "3" = {
-      "4" = ("insertText:", "¾");
-      "5" = ("insertText:", "⅗");
-      "8" = ("insertText:", "⅜");
+      "/" = {
+        "4" = ("insertText:", "¾");
+        "5" = ("insertText:", "⅗");
+        "8" = ("insertText:", "⅜");
+      };
       "\\\U005E" = ("insertText:", "³");
       "v" = ("insertText:", "₃");
     };
     "4" = {
-      "5" = ("insertText:", "⅘");
+      "/" = {
+        "5" = ("insertText:", "⅘");
+      };
       "\\\U005E" = ("insertText:", "⁴");
       "v" = ("insertText:", "₄");
     };
     "5" = {
-      "6" = ("insertText:", "⅚");
-      "8" = ("insertText:", "⅝");
+      "/" = {
+        "6" = ("insertText:", "⅚");
+        "8" = ("insertText:", "⅝");
+      };
       "\\\U005E" = ("insertText:", "⁵");
       "v" = ("insertText:", "₅");
     };
@@ -57,7 +69,9 @@
       "v" = ("insertText:", "₆");
     };
     "7" = {
-      "8" = ("insertText:", "⅞");
+      "/" = {
+        "8" = ("insertText:", "⅞");
+      };
       "\\\U005E" = ("insertText:", "⁷");
       "v" = ("insertText:", "₇");
     };
