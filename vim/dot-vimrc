@@ -157,6 +157,8 @@ nmap ( <Plug>(GitGutterPrevHunk)
 nmap <leader>ghs <Plug>(GitGutterStageHunk)
 " mnemonic: Git Hunk Revert
 nmap <leader>ghr <Plug>(GitGutterUndoHunk)
+" mnemonic: Git Hunk View
+nmap <leader>ghv <Plug>(GitGutterPreviewHunk)
 function! g:GGbase(...)
     " called with no args?
     if a:0 == 0
