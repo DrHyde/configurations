@@ -1,0 +1,7 @@
+#!bash
+
+# not really a function, having it as a function would mess with
+# job control
+
+alias highlight="ack --color --passthru"
+alias hilite=highlight
