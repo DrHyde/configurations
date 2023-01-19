@@ -4,7 +4,7 @@
 --default_types
 --default_icons
 --default_colours
---iso8601
+--iso8601s
 
 # perl-specific
 --name_type    MANIFEST      list
