@@ -1,3 +1,5 @@
+# uses Nerd Font chars https://www.nerdfonts.com/
+
 --ignore $FIGNORE
 --ignore local/lib
 --norecurse .git
@@ -33,6 +35,12 @@
 --ext_type wav audio
 --icon_type audio ♬
 --colour_type audio  orange
+
+--ext_type png image
+--ext_type gif image
+--ext_type jpg image
+--icon_type image 
+--colour_type image purple
 
 --ext_type rar compressed
 
