@@ -29,7 +29,9 @@ git() {
     elif [[ "$1" == "commit" ]]; then
         shift
         for i in "$@"; do
-            if [ "$i" == "-a" ] || [ "$i" == "--all" ]; then
+            # -a encourages committing of unrelated changes
+            # -m encourages short pithy commit messages
+            if [ "$i" == "-a" ] || [ "$i" == "--all" ] || [ "$i" == "-m" ] || [ "$i" == "--message" ]; then
                 echo NO\! SHAN\'T\! $i is BAD\!
                 return 1
             fi
@@ -50,7 +52,12 @@ git() {
             fi
         fi
 
-        $(which git) commit "$@"
+        if [[ "$1" != "--amend" ]]; then
+            $(which git) commit -v "$@"
+        else
+            # git commit -v makes thoughtful commit messages easier
+            $(which git) commit "$@"
+        fi
     else
         $(which git) "$@"
     fi
