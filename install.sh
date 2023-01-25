@@ -28,6 +28,7 @@ function main {
             done
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginInstall' -c 'qall'
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginUpdate' -c 'qall'
+            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginClean' -c 'qall'
             run_post_install=1
         else
             wtf
@@ -257,9 +258,9 @@ function check_vim_plugins {
                         "vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginUpdate $i' -c 'qall'"
                 fi
             ) &
-            if [ "$(uname)" == "SunOS" ]; then
-                sleep 1
-            fi
+            # if [ "$(uname)" == "SunOS" ]; then
+            #     sleep 1
+            # fi
         done
 
         wait
