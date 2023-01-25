@@ -9,3 +9,6 @@ email = david@cantrell.org.uk
 	rebase = false
 [core]
 	editor = vim -u ~/.vimrc-basic
+	pager = "if [ ! -z \"$(which diff-so-fancy)\" ]; then diff-so-fancy | less --tabs=4 -RFX; else less; fi"
+[diff-so-fancy]
+	markEmptyLines = false
