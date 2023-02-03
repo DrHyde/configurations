@@ -253,15 +253,28 @@ sub _super_sub_scripts {
 
 sub _fractions {
     my @mappings = ();
-    foreach my $numerator (0 .. 9) {
-        foreach my $denominator (2 .. 10) {
+    foreach my $denominator (2 .. 10, 16, 20, 32, 100) {
+        my $largest_numerator = $denominator - 1;
+        foreach my $numerator (0 .. $largest_numerator) {
             if(my $char = charnames::string_vianame(
                 'VULGAR FRACTION '.
                 _character_name($numerator).' '.
                 _denominator_name($denominator).
                 ($numerator == 1 ? '' : 'S')
             )) {
-                push @mappings, [ $numerator, '/', split(//, $denominator), $char ];
+                push @mappings, [
+                    split(//, $numerator), '/', split(//, $denominator), '.',
+                    $char
+                ];
+            } else {
+                push @mappings, [
+                    split(//, $numerator), '/', split(//, $denominator), '.',
+                    join('',
+                        (map { charnames::string_vianame('SUPERSCRIPT '._character_name($_)) } split(//, $numerator)),
+                        charnames::string_vianame('FRACTION SLASH'),
+                        (map { charnames::string_vianame('SUBSCRIPT '._character_name($_)) } split(//, $denominator)),
+                    )
+                ];
             }
         }
     }
@@ -273,8 +286,8 @@ sub _character_name ($n) {
         '+' => 'PLUS SIGN',
         '-' => 'MINUS',
         map { $counter++ => $_ } qw(ZERO ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT NINE)
-    }->{$n};
+    }->{$n} // 'aardvark';
 }
 sub _denominator_name ($n) {
-    [ '', '', qw(HALF THIRD QUARTER FIFTH SIXTH SEVENTH EIGHTH NINTH TENTH) ]->[$n]
+    [ '', '', qw(HALF THIRD QUARTER FIFTH SIXTH SEVENTH EIGHTH NINTH TENTH) ]->[$n] // 'aardvark'
 }
