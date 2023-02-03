@@ -11,6 +11,9 @@ git() {
         $(which git) remote show origin | awk '/HEAD branch/ {print $NF}'
     elif [[ "$1" == "defaultbranch" ]]; then
         $(which git) checkout $(git showdefaultbranch)
+    elif [[ "$1" == "diff-unfancy" ]]; then
+        shift
+        $(which git) -c pager.diff="less --tabs=4 -RFX" diff "$@"
     elif [[ "$1 $2 $3" == "clone git clone" ]]; then
         # because some gitty websites want to copy 'git clone blahblah' into
         # the paste buffer and others just the repository address. Bastards
