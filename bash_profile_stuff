@@ -11,16 +11,5 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
-# must be second-to-last
+# hooks into PROMPT_COMMAND
 eval "$(direnv hook bash)"
-
-# must be last
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash" || true
-PS1='\w \$ \[$(
-    it2setkeylabel set status "$(
-        (
-            git log >/dev/null 2>&1 && echo repo $(basename $(git rev-parse --show-toplevel)) ... branch $(git rev-parse --abbrev-ref HEAD)
-        ) || pwd
-    )"
-)\]'
-
