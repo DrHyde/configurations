@@ -160,7 +160,7 @@ function install {
     grep 'shopt -s checkhash'  ~/.profile >/dev/null 2>&1 || add "shopt -s checkhash"
 
     grep PROMPT_COMMAND        ~/.profile >/dev/null 2>&1 || echo set PROMPT_COMMAND in .profile
-    # this must be before direnv, starship etc
+    # this must be before direnv, starship etc, it sets the title in xterms etc
     # export PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}: $(realpath .)\007"'
 
     grep QUOTING_STYLE         ~/.profile >/dev/null 2>&1 || add 'export QUOTING_STYLE=literal'
