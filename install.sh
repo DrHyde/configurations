@@ -19,6 +19,7 @@ function main {
     local run_post_install=0
     if [ "$#" == "0" ]; then
         install
+        run_post_install=1
     elif [ "$#" == "1" ]; then
         if [ "$1" == "--look-for-updates" ]; then
             look_for_updates
