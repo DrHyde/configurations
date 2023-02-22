@@ -27,10 +27,17 @@ function main {
             for repo in shellscripts perlscripts configurations; do
                 $CHECKOUT_DIR/install.sh --update $repo
             done
-            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginInstall' -c 'qall'
-            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginUpdate' -c 'qall'
-            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginClean' -c 'qall'
+            $CHECKOUT_DIR/install.sh --updatevimplugins
             run_post_install=1
+        elif [ "$1" == "--updatevimplugins" ]; then
+            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginInstall' -c 'qall'
+            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginClean' -c 'qall'
+
+            # temporary hack because Vundle's repo got taken down by Github
+            # vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginUpdate' -c 'qall'
+            for plugin in $(cd ~/.vim/bundle; ls | grep -v Vundle ); do
+                vim -c 'let g:gitsessions_auto_create_sessions=0' -c ":PluginUpdate $plugin" -c 'qall'
+            done
         else
             wtf
         fi
