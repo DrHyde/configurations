@@ -234,9 +234,9 @@ function check_vim_plugins {
 
         for i in $(grep ^Plugin ../../dot-vimrc |awk '{print $2}'|sed "s/^.*\///;s/'.*//"); do
             local DIR=$i
-            if [ "$i" == "vim-misc" ]; then
-                DIR=xolox-vim-misc
-            fi
+            # if [ "$i" == "vim-misc" ]; then
+            #     DIR=xolox-vim-misc
+            # fi
             if [ ! -e "$DIR" ]; then
                 printf "${red}Your $i vim plugin is missing.$NC\n"
                 printf "  Try:\n    ${green}vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginInstall' -c 'qall'$NC\n"
