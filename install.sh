@@ -30,14 +30,10 @@ function main {
             $CHECKOUT_DIR/install.sh --updatevimplugins
             run_post_install=1
         elif [ "$1" == "--updatevimplugins" ]; then
-            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginInstall' -c 'qall'
-            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginClean' -c 'qall'
-
-            # temporary hack because Vundle's repo got taken down by Github
-            # vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginUpdate' -c 'qall'
-            for plugin in $(cd ~/.vim/bundle; ls | grep -v Vundle ); do
-                vim -c 'let g:gitsessions_auto_create_sessions=0' -c ":PluginUpdate $plugin" -c 'qall'
-            done
+            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugUpgrade' -c 'qall'
+            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugClean'   -c 'qall'
+            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugInstall' -c 'qall'
+            vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugUpdate'  -c 'qall'
         else
             wtf
         fi
@@ -232,21 +228,16 @@ function is_repo_up_to_date {
 
 function check_vim_plugins {
     (
-        cd $HOME/.vim/bundle
-        # if we can't find Vundle then we need to pull down the submodule
-        if [ ! -e Vundle.vim/autoload ]; then
-            git submodule init
-            git pull --recurse-submodules
-        fi
+        cd $HOME/.vim/plugged/
 
-        for i in $(grep ^Plugin ../../dot-vimrc |awk '{print $2}'|sed "s/^.*\///;s/'.*//"); do
+        for i in $(grep ^Plug ../../dot-vimrc |awk '{print $2}'|sed "s/^.*\///;s/'.*//"); do
             local DIR=$i
             # if [ "$i" == "vim-misc" ]; then
             #     DIR=xolox-vim-misc
             # fi
             if [ ! -e "$DIR" ]; then
                 printf "${red}Your $i vim plugin is missing.$NC\n"
-                printf "  Try:\n    ${green}vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginInstall' -c 'qall'$NC\n"
+                printf "  Try:\n    ${green}vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugInstall' -c 'qall'$NC\n"
             fi
 
         done
@@ -254,17 +245,15 @@ function check_vim_plugins {
         # now check if any installed modules need updating
         for i in *; do
             (
-                if [ "$i" != "Vundle.vim" ]; then
-                    local BRANCH=master
-                    if [ "$i" == "vim-perl" ]; then
-                        BRANCH=dev
-                    fi
-
-                    is_repo_up_to_date $i $BRANCH \
-                        "Timed out trying to check if vim plugin $i is up to date" \
-                        "Your $i vim plugin is out of date" \
-                        "vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PluginUpdate $i' -c 'qall'"
+                local BRANCH=master
+                if [ "$i" == "vim-perl" ]; then
+                    BRANCH=dev
                 fi
+
+                is_repo_up_to_date $i $BRANCH \
+                    "Timed out trying to check if vim plugin $i is up to date" \
+                    "Your $i vim plugin is out of date" \
+                    "vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugUpdate $i' -c 'qall'"
             ) &
             # if [ "$(uname)" == "SunOS" ]; then
             #     sleep 1

@@ -1,73 +1,25 @@
 set nocompatible
 
-" -------------------- Vundle setup start
-" see https://github.com/VundleVim/Vundle.vim#quick-start
+call plug#begin()
 
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+Plug 'tpope/vim-sensible'
+Plug 'vim-perl/vim-perl'
+Plug 'rust-lang/rust.vim'
+Plug 'yggdroot/indentline'
+Plug 'tpope/vim-characterize'   " ga to show Unicode char name etc
+Plug 'airblade/vim-gitgutter'   " show git status per line in the gutter
+Plug 'mileszs/ack.vim'          " :Ack
+Plug 'DrHyde/gitsessions.vim'   " fork of wting/gitsessions.vim which can also auto-create sessions
+Plug 'preservim/tagbar'
+Plug 'bling/vim-airline'        " status bar. Replaces ...
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'        " make fugitive's GBrowse work with github
+Plug 'tommcdo/vim-fubitive'     " ... and likewise for Bitbucket
+Plug 'pseewald/anyfold'         " folding. Replaces ...
+Plug 'tpope/vim-commentary'     " gc<motion> to comment out a bunch of lines, or gc in visual mode
+Plug 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" " The following are examples of different formats supported.
-" " Keep Plugin commands between vundle#begin/end.
-"
-" " plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-"
-" " plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-"
-" " Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-"
-" " git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-"
-" " The sparkup vim script is in a subdirectory of this repo called vim.
-" " Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-"
-" " Install L9 and avoid a Naming conflict if you've already installed a
-" " different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-Plugin 'tpope/vim-sensible'
-Plugin 'vim-perl/vim-perl'
-Plugin 'rust-lang/rust.vim'
-Plugin 'yggdroot/indentline'
-Plugin 'tpope/vim-characterize'   " ga to show Unicode char name etc
-Plugin 'airblade/vim-gitgutter'   " show git status per line in the gutter
-Plugin 'mileszs/ack.vim'          " :Ack
-Plugin 'DrHyde/gitsessions.vim'   " fork of wting/gitsessions.vim which can also auto-create sessions
-Plugin 'preservim/tagbar'
-Plugin 'bling/vim-airline'        " status bar. Replaces ...
-    " set ruler
-    " set laststatus=2
-    " highlight StatusLine   ctermfg=White ctermbg=Red  cterm=bold
-    " highlight StatusLineNC ctermfg=White ctermbg=Blue cterm=none
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'        " make fugitive's GBrowse work with github
-Plugin 'tommcdo/vim-fubitive'     " ... and likewise for Bitbucket
-Plugin 'pseewald/anyfold'         " folding. Replaces ...
-    " let perl_fold = 1
-    " let perl_fold_blocks = 1
-Plugin 'tpope/vim-commentary'     " gc<motion> to comment out a bunch of lines, or gc in visual mode
-Plugin 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-
-" -------------------- Vundle setup end
+call plug#end()
 
 let g:gitsessions_auto_create_sessions = 1
 let g:gitsessions_use_nested_load = 1
