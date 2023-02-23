@@ -228,6 +228,7 @@ function is_repo_up_to_date {
 
 function check_vim_plugins {
     (
+        cd $HOME/.vim/plugged/ || mkdir $HOME/.vim/plugged/
         cd $HOME/.vim/plugged/
 
         for i in $(grep ^Plug ../../dot-vimrc |awk '{print $2}'|sed "s/^.*\///;s/'.*//"); do
