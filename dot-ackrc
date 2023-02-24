@@ -1,0 +1,4 @@
+# these two lines make it include binary files in the search
+# source: https://unix.stackexchange.com/questions/84002/search-all-files-with-ack
+--type-set=all:match:.*
+-k

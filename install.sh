@@ -67,6 +67,7 @@ function install {
     install_symlink $HOME/.bash_functions        $CHECKOUT_DIR/bash/dot-bash_functions
     install_symlink $HOME/.bash_functions.d      $CHECKOUT_DIR/bash/dot-bash_functions.d
     install_symlink $HOME/.cpandistprefs         $CHECKOUT_DIR/cpandistprefs
+    install_symlink $HOME/.ackrc                 $CHECKOUT_DIR/dot-ackrc
     install_symlink $HOME/.parallel              $CHECKOUT_DIR/dot-parallel
     install_symlink $HOME/.perldb                $CHECKOUT_DIR/dot-perldb
     install_symlink $HOME/.treerc                $CHECKOUT_DIR/dot-treerc
