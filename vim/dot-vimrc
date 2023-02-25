@@ -2,6 +2,7 @@ set nocompatible
 
 call plug#begin()
 
+Plug 'samsaga2/vim-z80'
 Plug 'tpope/vim-sensible'
 Plug 'vim-perl/vim-perl'
 Plug 'rust-lang/rust.vim'
