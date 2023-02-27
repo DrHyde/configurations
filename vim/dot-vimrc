@@ -54,6 +54,10 @@ set splitbelow
 set expandtab     " vim-sensible sets smarttab instead, undo that nonsense
 set nosmarttab
 
+" show invisible chars (tab, trailing spaces, and non-breaking space)
+exec "set listchars=tab:\uBB\uB7,trail:\uB7,nbsp:\u25BE"
+set list
+
 set number
 set relativenumber
 
@@ -65,7 +69,6 @@ augroup END
 
 au BufRead,BufNewFile *.tt      set filetype=tt2html
 au BufRead,BufNewFile *.tt2     set filetype=tt2html
-au BufRead,BufNewFile *.html.tt set filetype=tt2html
 
 " intelligent tab-completion
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
