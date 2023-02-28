@@ -19,8 +19,15 @@ Plug 'tommcdo/vim-fubitive'     " ... and likewise for Bitbucket
 Plug 'pseewald/anyfold'         " folding. Replaces ...
 Plug 'tpope/vim-commentary'     " gc<motion> to comment out a bunch of lines, or gc in visual mode
 Plug 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
+Plug 'zirrostig/vim-schlepp'
 
 call plug#end()
+
+let g:Schlepp#trimWS = 1
+vmap <silent> <S-UP>     <Plug>SchleppIndentUp
+vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
+vmap <silent> <S-LEFT>   <Plug>SchleppLeft
+vmap <silent> <S-RIGHT>  <Plug>SchleppRight
 
 let g:gitsessions_auto_create_sessions = 1
 let g:gitsessions_use_nested_load = 1
