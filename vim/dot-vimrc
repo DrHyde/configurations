@@ -58,6 +58,9 @@ set nosmarttab
 exec "set listchars=tab:\uBB\uB7,trail:\uB7,nbsp:\u25BE"
 set list
 
+" put something appropriate in the window title bar
+set title titlestring=
+
 set number
 set relativenumber
 
