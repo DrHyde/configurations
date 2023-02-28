@@ -20,6 +20,8 @@ Plug 'pseewald/anyfold'         " folding. Replaces ...
 Plug 'tpope/vim-commentary'     " gc<motion> to comment out a bunch of lines, or gc in visual mode
 Plug 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
 Plug 'zirrostig/vim-schlepp'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'         " this depends on ^^^ that
 
 call plug#end()
 
