@@ -132,20 +132,18 @@ autocmd FileType perl setlocal complete+=klib/*,kt/*,klocal/*
 " auto-inserting line breaks in code is hateful
 autocmd FileType perl,sh,sql,rust,c,cpp,xs,markdown,vim,conf setlocal textwidth=0
 
-" { and } go to start/end of sub in perl
-autocmd FileType perl nnoremap <buffer> { $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('sub.*{', 'cbe')<CR>
-autocmd FileType perl nnoremap <buffer> } $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('sub.*{', 'cbe')<CR>%
-" {f and }f go to start/end of fn in rust
-autocmd FileType rust nnoremap <buffer> {f $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('fn.*{', 'cbe')<CR>
-autocmd FileType rust nnoremap <buffer> }f $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('fn.*{', 'cbe')<CR>%
-" {i and }i go to start/end of impl in rust
-autocmd FileType rust nnoremap <buffer> {i $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('impl.*{', 'cbe')<CR>
-autocmd FileType rust nnoremap <buffer> }i $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('impl.*{', 'cbe')<CR>%
-" {s and }s go to start/end of struct in rust
-autocmd FileType rust nnoremap <buffer> {s $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('struct.*{', 'cbe')<CR>
-autocmd FileType rust nnoremap <buffer> }s $:let dc_brace_jump_w=winsaveview()<CR>:keeppattern :call search('struct.*{', 'cbe')<CR>%
-" {}u goes back whence we came
-autocmd FileType perl,rust nnoremap <buffer> {}u :call winrestview(dc_brace_jump_w)<CR>
+" { and } go to start of prev/next sub definition in perl
+autocmd FileType perl nnoremap <buffer> { ^:call search('sub.*{', 'b')<CR>
+autocmd FileType perl nnoremap <buffer> } $:call search('sub.*{', 'e')<CR>
+" {f and }f go to start of prev/next fn in rust
+autocmd FileType rust nnoremap <buffer> {f ^:call search('fn.*{', 'b')<CR>
+autocmd FileType rust nnoremap <buffer> }f $:call search('fn.*{', 'e')<CR>
+" {i and }i go to start of prev/next impl in rust
+autocmd FileType rust nnoremap <buffer> {i ^:call search('impl.*{', 'b')<CR>
+autocmd FileType rust nnoremap <buffer> }i $:call search('impl.*{', 'e')<CR>
+" {s and }s go to start of prev/next struct in rust
+autocmd FileType rust nnoremap <buffer> {s ^:call search('struct.*{', 'b')<CR>
+autocmd FileType rust nnoremap <buffer> }s $:call search('struct.*{', 'e')<CR>
 
 " for gitgutter
 autocmd FileType perl,sh,sql,rust,c,cpp,xs,markdown,vim,conf setlocal signcolumn=yes
