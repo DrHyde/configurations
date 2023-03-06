@@ -31,6 +31,9 @@ vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
 vmap <silent> <S-LEFT>   <Plug>SchleppLeft
 vmap <silent> <S-RIGHT>  <Plug>SchleppRight
 
+nnoremap > >l
+nnoremap < <l
+
 function! OpenLastClosed()
     let last_buf = bufname('#')
 
