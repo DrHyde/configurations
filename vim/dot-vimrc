@@ -133,8 +133,11 @@ autocmd FileType perl setlocal complete+=klib/*,kt/*,klocal/*
 autocmd FileType perl,sh,sql,rust,c,cpp,xs,markdown,vim,conf setlocal textwidth=0
 
 " { and } go to start of prev/next sub definition in perl
+" {} and }} go to end of prev/next sub definition in perl
 autocmd FileType perl nnoremap <buffer> { ^:call search('sub.*{', 'b')<CR>
 autocmd FileType perl nnoremap <buffer> } $:call search('sub.*{', 'e')<CR>
+autocmd FileType perl nmap <buffer> {} {%
+autocmd FileType perl nmap <buffer> }} }%
 " {f and }f go to start of prev/next fn in rust
 autocmd FileType rust nnoremap <buffer> {f ^:call search('fn.*{', 'b')<CR>
 autocmd FileType rust nnoremap <buffer> }f $:call search('fn.*{', 'e')<CR>
