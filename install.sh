@@ -104,6 +104,7 @@ function install {
     install_symlink $HOME/bin/sleep-screen       $CHECKOUT_DIR/../shellscripts/mac-sleep-screen
     install_symlink $HOME/bin/mirror             $CHECKOUT_DIR/../perlscripts/mirror/mirror.pl
     install_symlink $HOME/bin/releasemodule      $CHECKOUT_DIR/../shellscripts/releasemodule
+    install_symlink $HOME/bin/sixkcd             $CHECKOUT_DIR/../shellscripts/sixkcd
 
     if [ "$(whoami)" == "dcantrell" ]; then
         # need a slightly different config at work
