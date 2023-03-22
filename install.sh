@@ -156,8 +156,8 @@ function install {
     fi
 
     grep perlbrew              ~/.profile >/dev/null 2>&1 || add 'source ~/perl5/perlbrew/etc/bashrc'
-    grep bash_completion       ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_completion'
-    grep bash_functions        ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_functions'
+    grep HOME/.bash_completion ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_completion'
+    grep HOME/.bash_functions  ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_functions'
     grep EDITOR                ~/.profile >/dev/null 2>&1 || add 'export EDITOR=`which vim 2>/dev/null || which vi`'
     grep SHELLCHECK_OPTS       ~/.profile >/dev/null 2>&1 || add 'export SHELLCHECK_OPTS=-C'
     grep LESS                  ~/.profile >/dev/null 2>&1 || add 'export LESS=-FRX'
@@ -253,10 +253,12 @@ function check_vim_plugins {
                     BRANCH=dev
                 fi
 
-                is_repo_up_to_date $i $BRANCH \
-                    "Timed out trying to check if vim plugin $i is up to date" \
-                    "Your $i vim plugin is out of date" \
-                    "vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugUpdate $i' -c 'qall'"
+                if [ "$i" != "*" ]; then
+                    is_repo_up_to_date $i $BRANCH \
+                        "Timed out trying to check if vim plugin $i is up to date" \
+                        "Your $i vim plugin is out of date" \
+                        "vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugUpdate $i' -c 'qall'"
+                fi
             ) &
             # if [ "$(uname)" == "SunOS" ]; then
             #     sleep 1
