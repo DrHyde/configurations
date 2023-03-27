@@ -25,7 +25,6 @@ Plug 'junegunn/fzf.vim'         " this depends on ^^^ that
 
 call plug#end()
 
-let g:Schlepp#trimWS = 1
 vmap <silent> <S-UP>     <Plug>SchleppIndentUp
 vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
 vmap <silent> <S-LEFT>   <Plug>SchleppLeft
