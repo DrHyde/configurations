@@ -30,8 +30,12 @@ vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
 vmap <silent> <S-LEFT>   <Plug>SchleppLeft
 vmap <silent> <S-RIGHT>  <Plug>SchleppRight
 
+" indent/outdent the current line
 nnoremap > >l
 nnoremap < <l
+
+" u for undo, U for un-undo
+nnoremap U <C-r>
 
 function! OpenLastClosed()
     let last_buf = bufname('#')
