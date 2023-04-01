@@ -107,6 +107,14 @@ function install {
     install_symlink $HOME/bin/sixkcd             $CHECKOUT_DIR/../shellscripts/sixkcd
     install_symlink $HOME/bin/vboxbounce         $CHECKOUT_DIR/../shellscripts/vboxbounce
 
+    if [[ "$(uname)" == "Darwin" ]]; then
+        if [ "$(uname -p)" == "i386" ]; then
+            install_symlink $HOME/bin/utmctl /Applications/UTM.app/Contents/MacOS/utmctl
+        else
+            printf "  ${red}ARGH I DON'T KNOW HOW TO LINK$NC\n"
+        fi
+    fi
+
     if [ "$(whoami)" == "dcantrell" ]; then
         # need a slightly different config at work
         cat $CHECKOUT_DIR/dot-gitconfig | sed 's/david@cantrell.org.uk/david.cantrell@broadbean.com/' > $HOME/.gitconfig
