@@ -106,6 +106,7 @@ function install {
     install_symlink $HOME/bin/releasemodule      $CHECKOUT_DIR/../shellscripts/releasemodule
     install_symlink $HOME/bin/sixkcd             $CHECKOUT_DIR/../shellscripts/sixkcd
 
+    install_symlink $HOME/bin/utm                $CHECKOUT_DIR/../shellscripts/utm
     install_symlink $HOME/bin/vbox               $CHECKOUT_DIR/../shellscripts/vbox
     # remove the old single-function version of vbox
     rm $HOME/bin/vboxbounce >/dev/null 2>&1
