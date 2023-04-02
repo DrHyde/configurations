@@ -105,7 +105,10 @@ function install {
     install_symlink $HOME/bin/mirror             $CHECKOUT_DIR/../perlscripts/mirror/mirror.pl
     install_symlink $HOME/bin/releasemodule      $CHECKOUT_DIR/../shellscripts/releasemodule
     install_symlink $HOME/bin/sixkcd             $CHECKOUT_DIR/../shellscripts/sixkcd
-    install_symlink $HOME/bin/vboxbounce         $CHECKOUT_DIR/../shellscripts/vboxbounce
+
+    install_symlink $HOME/bin/vbox               $CHECKOUT_DIR/../shellscripts/vbox
+    # remove the old single-function version of vbox
+    rm $HOME/bin/vboxbounce >/dev/null 2>&1
 
     if [[ "$(uname)" == "Darwin" ]]; then
         if [ "$(uname -p)" == "i386" ]; then
