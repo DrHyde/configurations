@@ -34,6 +34,7 @@ vmap <silent> <S-RIGHT>  <Plug>SchleppRight
 
 let g:vimwiki_list = [{'path': '~/personal-vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
+let g:vimwiki_sync_commit_message = 'Auto commit at %FT%T%z from '.hostname()
 
 " indent/outdent the current line
 nnoremap > >l
