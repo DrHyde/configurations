@@ -22,6 +22,8 @@ Plug 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
 Plug 'zirrostig/vim-schlepp'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'         " this depends on ^^^ that
+Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vimwiki-sync'
 
 call plug#end()
 
@@ -29,6 +31,9 @@ vmap <silent> <S-UP>     <Plug>SchleppIndentUp
 vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
 vmap <silent> <S-LEFT>   <Plug>SchleppLeft
 vmap <silent> <S-RIGHT>  <Plug>SchleppRight
+
+let g:vimwiki_list = [{'path': '~/personal-vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
 
 " indent/outdent the current line
 nnoremap > >l
