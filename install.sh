@@ -108,8 +108,6 @@ function install {
 
     install_symlink $HOME/bin/utm                $CHECKOUT_DIR/../shellscripts/utm
     install_symlink $HOME/bin/vbox               $CHECKOUT_DIR/../shellscripts/vbox
-    # remove the old single-function version of vbox
-    rm $HOME/bin/vboxbounce >/dev/null 2>&1
 
     if [[ "$(uname)" == "Darwin" ]]; then
         if [ "$(uname -p)" == "i386" ]; then
