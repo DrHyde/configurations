@@ -78,6 +78,12 @@ function install {
 
     check_vim_plugins
 
+    (
+        cd personal-vimwiki || (
+            cd $HOME && git clone git@github.com:DrHyde/personal-vimwiki.git
+        )
+    )
+
     mkdir -p $HOME/bin/lib 2>/dev/null
     install_symlink $HOME/bin/lib/stdbashlib     $CHECKOUT_DIR/../shellscripts/lib/stdbashlib
 
