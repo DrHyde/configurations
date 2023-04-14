@@ -20,8 +20,11 @@ Plug 'pseewald/anyfold'         " folding. Replaces ...
 Plug 'tpope/vim-commentary'     " gc<motion> to comment out a bunch of lines, or gc in visual mode
 Plug 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
 Plug 'zirrostig/vim-schlepp'
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'         " this depends on ^^^ that
+Plug 'jremmen/vim-ripgrep'      " this over-rides the :Rg definition in ^^^ that
+
 Plug 'vimwiki/vimwiki'
 Plug 'michal-h21/vimwiki-sync'
 
@@ -36,10 +39,10 @@ let g:vimwiki_list = [{'path': '~/personal-vimwiki/', 'syntax': 'markdown', 'ext
 let g:vimwiki_global_ext = 0
 
 " vimwiki searching
-" \t maps to `:MyVWS :` because we'll probably want to search
-" for a tag. That then executes :Ack, appending the vimwiki directory
-autocmd FileType vimwiki nnoremap <buffer> <leader>t :MyVWS :
-command! -nargs=1 MyVWS :Ack <f-args> ~/personal-vimwiki/
+" \/ maps to `:MyVWS :` because we'll probably want to search
+" for a tag. That then executes :Rg, appending the vimwiki directory
+autocmd FileType vimwiki nnoremap <buffer> <leader>/ :MyVWS :
+command! -nargs=1 MyVWS :Rg <f-args> ~/personal-vimwiki/
 
 let g:vimwiki_sync_commit_message = 'Auto commit at %FT%T%z from '.hostname()
 
