@@ -4,6 +4,7 @@ let &rtp = substitute(&rtp, '\.vim\>', '.vim-basic', 'g')
 
 set nofileignorecase
 set nowildignorecase
+set nomodeline
 set wildmode=longest,list,full
 set wildmenu
 set autoindent
