@@ -79,9 +79,8 @@ function install {
     check_vim_plugins
 
     (
-        cd personal-vimwiki || (
-            cd $HOME && git clone git@github.com:DrHyde/personal-vimwiki.git
-        )
+        cd $HOME
+        cd personal-vimwiki || git clone git@github.com:DrHyde/personal-vimwiki.git
     )
 
     mkdir -p $HOME/bin/lib 2>/dev/null
