@@ -12,13 +12,11 @@ __utm_bash_completions () {
     # otherwise if we've got two words
     elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "list" ]]; then
         COMPREPLY=($(compgen -W "all started stopped up" -- "$thisword"));
-    elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "start" ]]; then
+    elif [[ "$COMP_CWORD" -ge 2 && "${COMP_WORDS[1]}" == "start" ]]; then
         COMPREPLY=($(compgen -W "all $(utm list stopped)" -- "$thisword"));
-    elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "stop" ]]; then
+    elif [[ "$COMP_CWORD" -ge 2 && "${COMP_WORDS[1]}" == "stop" ]]; then
         COMPREPLY=($(compgen -W "all $(utm list up)" -- "$thisword"));
-    elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "bounce" ]]; then
+    elif [[ "$COMP_CWORD" -ge 2 && "${COMP_WORDS[1]}" == "bounce" ]]; then
         COMPREPLY=($(compgen -W "all $(utm list up)" -- "$thisword"));
-    # TODO handle cases stop/start/bounce when there's already one or more
-    # machine names on the command line
     fi
 }
