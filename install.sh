@@ -28,12 +28,12 @@ function main {
                 $CHECKOUT_DIR/install.sh --update $repo
             done
             $CHECKOUT_DIR/install.sh --updatevimplugins
-            run_post_install=1
         elif [ "$1" == "--updatevimplugins" ]; then
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugUpgrade' -c 'qall'
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugClean'   -c 'qall'
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugInstall' -c 'qall'
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugUpdate'  -c 'qall'
+            run_post_install=1
         else
             wtf
         fi
@@ -55,9 +55,12 @@ function main {
     fi
 
     if [ "$run_post_install" == "1" ]; then
-        if [ -f "local-post-install.sh" ]; then
-            ./local-post-install.sh
-        fi
+        (
+            cd $CHECKOUT_DIR
+            if [ -f "local-post-install.sh" ]; then
+                    ./local-post-install.sh
+            fi
+        )
     fi
 }
 
@@ -392,7 +395,7 @@ function install_hardlink {
 function copy_if_not_equal {
     SOURCE=$1
     TARGET=$2
-    if [[ "$(cksum $SOURCE|awk '{print $1}')" == "$((cksum $TARGET|awk '{print $1}') 2>/dev/null)" ]]; then
+    if [[ "$(cksum $SOURCE|awk '{print $1}')" == "$( (cksum $TARGET|awk '{print $1}') 2>/dev/null )" ]]; then
         true
     else
         printf "${red}Updating $TARGET\n  from $SOURCE$NC\n"
