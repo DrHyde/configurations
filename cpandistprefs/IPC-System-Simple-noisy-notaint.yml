@@ -1,0 +1,7 @@
+---
+comment: "Ignore JKEENAN/IPC-System-Simple when taint is disabled noisily"
+match:
+  distribution: "JKEENAN/IPC-System-Simple-1.30"
+  perlconfig:
+    taint_disabled: "define"
+disabled: 1
