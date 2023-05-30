@@ -25,9 +25,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'         " this depends on ^^^ that
 Plug 'jremmen/vim-ripgrep'      " this over-rides the :Rg definition in ^^^ that
 
-Plug 'vimwiki/vimwiki'
-Plug 'michal-h21/vimwiki-sync'
-
 call plug#end()
 
 vmap <silent> <S-UP>     <Plug>SchleppIndentUp
@@ -35,20 +32,15 @@ vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
 vmap <silent> <S-LEFT>   <Plug>SchleppLeft
 vmap <silent> <S-RIGHT>  <Plug>SchleppRight
 
-let g:vimwiki_list = [{'path': '~/personal-vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_global_ext = 0
-
 " searching across a project
 " \/ maps to `:Rg<space>`, we'll then search everything in cwd
 nnoremap <leader>/ :Rg<space>
 
-" vimwiki searching
-" \/ maps to `:MyVWS :` because we'll probably want to search
-" for a tag. That then executes :Rg, appending the vimwiki directory
-autocmd FileType vimwiki nnoremap <buffer> <leader>/ :MyVWS :
-autocmd FileType vimwiki command! -buffer -nargs=1 MyVWS :Rg <f-args> ~/personal-vimwiki/
-
-let g:vimwiki_sync_commit_message = 'Auto commit at %FT%T%z from '.hostname()
+" " example of how to over-ride the above for a particular filetype
+" " \/ maps to `:MyVWS :` because we'll probably want to search
+" " for a tag. That then executes :Rg, appending the vimwiki directory
+" autocmd FileType vimwiki nnoremap <buffer> <leader>/ :MyVWS :
+" autocmd FileType vimwiki command! -buffer -nargs=1 MyVWS :Rg <f-args> ~/personal-vimwiki/
 
 " indent/outdent the current line
 nnoremap > >l
