@@ -1,0 +1,5 @@
+---
+comment: "Ignore blockchain bollocks"
+match:
+  distribution: "(Block[cC]hain|Ethereum|Bit[cC]oin)"
+disabled: 1
