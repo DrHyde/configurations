@@ -25,6 +25,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'         " this depends on ^^^ that
 Plug 'jremmen/vim-ripgrep'      " this over-rides the :Rg definition in ^^^ that
 
+Plug 'wellle/context.vim'
+
 call plug#end()
 
 vmap <silent> <S-UP>     <Plug>SchleppIndentUp
