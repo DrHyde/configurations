@@ -234,6 +234,20 @@ function notimeout {
     "$@"
 }
 
+file_age() {
+    local filename=$1
+    if ! test -f $filename; then
+        touch -t197001010101.01 $filename
+    fi
+    echo $(( $(date +%s) - $(date -r $filename +%s) ))
+}
+
+is_stale() {
+    local filename=$1
+    # older than a week?
+    [ $(file_age $filename) -gt $(( 60*60*24*7 )) ]
+}
+
 function is_repo_up_to_date {
     local repo=$1; shift
     local branch=$1; shift
@@ -241,17 +255,21 @@ function is_repo_up_to_date {
     local out_of_date_text=$1; shift
     local try_text=$1; shift
 
-    cd $repo
-    $TIMEOUT 5 git fetch -q origin
-    if [ "$?" != "0" ]; then
-        echo
-        printf "${red}${timeout_text}$NC\n"
-        echo
-    elif [ "$(git log -1 --pretty=format:%H origin/$BRANCH)" != "$(git log -1 --pretty=format:%H)" ]; then
-        echo
-        printf "${red}${out_of_date_text}$NC\n"
-        printf "  Try:\n    ${green}${try_text}$NC\n"
-        echo
+    if is_stale "$HOME/.$repo-repo-last-check"; then
+        touch "$HOME/.$repo-repo-last-check"
+        echo "checking $repo for updates"
+        cd $repo
+        $TIMEOUT 5 git fetch -q origin
+        if [ "$?" != "0" ]; then
+            echo
+            printf "${red}${timeout_text}$NC\n"
+            echo
+        elif [ "$(git log -1 --pretty=format:%H origin/$BRANCH)" != "$(git log -1 --pretty=format:%H)" ]; then
+            echo
+            printf "${red}${out_of_date_text}$NC\n"
+            printf "  Try:\n    ${green}${try_text}$NC\n"
+            echo
+        fi
     fi
 }
 
