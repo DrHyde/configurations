@@ -239,7 +239,13 @@ file_age() {
     if ! test -f $filename; then
         touch -t197001010101.01 $filename
     fi
-    echo $(( $(date +%s) - $(date -r $filename +%s) ))
+    echo $(( $(date +%s) - $(
+        if [[ "$(uname)" =~ ^OpenBSD$ ]]; then
+            stat -f %m $filename
+        else
+            date -r $filename +%s
+        fi
+    ) ))
 }
 
 is_stale() {
