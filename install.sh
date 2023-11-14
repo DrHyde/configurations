@@ -76,6 +76,7 @@ function install {
     )
     install_symlink $HOME/.ackrc                 $CHECKOUT_DIR/dot-ackrc
     install_symlink $HOME/.parallel              $CHECKOUT_DIR/dot-parallel
+    install_symlink $HOME/.yt-dlp              $CHECKOUT_DIR/dot-yt-dlp
     install_symlink $HOME/.perldb                $CHECKOUT_DIR/dot-perldb
     install_symlink $HOME/.treerc                $CHECKOUT_DIR/dot-treerc
     install_symlink $HOME/.screenrc              $CHECKOUT_DIR/dot-screenrc
