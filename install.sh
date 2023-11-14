@@ -116,6 +116,7 @@ function install {
     install_symlink $HOME/bin/get_iplayer_hi.sh  $CHECKOUT_DIR/../shellscripts/get_iplayer_hi.sh
     install_symlink $HOME/bin/git-rmbranch       $CHECKOUT_DIR/../shellscripts/git-rmbranch
     install_symlink $HOME/bin/perlbrew-cron.sh   $CHECKOUT_DIR/../shellscripts/perlbrew-cron.sh
+    install_symlink $HOME/bin/pfetch             $CHECKOUT_DIR/../shellscripts/pfetch
     install_symlink $HOME/bin/phone_notify.pl    $CHECKOUT_DIR/../perlscripts/phone_notify.pl
     install_symlink $HOME/bin/sleep-screen       $CHECKOUT_DIR/../shellscripts/mac-sleep-screen
     install_symlink $HOME/bin/mirror             $CHECKOUT_DIR/../perlscripts/mirror/mirror.pl
