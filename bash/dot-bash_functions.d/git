@@ -11,6 +11,8 @@ git() {
         $(which git) remote show origin | awk '/HEAD branch/ {print $NF}'
     elif [[ "$1" == "defaultbranch" ]]; then
         $(which git) checkout $(git showdefaultbranch)
+    elif [[ "$1" == "root-hash" ]]; then
+        $(which git) hash-object -t tree /dev/null
     elif [[ "$1" == "diff-unfancy" ]]; then
         shift
         $(which git) -c pager.diff="less --tabs=4 -RFX" diff "$@"
