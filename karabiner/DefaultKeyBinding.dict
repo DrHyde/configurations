@@ -2463,6 +2463,13 @@
       "'" = ("insertText:", "ś");
       "," = ("insertText:", "ş");
       "\\\U005E" = ("insertText:", "ŝ");
+      "h" = {
+        "r" = {
+          "u" = {
+            "g" = ("insertText:", "🤷");
+          };
+        };
+      };
       "s" = ("insertText:", "ß");
       "u" = {
         "b" = {

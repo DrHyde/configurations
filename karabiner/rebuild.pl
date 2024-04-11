@@ -95,6 +95,7 @@ right ✅
 warning ⚠️
 cross  ❌
 wrong  ❌
+shrug 🤷
 infinity ∞
 END_OF_MAPPINGS
 
