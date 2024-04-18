@@ -2,3 +2,4 @@ vim/dot-vim/.netrwhist
 dot-parallel/tmp
 local-post-install.sh
 *.swp
+vim/dot-vim/autoload/plug.vim.old
