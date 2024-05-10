@@ -115,7 +115,8 @@ function install {
     install_symlink $HOME/bin/beedog             $CHECKOUT_DIR/../shellscripts/beedog
     install_symlink $HOME/bin/bytemark.command   $CHECKOUT_DIR/../shellscripts/bytemark.command
     install_symlink $HOME/bin/duckpond.command   $CHECKOUT_DIR/../shellscripts/duckpond.command
-    install_symlink $HOME/bin/get-operavision.sh $CHECKOUT_DIR/../shellscripts/get-operavision.sh
+    rm $HOME/bin/get-operavision.sh
+    install_symlink $HOME/bin/get-operavision    $CHECKOUT_DIR/../shellscripts/get-operavision
     install_symlink $HOME/bin/get_iplayer_hi.sh  $CHECKOUT_DIR/../shellscripts/get_iplayer_hi.sh
     install_symlink $HOME/bin/git-rmbranch       $CHECKOUT_DIR/../shellscripts/git-rmbranch
     install_symlink $HOME/bin/perlbrew-cron.sh   $CHECKOUT_DIR/../shellscripts/perlbrew-cron.sh
