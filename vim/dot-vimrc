@@ -21,10 +21,6 @@ Plug 'tpope/vim-commentary'     " gc<motion> to comment out a bunch of lines, or
 Plug 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
 Plug 'zirrostig/vim-schlepp'
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'         " this depends on ^^^ that
-Plug 'jremmen/vim-ripgrep'      " this over-rides the :Rg definition in ^^^ that
-
 Plug 'wellle/context.vim'
 
 call plug#end()
@@ -195,9 +191,6 @@ autocmd Filetype * AnyFoldActivate     " for all filetypes
 let g:anyfold_fold_display=0           " don't show anyfold's minimal fold info, use normal foldtext
 set foldlevel=99                       " all open by default
 set foldtext=gitgutter#fold#foldtext() " indicate changed code in folds
-
-" use the FZF plugin; path assumes fzf was installed using Homebrew
-set rtp+=/usr/local/opt/fzf
 
 " the default is too dark for a dark terminal background
 highlight vimComment  ctermfg=LightBlue

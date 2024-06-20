@@ -6,10 +6,5 @@ export TREE_IGNORE=.git:.envrc
 source ~/perl5/perlbrew/etc/bashrc
 source ~/.bash_completion
 
-if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_DEFAULT_OPTS='-m --height 50% --border'
-fi
-
 # hooks into PROMPT_COMMAND
 eval "$(direnv hook bash)"
