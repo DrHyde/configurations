@@ -12,3 +12,5 @@ email = david@cantrell.org.uk
 	pager = "if [ ! -z \"$(which diff-so-fancy|grep -v \"no diff-so-fancy in\")\" ]; then diff-so-fancy | less --tabs=4 -RFX; else less; fi"
 [diff-so-fancy]
 	markEmptyLines = false
+[column]
+	tag = auto
