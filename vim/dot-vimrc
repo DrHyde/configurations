@@ -23,6 +23,8 @@ Plug 'zirrostig/vim-schlepp'
 
 Plug 'wellle/context.vim'
 
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 vmap <silent> <S-UP>     <Plug>SchleppIndentUp
