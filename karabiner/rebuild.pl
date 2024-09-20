@@ -96,6 +96,9 @@ warning ⚠️
 cross  ❌
 wrong  ❌
 shrug 🤷
+compose ⎄
+endash –
+emdash —
 infinity ∞
 END_OF_MAPPINGS
 
