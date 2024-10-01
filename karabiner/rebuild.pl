@@ -210,6 +210,7 @@ sub _accents {
         TILDE          => [ '\\\\\\U007E', "TILDE"               ],
         DIAERESIS      => [ ':',           "DIAERESIS"           ],
         CEDILLA        => [ ',',           "CEDILLA"             ],
+        OGONEK         => [ 'c',           "OGONEK"              ],
         STROKE         => [ '/',           undef                 ], # no combining char
         MACRON         => [ '_',           "MACRON"              ],
         CARON          => [ 'v',           "CARON"               ],
