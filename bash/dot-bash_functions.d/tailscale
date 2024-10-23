@@ -1,0 +1,10 @@
+#!bash
+
+# can't just create a symlink on a Mac because ... fuck knows why
+tailscale() {
+    if [[ "$(uname)" == "Darwin" ]]; then
+        /Applications/Tailscale.app/Contents/MacOS/Tailscale "$@"
+    else
+        $(which tailscale) "$@"
+    fi
+}
