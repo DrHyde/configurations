@@ -24,6 +24,9 @@ git() {
     elif [[ "$1" == "log" ]]; then
         shift
         $(which git) log --graph --date-order "$@"
+    elif [[ "$1" == "blame" ]]; then
+        shift
+        $(which git) blame -C -C -C "$@"
     elif [[ "$1" == "cherry-pick" ]]; then
         shift
         if [ "$1" == "--continue" ] || [ "$1" == "--skip" ] || [ "$1" == "--abort" ] || [ "$1" == "--quit" ]; then
