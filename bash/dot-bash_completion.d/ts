@@ -3,10 +3,10 @@
 complete -o bashdefault -o default -F __ts_bash_completions ts
 
 __ts_bash_completions () {
-    COMPREPLY=();
+    COMPREPLY=()
 
     if [ "$COMP_CWORD" -eq 1 ]; then
-        COMPREPLY=($(compgen -c -- "${COMP_WORDS[COMP_CWORD]}"));
+        COMPREPLY=($(compgen -c -- "${COMP_WORDS[COMP_CWORD]}"))
     else
         local command_completion_function="$(complete -p ${COMP_WORDS[1]} 2>/dev/null|sed 's/.*-F \([^ ]*\) .*/\1/')"
 
