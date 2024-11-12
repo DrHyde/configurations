@@ -1,8 +1,10 @@
 # bash
 
-complete -o bashdefault -o default -F __ts_bash_completions ts
+for i in ts nohup sudo unbuffer; do
+    complete -o bashdefault -o default -F __one_song_to_the_tune_of_another $i
+done
 
-__ts_bash_completions () {
+__one_song_to_the_tune_of_another () {
     COMPREPLY=()
 
     if [ "$COMP_CWORD" -eq 1 ]; then
