@@ -27,6 +27,9 @@ Plug 'github/copilot.vim'
 
 call plug#end()
 
+syntax match nonascii "[^\u0000-\u007F]" containedin=ALL
+highlight nonascii guibg=Red ctermbg=1 term=standout
+
 vmap <silent> <S-UP>     <Plug>SchleppIndentUp
 vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
 vmap <silent> <S-LEFT>   <Plug>SchleppLeft
