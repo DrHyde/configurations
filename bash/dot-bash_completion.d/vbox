@@ -8,7 +8,7 @@ __vbox_bash_completions () {
 
     # if there's only one word on the command line
     if [ "$COMP_CWORD" -eq 1 ]; then
-        COMPREPLY=($(compgen -W "list start stop bounce" -- "$thisword"));
+        COMPREPLY=($(compgen -W "backup list start stop bounce" -- "$thisword"));
     # otherwise if we've got two words
     elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "list" ]]; then
         COMPREPLY=($(compgen -W "all started stopped up" -- "$thisword"));
