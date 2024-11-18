@@ -113,6 +113,7 @@ function install {
     install_symlink $HOME/bin/m4a-2-mp3          $CHECKOUT_DIR/../shellscripts/m4a-2-mp3
     install_symlink $HOME/bin/video-2-audio      $CHECKOUT_DIR/../shellscripts/video-2-audio
     install_symlink $HOME/bin/beedog             $CHECKOUT_DIR/../shellscripts/beedog
+    install_symlink $HOME/bin/check-encoding     $CHECKOUT_DIR/../shellscripts/check-encoding
     install_symlink $HOME/bin/bytemark.command   $CHECKOUT_DIR/../shellscripts/bytemark.command
     install_symlink $HOME/bin/duckpond.command   $CHECKOUT_DIR/../shellscripts/duckpond.command
     install_symlink $HOME/bin/get-operavision    $CHECKOUT_DIR/../shellscripts/get-operavision
