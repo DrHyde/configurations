@@ -59,6 +59,8 @@ yogh ȝ
 WYNN Ƿ
 wynn ƿ
 aleph ℵ
+sqrt √
+cubert ∛
 
 # sets
 complex ℂ
