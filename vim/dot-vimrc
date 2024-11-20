@@ -27,7 +27,7 @@ Plug 'github/copilot.vim'
 
 call plug#end()
 
-syntax match nonascii "[^\u0000-\u007F]" containedin=ALL
+autocmd BufReadPost,BufNewFile * syntax match nonascii "[^\u0000-\u007F]"  containedin=ALL
 highlight nonascii guibg=Red ctermbg=1 term=standout
 
 vmap <silent> <S-UP>     <Plug>SchleppIndentUp
