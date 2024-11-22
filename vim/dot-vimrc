@@ -20,6 +20,7 @@ Plug 'pseewald/anyfold'         " folding. Replaces ...
 Plug 'tpope/vim-commentary'     " gc<motion> to comment out a bunch of lines, or gc in visual mode
 Plug 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
 Plug 'zirrostig/vim-schlepp'
+Plug 'preservim/nerdtree'
 
 Plug 'wellle/context.vim'
 
@@ -29,6 +30,8 @@ call plug#end()
 
 syntax match nonascii "[^\u0000-\u007F]" containedin=ALL
 highlight nonascii guibg=Red ctermbg=1 term=standout
+
+nnoremap <leader>nt :NERDTreeToggle<CR>
 
 vmap <silent> <S-UP>     <Plug>SchleppIndentUp
 vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
