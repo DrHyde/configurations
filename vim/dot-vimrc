@@ -38,16 +38,6 @@ vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
 vmap <silent> <S-LEFT>   <Plug>SchleppLeft
 vmap <silent> <S-RIGHT>  <Plug>SchleppRight
 
-" searching across a project
-" \/ maps to `:Rg<space>`, we'll then search everything in cwd
-nnoremap <leader>/ :Rg<space>
-
-" " example of how to over-ride the above for a particular filetype
-" " \/ maps to `:MyVWS :` because we'll probably want to search
-" " for a tag. That then executes :Rg, appending the vimwiki directory
-" autocmd FileType vimwiki nnoremap <buffer> <leader>/ :MyVWS :
-" autocmd FileType vimwiki command! -buffer -nargs=1 MyVWS :Rg <f-args> ~/personal-vimwiki/
-
 " indent/outdent the current line
 nnoremap > >l
 nnoremap < <l
@@ -322,7 +312,7 @@ nmap gc <nop>
 xmap <leader>com  <Plug>Commentary
 nmap <leader>com  <Plug>Commentary
 omap <leader>com  <Plug>Commentary
-" <number>comc to comment out <number> lines
+" <number><leader>comc to comment out <number> lines
 nmap <leader>comc <Plug>CommentaryLine
 " comu to uncomment the current commented block
 nmap <leader>comu <Plug>Commentary<Plug>Commentary
