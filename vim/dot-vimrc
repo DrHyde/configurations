@@ -32,6 +32,10 @@ autocmd BufReadPost,BufNewFile * syntax match nonascii "[^\u0000-\u007F]"  conta
 highlight nonascii guibg=Red ctermbg=1 term=standout
 
 nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>NT :NERDTreeFocus<CR>
+let NERDTreeMapOpenVSplit = '<CR>'
+let NERDTreeMapOpenSplit  = 'h'
+let NERDTreeMapCustomOpen = ''
 
 vmap <silent> <S-UP>     <Plug>SchleppIndentUp
 vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
