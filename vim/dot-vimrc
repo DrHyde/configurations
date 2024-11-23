@@ -33,9 +33,9 @@ highlight nonascii guibg=Red ctermbg=1 term=standout
 
 nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>NT :NERDTreeFocus<CR>
-let NERDTreeMapOpenVSplit = '<CR>'
-let NERDTreeMapOpenSplit  = 'h'
-let NERDTreeMapCustomOpen = ''
+let NERDTreeMapOpenSplit   = 'h'
+let NERDTreeQuitOnOpen     = 1
+let NERDTreeCustomOpenArgs = {'file': {'reuse': 'all', 'where': 'v'}, 'dir': {}}
 
 vmap <silent> <S-UP>     <Plug>SchleppIndentUp
 vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
