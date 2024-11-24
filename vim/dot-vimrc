@@ -8,6 +8,14 @@ Plug 'vim-perl/vim-perl'
 Plug 'rust-lang/rust.vim'
 Plug 'yggdroot/indentline'
 Plug 'tpope/vim-characterize'   " ga to show Unicode char name etc
+
+Plug 'glts/vim-magnum'          " dependency of ...
+Plug 'glts/vim-radical'         " gA to show representations of a number
+
+Plug 'tpope/vim-repeat'         " repeat plugin commands with .
+
+Plug 'tpope/vim-surround'       " cs"' to change surrounding " to ' etc, :help surround
+
 Plug 'airblade/vim-gitgutter'   " show git status per line in the gutter
 Plug 'mileszs/ack.vim'          " :Ack
 Plug 'DrHyde/gitsessions.vim'   " fork of wting/gitsessions.vim which can also auto-create sessions
