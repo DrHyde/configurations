@@ -44,6 +44,8 @@ nnoremap <leader>NT :NERDTreeFocus<CR>
 let NERDTreeMapOpenSplit   = 'h'
 let NERDTreeQuitOnOpen     = 1
 let NERDTreeCustomOpenArgs = {'file': {'reuse': 'all', 'where': 'v'}, 'dir': {}}
+" auto-close NT if it's the last buffer open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 vmap <silent> <S-UP>     <Plug>SchleppIndentUp
 vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
