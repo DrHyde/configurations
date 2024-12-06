@@ -34,7 +34,12 @@ Plug 'wellle/context.vim'
 
 Plug 'github/copilot.vim'
 
+Plug 'othree/eregex.vim'        " Perl-style regexes - :M/ or :M? to search, :%S/// for substitution
+
 call plug#end()
+
+" don't allow eregex to remap / and ?, use :M/ etc instead
+let g:eregex_default_enable = 0
 
 autocmd BufReadPost,BufNewFile * syntax match nonascii "[^\u0000-\u007F]"  containedin=ALL
 highlight nonascii guibg=Red ctermbg=1 term=standout
