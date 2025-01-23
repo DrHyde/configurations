@@ -50,6 +50,8 @@ a e æ
 O E Œ
 o e œ
 s s ß
+? ! ‽      # interrobang
+! ? ‽      # interrobang
 GBP £
 gbp £
 EUR €

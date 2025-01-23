@@ -1,5 +1,8 @@
 {
   "§" = {
+    "!" = {
+      "?" = ("insertText:", "‽");
+    };
     "+" = {
       "\\\U005E" = ("insertText:", "⁺");
       "v" = ("insertText:", "₊");
@@ -1567,6 +1570,9 @@
       };
       "\\\U005E" = ("insertText:", "⁹");
       "v" = ("insertText:", "₉");
+    };
+    "?" = {
+      "!" = ("insertText:", "‽");
     };
     "A" = {
       "'" = ("insertText:", "Á");
