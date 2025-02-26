@@ -191,6 +191,7 @@ function install {
     grep HOME/.bash_completion ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_completion'
     grep HOME/.bash_functions  ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_functions'
     grep EDITOR                ~/.profile >/dev/null 2>&1 || add 'export EDITOR=`which vim 2>/dev/null || which vi`'
+    grep MANPAGER              ~/.profile >/dev/null 2>&1 || add "export MANPAGER=\"sh -c 'col -bx | bat -l man -p'\""
     grep SHELLCHECK_OPTS       ~/.profile >/dev/null 2>&1 || add 'export SHELLCHECK_OPTS=-C'
     grep LESS                  ~/.profile >/dev/null 2>&1 || add 'export LESS=-FRX'
     grep PS1                   ~/.profile >/dev/null 2>&1 || add "export PS1='\\h:\\w \$ '"
