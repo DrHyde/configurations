@@ -108,6 +108,7 @@ function install {
     install_symlink $HOME/bin/ffinfo             $CHECKOUT_DIR/../shellscripts/ffinfo
     install_symlink $HOME/bin/ffconcat           $CHECKOUT_DIR/../perlscripts/ffconcat
     install_symlink $HOME/bin/rotator            $CHECKOUT_DIR/../perlscripts/rotator
+    install_symlink $HOME/bin/man-prettifier     $CHECKOUT_DIR/../shellscripts/man-prettifier
     install_symlink $HOME/bin/shtimeout          $CHECKOUT_DIR/../shellscripts/shtimeout
     install_symlink $HOME/bin/50-2-25            $CHECKOUT_DIR/../shellscripts/50-2-25
     install_symlink $HOME/bin/m4a-2-mp3          $CHECKOUT_DIR/../shellscripts/m4a-2-mp3
@@ -191,12 +192,19 @@ function install {
     grep HOME/.bash_completion ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_completion'
     grep HOME/.bash_functions  ~/.profile >/dev/null 2>&1 || add '. $HOME/.bash_functions'
     grep EDITOR                ~/.profile >/dev/null 2>&1 || add 'export EDITOR=`which vim 2>/dev/null || which vi`'
-    grep MANPAGER              ~/.profile >/dev/null 2>&1 || add "export MANPAGER=\"sh -c 'col -bx | bat -l man -p'\""
     grep SHELLCHECK_OPTS       ~/.profile >/dev/null 2>&1 || add 'export SHELLCHECK_OPTS=-C'
     grep LESS                  ~/.profile >/dev/null 2>&1 || add 'export LESS=-FRX'
     grep PS1                   ~/.profile >/dev/null 2>&1 || add "export PS1='\\h:\\w \$ '"
     grep FZF_DEFAULT_OPTS      ~/.profile >/dev/null 2>&1 || add_after fzf "export FZF_DEFAULT_OPTS=--no-mouse"
     grep 'shopt -s checkhash'  ~/.profile >/dev/null 2>&1 || add "shopt -s checkhash"
+
+    # remove old broken version of this and replace with a more portable one
+    # make a backup first!
+    cp ~/.profile ~/.profile~
+    grep MANPAGER              ~/.profile >/dev/null 2>&1 && \
+        TEMP_FILE="$(grep -v '^export MANPAGER' ~/.profile)" && \
+        (echo "$TEMP_FILE" > ~/.profile)
+    grep MANPAGER              ~/.profile >/dev/null 2>&1 || add "export MANPAGER=\"$HOME/bin/man-prettifier\""
 
     grep PROMPT_COMMAND        ~/.profile >/dev/null 2>&1 || echo set PROMPT_COMMAND in .profile
     # this must be before direnv, starship etc, it sets the title in xterms etc
