@@ -198,12 +198,6 @@ function install {
     grep FZF_DEFAULT_OPTS      ~/.profile >/dev/null 2>&1 || add_after fzf "export FZF_DEFAULT_OPTS=--no-mouse"
     grep 'shopt -s checkhash'  ~/.profile >/dev/null 2>&1 || add "shopt -s checkhash"
 
-    # remove old broken version of this and replace with a more portable one
-    # make a backup first!
-    cp ~/.profile ~/.profile~
-    grep MANPAGER              ~/.profile >/dev/null 2>&1 && \
-        TEMP_FILE="$(grep -v '^export MANPAGER' ~/.profile)" && \
-        (echo "$TEMP_FILE" > ~/.profile)
     grep MANPAGER              ~/.profile >/dev/null 2>&1 || add "export MANPAGER=\"$HOME/bin/man-prettifier\""
 
     grep PROMPT_COMMAND        ~/.profile >/dev/null 2>&1 || echo set PROMPT_COMMAND in .profile
