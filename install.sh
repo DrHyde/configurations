@@ -92,45 +92,44 @@ function install {
     )
 
     mkdir -p $HOME/bin/lib 2>/dev/null
-    install_symlink $HOME/bin/lib/stdbashlib     $CHECKOUT_DIR/../shellscripts/lib/stdbashlib
+    install_symlink $HOME/bin/lib/stdbashlib         $CHECKOUT_DIR/../shellscripts/lib/stdbashlib
 
-    install_symlink $HOME/bin/lls                $CHECKOUT_DIR/../perlscripts/lls
-    install_symlink $HOME/bin/as_check           $CHECKOUT_DIR/../perlscripts/as_check
+    install_symlink $HOME/bin/lls                    $CHECKOUT_DIR/../perlscripts/lls
+    install_symlink $HOME/bin/as_check               $CHECKOUT_DIR/../perlscripts/as_check
     install_symlink $HOME/bin/apt-installed-packages $CHECKOUT_DIR/../shellscripts/apt-installed-packages
-    install_symlink $HOME/bin/charnames          $CHECKOUT_DIR/../perlscripts/charnames
-    install_symlink $HOME/bin/gh-get-issues      $CHECKOUT_DIR/../perlscripts/gh-get-issues
-    install_symlink $HOME/bin/git-rmbranch       $CHECKOUT_DIR/../shellscripts/git-rmbranch
-    install_symlink $HOME/bin/killall            $CHECKOUT_DIR/../shellscripts/killall
-    install_symlink $HOME/bin/ffaddsubs          $CHECKOUT_DIR/../shellscripts/ffaddsubs
-    install_symlink $HOME/bin/ffverify           $CHECKOUT_DIR/../shellscripts/ffverify
-    install_symlink $HOME/bin/fps                $CHECKOUT_DIR/../shellscripts/fps
-    install_symlink $HOME/bin/ffres              $CHECKOUT_DIR/../shellscripts/ffres
-    install_symlink $HOME/bin/ffduration         $CHECKOUT_DIR/../shellscripts/ffduration
-    install_symlink $HOME/bin/ffinfo             $CHECKOUT_DIR/../shellscripts/ffinfo
-    install_symlink $HOME/bin/ffconcat           $CHECKOUT_DIR/../perlscripts/ffconcat
-    install_symlink $HOME/bin/rotator            $CHECKOUT_DIR/../perlscripts/rotator
-    install_symlink $HOME/bin/man-prettifier     $CHECKOUT_DIR/../shellscripts/man-prettifier
-    install_symlink $HOME/bin/shtimeout          $CHECKOUT_DIR/../shellscripts/shtimeout
-    install_symlink $HOME/bin/50-2-25            $CHECKOUT_DIR/../shellscripts/50-2-25
-    install_symlink $HOME/bin/m4a-2-mp3          $CHECKOUT_DIR/../shellscripts/m4a-2-mp3
-    install_symlink $HOME/bin/video-2-audio      $CHECKOUT_DIR/../shellscripts/video-2-audio
-    install_symlink $HOME/bin/beedog             $CHECKOUT_DIR/../shellscripts/beedog
-    install_symlink $HOME/bin/check-encoding     $CHECKOUT_DIR/../shellscripts/check-encoding
-    install_symlink $HOME/bin/bytemark.command   $CHECKOUT_DIR/../shellscripts/bytemark.command
-    install_symlink $HOME/bin/duckpond.command   $CHECKOUT_DIR/../shellscripts/duckpond.command
-    install_symlink $HOME/bin/get-operavision    $CHECKOUT_DIR/../shellscripts/get-operavision
-    install_symlink $HOME/bin/get_iplayer_hi.sh  $CHECKOUT_DIR/../shellscripts/get_iplayer_hi.sh
-    install_symlink $HOME/bin/git-rmbranch       $CHECKOUT_DIR/../shellscripts/git-rmbranch
-    install_symlink $HOME/bin/perlbrew-cron.sh   $CHECKOUT_DIR/../shellscripts/perlbrew-cron.sh
-    install_symlink $HOME/bin/perltidy           $CHECKOUT_DIR/../shellscripts/perltidy
-    install_symlink $HOME/bin/pfetch             $CHECKOUT_DIR/../shellscripts/pfetch
-    install_symlink $HOME/bin/sleep-screen       $CHECKOUT_DIR/../shellscripts/mac-sleep-screen
-    install_symlink $HOME/bin/mirror             $CHECKOUT_DIR/../perlscripts/mirror/mirror.pl
-    install_symlink $HOME/bin/releasemodule      $CHECKOUT_DIR/../shellscripts/releasemodule
-    install_symlink $HOME/bin/sixkcd             $CHECKOUT_DIR/../shellscripts/sixkcd
-
-    install_symlink $HOME/bin/utm                $CHECKOUT_DIR/../shellscripts/utm
-    install_symlink $HOME/bin/vbox               $CHECKOUT_DIR/../shellscripts/vbox
+    install_symlink $HOME/bin/charnames              $CHECKOUT_DIR/../perlscripts/charnames
+    install_symlink $HOME/bin/gh-get-issues          $CHECKOUT_DIR/../perlscripts/gh-get-issues
+    install_symlink $HOME/bin/git-rmbranch           $CHECKOUT_DIR/../shellscripts/git-rmbranch
+    install_symlink $HOME/bin/killall                $CHECKOUT_DIR/../shellscripts/killall
+    install_symlink $HOME/bin/ffaddsubs              $CHECKOUT_DIR/../shellscripts/ffaddsubs
+    install_symlink $HOME/bin/ffverify               $CHECKOUT_DIR/../shellscripts/ffverify
+    install_symlink $HOME/bin/fps                    $CHECKOUT_DIR/../shellscripts/fps
+    install_symlink $HOME/bin/50-2-25                $CHECKOUT_DIR/../shellscripts/50-2-25
+    install_symlink $HOME/bin/beedog                 $CHECKOUT_DIR/../shellscripts/beedog
+    install_symlink $HOME/bin/bytemark.command       $CHECKOUT_DIR/../shellscripts/bytemark.command
+    install_symlink $HOME/bin/check-encoding         $CHECKOUT_DIR/../shellscripts/check-encoding
+    install_symlink $HOME/bin/duckpond.command       $CHECKOUT_DIR/../shellscripts/duckpond.command
+    install_symlink $HOME/bin/ffconcat               $CHECKOUT_DIR/../perlscripts/ffconcat
+    install_symlink $HOME/bin/ffduration             $CHECKOUT_DIR/../shellscripts/ffduration
+    install_symlink $HOME/bin/ffinfo                 $CHECKOUT_DIR/../shellscripts/ffinfo
+    install_symlink $HOME/bin/ffres                  $CHECKOUT_DIR/../shellscripts/ffres
+    install_symlink $HOME/bin/get_iplayer_hi.sh      $CHECKOUT_DIR/../shellscripts/get_iplayer_hi.sh
+    install_symlink $HOME/bin/get-operavision        $CHECKOUT_DIR/../shellscripts/get-operavision
+    install_symlink $HOME/bin/git-rmbranch           $CHECKOUT_DIR/../shellscripts/git-rmbranch
+    install_symlink $HOME/bin/m4a-2-mp3              $CHECKOUT_DIR/../shellscripts/m4a-2-mp3
+    install_symlink $HOME/bin/man-prettifier         $CHECKOUT_DIR/../shellscripts/man-prettifier
+    install_symlink $HOME/bin/mirror                 $CHECKOUT_DIR/../perlscripts/mirror/mirror.pl
+    install_symlink $HOME/bin/perlbrew-cron.sh       $CHECKOUT_DIR/../shellscripts/perlbrew-cron.sh
+    install_symlink $HOME/bin/perltidy               $CHECKOUT_DIR/../shellscripts/perltidy
+    install_symlink $HOME/bin/pfetch                 $CHECKOUT_DIR/../shellscripts/pfetch
+    install_symlink $HOME/bin/releasemodule          $CHECKOUT_DIR/../shellscripts/releasemodule
+    install_symlink $HOME/bin/rotator                $CHECKOUT_DIR/../perlscripts/rotator
+    install_symlink $HOME/bin/shtimeout              $CHECKOUT_DIR/../shellscripts/shtimeout
+    install_symlink $HOME/bin/sixkcd                 $CHECKOUT_DIR/../shellscripts/sixkcd
+    install_symlink $HOME/bin/sleep-screen           $CHECKOUT_DIR/../shellscripts/mac-sleep-screen
+    install_symlink $HOME/bin/utm                    $CHECKOUT_DIR/../shellscripts/utm
+    install_symlink $HOME/bin/vbox                   $CHECKOUT_DIR/../shellscripts/vbox
+    install_symlink $HOME/bin/video-2-audio          $CHECKOUT_DIR/../shellscripts/video-2-audio
 
     if [[ "$(uname)" == "Darwin" ]]; then
         if [ "$(uname -p)" == "i386" ]; then
