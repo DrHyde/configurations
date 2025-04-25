@@ -106,7 +106,6 @@ function install {
     install_symlink $HOME/bin/fps                    $CHECKOUT_DIR/../shellscripts/fps
     install_symlink $HOME/bin/50-2-25                $CHECKOUT_DIR/../shellscripts/50-2-25
     install_symlink $HOME/bin/beedog                 $CHECKOUT_DIR/../shellscripts/beedog
-    install_symlink $HOME/bin/bytemark.command       $CHECKOUT_DIR/../shellscripts/bytemark.command
     install_symlink $HOME/bin/check-encoding         $CHECKOUT_DIR/../shellscripts/check-encoding
     install_symlink $HOME/bin/duckpond.command       $CHECKOUT_DIR/../shellscripts/duckpond.command
     install_symlink $HOME/bin/ffconcat               $CHECKOUT_DIR/../perlscripts/ffconcat
