@@ -96,6 +96,7 @@ function install {
 
     install_symlink $HOME/bin/lls                $CHECKOUT_DIR/../perlscripts/lls
     install_symlink $HOME/bin/as_check           $CHECKOUT_DIR/../perlscripts/as_check
+    install_symlink $HOME/bin/apt-installed-packages $CHECKOUT_DIR/../shellscripts/apt-installed-packages
     install_symlink $HOME/bin/charnames          $CHECKOUT_DIR/../perlscripts/charnames
     install_symlink $HOME/bin/gh-get-issues      $CHECKOUT_DIR/../perlscripts/gh-get-issues
     install_symlink $HOME/bin/git-rmbranch       $CHECKOUT_DIR/../shellscripts/git-rmbranch
