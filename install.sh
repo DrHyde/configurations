@@ -131,6 +131,7 @@ function install {
     install_symlink $HOME/bin/video-2-audio          $CHECKOUT_DIR/../shellscripts/video-2-audio
 
     if [[ "$(uname)" == "Darwin" ]]; then
+        install_symlink $HOME/bin/resolve_alias      $CHECKOUT_DIR/../shellscripts/resolve_alias
         if [ "$(uname -p)" == "i386" ]; then
             install_symlink $HOME/bin/utmctl /Applications/UTM.app/Contents/MacOS/utmctl
         else
