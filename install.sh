@@ -84,8 +84,6 @@ function install {
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
     install_symlink $HOME/.vimrc-basic           $CHECKOUT_DIR/vim/dot-vimrc-basic
 
-    check_vim_plugins
-
     (
         cd $HOME
         cd personal-vimwiki || git clone git@github.com:DrHyde/personal-vimwiki.git
@@ -287,47 +285,6 @@ function is_repo_up_to_date {
     fi
 }
 
-function check_vim_plugins {
-    (
-        cd $HOME/.vim/plugged/ || mkdir $HOME/.vim/plugged/
-        cd $HOME/.vim/plugged/
-
-        for i in $(grep ^Plug ../../dot-vimrc |awk '{print $2}'|sed "s/^.*\///;s/'.*//"); do
-            local DIR=$i
-            # if [ "$i" == "vim-misc" ]; then
-            #     DIR=xolox-vim-misc
-            # fi
-            if [ ! -e "$DIR" ]; then
-                printf "${red}Your $i vim plugin is missing.$NC\n"
-                printf "  Try:\n    ${green}vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugInstall' -c 'qall'$NC\n"
-            fi
-
-        done
-
-        # now check if any installed modules need updating
-        for i in *; do
-            (
-                local BRANCH=master
-                if [ "$i" == "vim-perl" ]; then
-                    BRANCH=dev
-                fi
-
-                if [ "$i" != "*" ]; then
-                    is_repo_up_to_date $i $BRANCH \
-                        "Timed out trying to check if vim plugin $i is up to date" \
-                        "Your $i vim plugin is out of date" \
-                        "vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugUpdate $i' -c 'qall'"
-                fi
-            ) &
-            # if [ "$(uname)" == "SunOS" ]; then
-            #     sleep 1
-            # fi
-        done
-
-        wait
-    )
-}
-
 function look_for_updates {
     cd $CHECKOUT_DIR
 
@@ -344,7 +301,6 @@ function look_for_updates {
                 "$CHECKOUT_DIR/install.sh --update $repo"
         ) &
     done
-    check_vim_plugins &
 
     wait
 
