@@ -127,6 +127,7 @@ function install {
     install_symlink $HOME/bin/utm                    $CHECKOUT_DIR/../shellscripts/utm
     install_symlink $HOME/bin/vbox                   $CHECKOUT_DIR/../shellscripts/vbox
     install_symlink $HOME/bin/video-2-audio          $CHECKOUT_DIR/../shellscripts/video-2-audio
+    install_symlink $HOME/bin/yt-dlp-ssh             $CHECKOUT_DIR/../shellscripts/yt-dlp-ssh
 
     if [[ "$(uname)" == "Darwin" ]]; then
         install_symlink $HOME/bin/resolve_alias      $CHECKOUT_DIR/../shellscripts/resolve_alias
