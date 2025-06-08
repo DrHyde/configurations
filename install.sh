@@ -119,6 +119,7 @@ function install {
     install_symlink $HOME/bin/perlbrew-cron.sh       $CHECKOUT_DIR/../shellscripts/perlbrew-cron.sh
     install_symlink $HOME/bin/perltidy               $CHECKOUT_DIR/../shellscripts/perltidy
     install_symlink $HOME/bin/pfetch                 $CHECKOUT_DIR/../shellscripts/pfetch
+    install_symlink $HOME/bin/rdate                  $CHECKOUT_DIR/../shellscripts/rdate
     install_symlink $HOME/bin/releasemodule          $CHECKOUT_DIR/../shellscripts/releasemodule
     install_symlink $HOME/bin/rotator                $CHECKOUT_DIR/../perlscripts/rotator
     install_symlink $HOME/bin/shtimeout              $CHECKOUT_DIR/../shellscripts/shtimeout
