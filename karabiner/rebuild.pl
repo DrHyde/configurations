@@ -90,6 +90,12 @@ or ∨
 xor ⊻
 logictherefore ∴
 
+# music
+musicsharp ♯
+musicflat ♭
+musicnote 𝅘
+musicgclef 𝄞
+
 degree °
 tm ™
 copy ©
