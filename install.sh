@@ -102,6 +102,7 @@ function install {
     install_symlink $HOME/bin/ffaddsubs              $CHECKOUT_DIR/../shellscripts/ffaddsubs
     install_symlink $HOME/bin/ffverify               $CHECKOUT_DIR/../shellscripts/ffverify
     install_symlink $HOME/bin/fps                    $CHECKOUT_DIR/../shellscripts/fps
+    install_symlink $HOME/bin/get-cpan-river-4-5     $CHECKOUT_DIR/../shellscripts/get-cpan-river-4-5
     install_symlink $HOME/bin/50-2-25                $CHECKOUT_DIR/../shellscripts/50-2-25
     install_symlink $HOME/bin/beedog                 $CHECKOUT_DIR/../shellscripts/beedog
     install_symlink $HOME/bin/check-encoding         $CHECKOUT_DIR/../shellscripts/check-encoding
