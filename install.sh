@@ -111,6 +111,7 @@ function install {
     install_symlink $HOME/bin/ffduration             $CHECKOUT_DIR/../shellscripts/ffduration
     install_symlink $HOME/bin/ffinfo                 $CHECKOUT_DIR/../shellscripts/ffinfo
     install_symlink $HOME/bin/ffres                  $CHECKOUT_DIR/../shellscripts/ffres
+    install_symlink $HOME/bin/fftrim                 $CHECKOUT_DIR/../shellscripts/fftrim
     install_symlink $HOME/bin/get_iplayer_hi.sh      $CHECKOUT_DIR/../shellscripts/get_iplayer_hi.sh
     install_symlink $HOME/bin/get-operavision        $CHECKOUT_DIR/../shellscripts/get-operavision
     install_symlink $HOME/bin/git-rmbranch           $CHECKOUT_DIR/../shellscripts/git-rmbranch
