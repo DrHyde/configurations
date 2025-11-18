@@ -71,6 +71,7 @@ rational ℚ
 integer ℤ
 natural ℕ
 prime ℙ
+nullset ∅
 
 # set relationships
 contains ∋
