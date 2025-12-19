@@ -253,6 +253,8 @@ file_age() {
     echo $(( $(date +%s) - $(
         if [[ "$(uname)" =~ ^OpenBSD$ ]]; then
             stat -f %m $filename
+        elif [[ "$(uname)" =~ ^NetBSD$ ]]; then
+            stat -f %m $filename
         else
             date -r $filename +%s
         fi
@@ -310,7 +312,7 @@ function look_for_updates {
     wait
 
     for wanted in dig tldr tree img2sixel cpulimit hyperfine hardlink fzf ctags ngrok karabiner duf diff-so-fancy trurl; do
-        if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|OpenBSD)$ ]]; then
+        if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|NetBSD|OpenBSD)$ ]]; then
             true
         elif [[ "$wanted" == "karabiner" ]]; then
             if [[ "$(uname)" == "Darwin" ]]; then
