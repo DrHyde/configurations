@@ -142,6 +142,10 @@ function install {
         fi
     fi
 
+    if [[ "$(uname)" =~ ^NetBSD$ ]]; then
+        install_symlink $HOME/bin/duf            $(which dfc)
+    fi
+
     if [ "$(whoami)" == "dcantrell" ]; then
         # need a slightly different config at work
         cat $CHECKOUT_DIR/dot-gitconfig | sed 's/david@cantrell.org.uk/david.cantrell@broadbean.com/' > $HOME/.gitconfig
