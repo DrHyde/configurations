@@ -312,7 +312,7 @@ function look_for_updates {
 
     wait
 
-    for wanted in dig tldr tree img2sixel cpulimit hyperfine hardlink fzf ctags ngrok karabiner duf diff-so-fancy trurl; do
+    for wanted in dig tree img2sixel cpulimit hyperfine hardlink fzf ctags ngrok karabiner duf diff-so-fancy trurl; do
         if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|NetBSD|OpenBSD)$ ]]; then
             true
         elif [[ "$wanted" == "karabiner" ]]; then
