@@ -102,6 +102,8 @@ function install {
     install_symlink $HOME/bin/gh-open-dependabot-prs $CHECKOUT_DIR/../shellscripts/gh-open-dependabot-prs
     install_symlink $HOME/bin/gh-recent              $CHECKOUT_DIR/../shellscripts/gh-recent
     install_symlink $HOME/bin/git-rmbranch           $CHECKOUT_DIR/../shellscripts/git-rmbranch
+    install_symlink $HOME/bin/ignore-after           $CHECKOUT_DIR/../shellscripts/ignore-after
+    install_symlink $HOME/bin/ignore-up-to           $CHECKOUT_DIR/../shellscripts/ignore-up-to
     install_symlink $HOME/bin/killall                $CHECKOUT_DIR/../shellscripts/killall
     install_symlink $HOME/bin/ffaddsubs              $CHECKOUT_DIR/../shellscripts/ffaddsubs
     install_symlink $HOME/bin/ffverify               $CHECKOUT_DIR/../shellscripts/ffverify
