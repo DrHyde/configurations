@@ -1,0 +1,16 @@
+#!bash
+
+# cd -3 to go back three levels
+
+cd() {
+    if [[ "$1" =~ ^-[0-9]+$ ]]; then
+        local n=${1#-}
+        local path=""
+        for ((i=0; i<n; i++)); do
+            path+="../"
+        done
+        builtin cd "$path"
+    else
+        builtin cd "$@"
+    fi
+}
