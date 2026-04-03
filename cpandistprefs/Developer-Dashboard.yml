@@ -1,0 +1,5 @@
+---
+comment: "Ignore massive faily turd"
+match:
+  distribution: "Developer-Dashboard"
+disabled: 1
