@@ -14,3 +14,5 @@ email = david@cantrell.org.uk
 	markEmptyLines = false
 [column]
 	tag = auto
+[init]
+	defaultBranch = master
