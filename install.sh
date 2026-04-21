@@ -65,6 +65,11 @@ function main {
 }
 
 function install {
+    (
+        test -e $HOME/Stuff/git-repos/perlmodules/meta-perlmodules/rebuild-workflows &&
+        install_symlink $HOME/bin/rebuild-workflows $HOME/Stuff/git-repos/perlmodules/meta-perlmodules/rebuild-workflows
+    ) || printf "${yellow}Can't find .../perlmodules/meta-perlmodules/rebuild-workflows$NC\n"
+
     install_symlink $HOME/.bash_completion       $CHECKOUT_DIR/bash/dot-bash_completion
     install_symlink $HOME/.bash_completion.d     $CHECKOUT_DIR/bash/dot-bash_completion.d
     install_symlink $HOME/.bash_functions        $CHECKOUT_DIR/bash/dot-bash_functions
