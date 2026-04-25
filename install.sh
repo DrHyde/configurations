@@ -106,7 +106,9 @@ function install {
     install_symlink $HOME/bin/gh-get-issues          $CHECKOUT_DIR/../perlscripts/gh-get-issues
     install_symlink $HOME/bin/gh-open-dependabot-prs $CHECKOUT_DIR/../shellscripts/gh-open-dependabot-prs
     install_symlink $HOME/bin/gh-recent              $CHECKOUT_DIR/../shellscripts/gh-recent
+    install_symlink $HOME/bin/gh-workflow-run        $CHECKOUT_DIR/../shellscripts/gh-workflow-run
     install_symlink $HOME/bin/git-rmbranch           $CHECKOUT_DIR/../shellscripts/git-rmbranch
+    install_symlink $HOME/bin/highlight              $CHECKOUT_DIR/../shellscripts/highlight
     install_symlink $HOME/bin/ignore-after           $CHECKOUT_DIR/../shellscripts/ignore-after
     install_symlink $HOME/bin/ignore-up-to           $CHECKOUT_DIR/../shellscripts/ignore-up-to
     install_symlink $HOME/bin/killall                $CHECKOUT_DIR/../shellscripts/killall
@@ -171,6 +173,20 @@ function install {
                 install_hardlink /usr/local/share/man/man1/hardlink.1 /usr/local/opt/util-linux/share/man/man1/hardlink.1
             else
                 printf "  ${red}ARGH I DON'T KNOW HOW TO LINK$NC\n"
+            fi
+        fi
+    )
+
+    which gcal >/dev/null 2>&1 || (
+        if [[ "$(uname)" == "Darwin" ]]; then
+            # different paths for homebrew on Intel and ARM
+            gcal_binary="$( ((ls /opt/homebrew/opt/util-linux/bin/cal || ls /usr/local/opt/util-linux/bin/cal)|cat) 2>/dev/null )"
+            if [[ "$gcal_binary" != "" ]]; then
+                install_symlink $HOME/bin/gcal "$gcal_binary"
+            else
+                printf "${red}Install util-linux then run this script again to link 'gcal':$NC\n"
+                printf "  brew install util-linux\n"
+                printf "  ${CHECKOUT_DIR}/install.sh\n"
             fi
         fi
     )
