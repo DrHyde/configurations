@@ -1,0 +1,8 @@
+#!bash
+
+for script in highlight gh-workflow-run; do
+    script_location="$(PATH="$HOME/bin:$PATH" which "$script" 2>/dev/null)"
+    if [[ "$script_location" != "" ]]; then
+        eval "$("$script_location" --shell-completions)"
+    fi
+done
