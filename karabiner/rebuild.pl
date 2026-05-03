@@ -125,6 +125,7 @@ push @mappings, _fractions(), _super_sub_scripts(), _accents(), _greek(), _emoji
     [ $compose, $compose ],
     [ qw(z a l g o), "H̸̡̪̯ͨ͊̽̅̾̎Ȩ̬̩̾͛ͪ̈́̀́͘ ̶̧̨̱̹̭̯ͧ̾ͬC̷̙̲̝͖ͭ̏ͥͮ͟Oͮ͏̮̪̝͍M̲̖͊̒ͪͩͬ̚̚͜Ȇ̴̟̟͙̞ͩ͌͝S̨̥̫͎̭ͯ̿̔̀ͅ" ],
     [ qw(c n w a i l i n g), "𒊕𒉺𒆸" ],
+    [ qw(w i z a r d), "\x{1F9D9}\x{200D}\x{2642}\x{FE0F}" ], # MAGE, ZWJ, MALE, VARIATION SELECTOR
     ;
 
 my $tree = {};
