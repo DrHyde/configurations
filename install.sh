@@ -194,6 +194,9 @@ function install {
     mkdir $HOME/.get_iplayer 2>/dev/null
     install_symlink $HOME/.get_iplayer/options   $CHECKOUT_DIR/get_iplayer/options
 
+    mkdir $HOME/.copilot 2>/dev/null
+    install_symlink $HOME/.copilot/copilot-instructions.md   $CHECKOUT_DIR/dot-copilot/copilot-instructions.md
+
     (
         cd "$CHECKOUT_DIR/dot-config"
         [ ! -d "$HOME/.config" ] && mkdir "$HOME/.config"
