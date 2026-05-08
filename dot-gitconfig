@@ -16,3 +16,5 @@ email = david@cantrell.org.uk
 	tag = auto
 [init]
 	defaultBranch = master
+[diff]
+	orderFile = ~/.config/git/diff-order
