@@ -108,7 +108,7 @@ function install {
     install_symlink $HOME/bin/gh-recent              $CHECKOUT_DIR/../shellscripts/gh-recent
     install_symlink $HOME/bin/gh-workflow-run        $CHECKOUT_DIR/../shellscripts/gh-workflow-run
     install_symlink $HOME/bin/git-rmbranch           $CHECKOUT_DIR/../shellscripts/git-rmbranch
-    install_symlink $HOME/bin/highlight              $CHECKOUT_DIR/../shellscripts/highlight
+    install_symlink $HOME/bin/highlight              $CHECKOUT_DIR/../perlscripts/highlight
     install_symlink $HOME/bin/ignore-after           $CHECKOUT_DIR/../shellscripts/ignore-after
     install_symlink $HOME/bin/ignore-up-to           $CHECKOUT_DIR/../shellscripts/ignore-up-to
     install_symlink $HOME/bin/killall                $CHECKOUT_DIR/../shellscripts/killall
