@@ -1,0 +1,2 @@
+# wild-cards are work around for bug https://github.com/muesli/duf/issues/274
+alias duf="duf --hide-mp '/*ystem/*olumes/*'"
