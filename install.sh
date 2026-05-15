@@ -130,6 +130,7 @@ function install {
     install_symlink $HOME/bin/get_iplayer_hi.sh      $CHECKOUT_DIR/../shellscripts/get_iplayer_hi.sh
     install_symlink $HOME/bin/get-operavision        $CHECKOUT_DIR/../shellscripts/get-operavision
     install_symlink $HOME/bin/git-rmbranch           $CHECKOUT_DIR/../shellscripts/git-rmbranch
+    install_symlink $HOME/bin/iplayer-tree           $CHECKOUT_DIR/../perlscripts/iplayer-tree
     install_symlink $HOME/bin/m4a-2-mp3              $CHECKOUT_DIR/../shellscripts/m4a-2-mp3
     install_symlink $HOME/bin/man-prettifier         $CHECKOUT_DIR/../shellscripts/man-prettifier
     install_symlink $HOME/bin/mirror                 $CHECKOUT_DIR/../perlscripts/mirror/mirror.pl
