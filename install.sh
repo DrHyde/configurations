@@ -346,17 +346,17 @@ function look_for_updates {
 
     wait
 
-    for wanted in dig tree img2sixel cpulimit hyperfine hardlink fzf ctags ngrok karabiner duf diff-so-fancy trurl; do
+    for wanted in dig tree img2sixel cpulimit hyperfine hardlink fzf ctags ngrok karabiner duf diff-so-fancy trurl copilot; do
         if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|NetBSD|OpenBSD)$ ]]; then
             true
-        elif [[ "$wanted" == "karabiner" ]]; then
-            if [[ "$(uname)" == "Darwin" ]]; then
-                ps auxww|grep -v grep|grep -qi karabiner || \
-                printf "${red}Install Karabiner: brew install --cask karabiner-elements$NC\n"
-            fi
+        elif [[ "$wanted" == "karabiner" && "$(uname)" == "Darwin" ]]; then
+            ps auxww|grep -v grep|grep -qi karabiner || \
+            printf "${red}Install Karabiner: brew install --cask karabiner-elements$NC\n"
         elif [[ "$(which $wanted 2>/dev/null)" == "" || "$(which $wanted 2>/dev/null)" == "no $wanted in"* ]]; then
             if [[ "$wanted" == "img2sixel" && "$(uname)" == "Darwin" ]]; then
                 printf "${red}Install libsixel:\n  brew install libsixel$NC\n"
+            elif [[ "$wanted" == "copilot" && "$(uname)" == "Darwin" ]]; then
+                printf "${red}Install copilot:\n  brew install copilot-cli$NC\n"
             elif [[ "$wanted" == "hardlink" && "$(uname)" == "Darwin" ]]; then
                 printf "${red}Install util-linux then link the 'hardlink' binary and manpage:\n"
                 printf "  brew install util-linux\n"
@@ -377,6 +377,16 @@ function look_for_updates {
         fi
     done
     echo
+
+    # if copilot is installed, check for superpowers plugin and prompt to install it if needed
+    if [[ "$(uname)" == "Darwin" && "$(which copilot)" != "" ]]; then
+        if ! copilot plugin list| grep -q 'superpowers@superpowers-marketplace' 2>/dev/null; then
+            printf "${red}Install the Superpowers plugin for Copilot CLI:$NC\n"
+            printf "  copilot plugin marketplace add obra/superpowers-marketplace\n"
+            printf "  copilot plugin install superpowers@superpowers-marketplace\n"
+        fi
+        echo
+    fi
 
     if [ "$(grep HOME/.bashrc $HOME/.profile)" == "" ]; then
         printf "${red}.profile needs to source .bashrc thus: $NC\n"
