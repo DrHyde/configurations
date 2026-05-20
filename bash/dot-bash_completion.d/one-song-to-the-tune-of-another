@@ -1,6 +1,6 @@
 # bash
 
-for i in ts nohup sudo unbuffer; do
+for i in ts nohup sudo unbuffer which; do
     complete -o bashdefault -o default -F __one_song_to_the_tune_of_another $i
 done
 
