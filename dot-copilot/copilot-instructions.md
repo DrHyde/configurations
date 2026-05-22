@@ -2,21 +2,19 @@
 
 Apply these preferences in all repositories unless explicitly told otherwise.
 
-## Testing
+## Directories
 
-When writing code in any repository where there are tests, you must write
-tests for any code changes, and must show me the updated tests before showing me
-those code changes.
+If you need temporary storage, create a tmp/ directory in the root of the current repository and add it to .gitignore.
 
-When writing code in any repository where there are no tests, you should ask me
-if I want tests and if I say yes you should treat the repository as if the
-previous rule applies.
+Do not use /tmp.
 
-## Third party libraries
+In any tool from outside the repository that you need to run always use absolute paths instead of relative paths unless
+you have no choice. For example
 
-Try hard to use pre-existing third-party libraries, especially when using perl.
+* Bad: `mkdir subdir;cd subdir; do-something; cd ..
+* Good: Assuming that you are in /Users/david/wibble/boing ... `mkdir subdir; cd subdir; do-something; cd /Users/david/wibble/boing`
+* Best: `mkdir subdir; ( cd subdir; do-something )` in a subshell
 
-## Refactoring
+## Third-party libraries
 
-If you spot an opportunity to re-factor existing code, ask if I would like a report
-written in Markdown about it.
+When using third-party libraries and multiple libraries are available prepare a brief summary of each with pros and cons, say which one you prefer and why, and ask me to choose. Always provide the option of writing your own version.
