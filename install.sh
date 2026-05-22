@@ -380,7 +380,9 @@ function look_for_updates {
 
     # if copilot is installed, check for superpowers plugin and prompt to install it if needed
     if [[ "$(uname)" == "Darwin" && "$(which copilot)" != "" ]]; then
-        if ! copilot plugin list| grep -q 'superpowers@superpowers-marketplace' 2>/dev/null; then
+        # Need to have copilot's STDIN not be the terminal otherwise it eats what I type before
+        # the prompt appears
+        if ! copilot plugin list < /dev/null| grep -q 'superpowers@superpowers-marketplace' 2>/dev/null; then
             printf "${red}Install the Superpowers plugin for Copilot CLI:$NC\n"
             printf "  copilot plugin marketplace add obra/superpowers-marketplace\n"
             printf "  copilot plugin install superpowers@superpowers-marketplace\n"
