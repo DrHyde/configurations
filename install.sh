@@ -41,6 +41,12 @@ function main {
         if [ "$1" == "--update" ]; then
             (
                 cd $CHECKOUT_DIR/../$2
+
+                # if we've auto-downloaded an updated plug.vim that would mess with `git pull`
+                # so just nuke local changes anywhere except my desktop
+                [ "$2" == "configurations" ] && [ "$(hostname)" != "harrow.local" ] && \
+                    git restore vim/dot-vim/autoload/plug.vim
+
                 git pull
                 if [ "$2" == "configurations" ]; then
                     ./install.sh
