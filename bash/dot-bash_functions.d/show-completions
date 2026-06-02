@@ -1,0 +1,57 @@
+#!bash
+
+show-completions() {
+  local cmd spec func wordlist cur line arg
+
+  if (($# < 1)); then
+    printf 'usage: show-completions <command> [words...]\n' >&2
+    return 2
+  fi
+
+  cmd=$1
+  shift
+
+  local -a args=( "$@" )
+  if ((${#args[@]} == 0)); then
+    args=('')  # simulate: "cmd "
+  fi
+
+  if ! spec=$(complete -p "$cmd" 2>/dev/null); then
+    printf 'no programmable completion is defined for %q\n' "$cmd" >&2
+    return 1
+  fi
+
+  line=$cmd
+  for arg in "${args[@]}"; do
+    line+=" $arg"
+  done
+
+  if [[ $spec =~ (^|[[:space:]])-F[[:space:]]+([^[:space:]]+) ]]; then
+    func=${BASH_REMATCH[2]}
+
+    if ! declare -F "$func" >/dev/null; then
+      printf 'completion function %q is not loaded\n' "$func" >&2
+      return 1
+    fi
+
+    local COMP_LINE=$line
+    local COMP_POINT=${#line}
+    local COMP_CWORD=${#args[@]}
+    local -a COMP_WORDS=( "$cmd" "${args[@]}" )
+    local -a COMPREPLY=()
+
+    "$func"
+    printf '%s\n' "${COMPREPLY[@]}"
+    return 0
+  fi
+
+  if [[ $spec =~ (^|[[:space:]])-W[[:space:]]+\'([^\']*)\' ]]; then
+    wordlist=${BASH_REMATCH[2]}
+    cur=${args[${#args[@]}-1]}
+    compgen -W "$wordlist" -- "$cur"
+    return 0
+  fi
+
+  printf 'unsupported completion spec for %q:\n%s\n' "$cmd" "$spec" >&2
+  return 1
+}
