@@ -10,6 +10,7 @@ pager:
 aliases:
     co: pr checkout
     current: repo view --json owner,name --template '{{.owner.login}}/{{.name}}{{"\n"}}'
+    combine-and-open-dependabot-PRs: '!gh combine $(gh current) --dependabot && gh pr view $(gh pr list --head combined-prs --json number --jq ".[0].number") --web'
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
