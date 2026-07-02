@@ -9,8 +9,10 @@ pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
     co: pr checkout
-    current: repo view --json owner,name --template '{{.owner.login}}/{{.name}}{{"\n"}}'
-    combine-and-open-dependabot-PRs: '!gh combine $(gh current) --dependabot && gh pr view $(gh pr list --head combined-prs --json number --jq ".[0].number") --web'
+    current-repo: repo view --json owner,name --template '{{.owner.login}}/{{.name}}{{"\n"}}'
+    combine-and-open-dependabot-PRs: '!gh combine $(gh current-repo) --dependabot && gh pr view $(gh PR-for-combined-prs) --web'
+    PR-for-combined-prs: '!gh pr list --head combined-prs --json number --jq ".[0].number"'
+    merge-combined-PRs: '!(gh pr checks $(gh PR-for-combined-prs) >/dev/null 2>&1) && gh pr merge $(gh PR-for-combined-prs) -m && git rmbranch combined-prs'
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
