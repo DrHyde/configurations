@@ -1,3 +1,356 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc
+" neovim config, adapted from ~/.vimrc (../../vim/dot-vimrc)
+"
+" This is a faithful duplicate of the vim config. Keep it in sync by hand.
+" The only intentional differences from the vim config are the terminal
+" functions near the bottom (neovim's :terminal has no ++curwin/++close), which
+" are called out where they appear. Plugins install to neovim's own directory
+" (stdpath('data')/plugged, ie ~/.local/share/nvim/plugged) so they're kept
+" separate from vim's.
+
+set nocompatible
+
+call plug#begin()
+
+Plug 'samsaga2/vim-z80'
+Plug 'tpope/vim-sensible'
+Plug 'vim-perl/vim-perl'
+Plug 'rust-lang/rust.vim'
+Plug 'yggdroot/indentline'
+Plug 'tpope/vim-characterize'   " ga to show Unicode char name etc
+
+Plug 'glts/vim-magnum'          " dependency of ...
+Plug 'glts/vim-radical'         " gA to show representations of a number
+
+Plug 'tpope/vim-repeat'         " repeat plugin commands with .
+
+Plug 'tpope/vim-surround'       " cs"' to change surrounding " to ' etc, :help surround
+
+Plug 'airblade/vim-gitgutter'   " show git status per line in the gutter
+Plug 'mileszs/ack.vim'          " :Ack
+Plug 'DrHyde/gitsessions.vim'   " fork of wting/gitsessions.vim which can also auto-create sessions
+Plug 'preservim/tagbar'
+Plug 'bling/vim-airline'        " status bar. Replaces ...
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'        " make fugitive's GBrowse work with github
+Plug 'tommcdo/vim-fubitive'     " ... and likewise for Bitbucket
+Plug 'pseewald/anyfold'         " folding. Replaces ...
+Plug 'tpope/vim-commentary'     " gc<motion> to comment out a bunch of lines, or gc in visual mode
+Plug 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
+Plug 'zirrostig/vim-schlepp'
+Plug 'preservim/nerdtree'
+
+Plug 'wellle/context.vim'
+
+Plug 'github/copilot.vim'
+
+Plug 'othree/eregex.vim'        " Perl-style regexes - :M/ or :M? to search, :%S/// for substitution
+
+call plug#end()
+
+" don't allow eregex to remap / and ?, use :M/ etc instead
+let g:eregex_default_enable = 0
+
+autocmd BufReadPost,BufNewFile * syntax match nonascii "[^\u0000-\u007F]"  containedin=ALL
+highlight nonascii guibg=Red ctermbg=1 term=standout
+
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>NT :NERDTreeFocus<CR>
+let NERDTreeMapOpenSplit   = 'h'
+let NERDTreeQuitOnOpen     = 1
+let NERDTreeCustomOpenArgs = {'file': {'reuse': 'all', 'where': 'v'}, 'dir': {}}
+" auto-close NT if it's the last buffer open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+vmap <silent> <S-UP>     <Plug>SchleppIndentUp
+vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
+vmap <silent> <S-LEFT>   <Plug>SchleppLeft
+vmap <silent> <S-RIGHT>  <Plug>SchleppRight
+
+" indent/outdent the current line
+nnoremap > >l
+nnoremap < <l
+
+" u for undo, U for un-undo
+nnoremap U <C-r>
+
+function! OpenLastClosed()
+    let last_buf = bufname('#')
+
+    if empty(last_buf)
+        echo "No recently closed buffer found"
+        return
+    endif
+    let result = input("Open ". last_buf . " in (n)ormal (v)split, (t)ab or (s)plit ? (n/v/t/s) : ")
+    if empty(result) || (result !=# 'v' && result !=# 't' && result !=# 's' && result !=# 'n')
+        return
+    endif
+    if result ==# 't'
+        execute 'tabnew'
+    elseif result ==# 'v'
+        execute "vsplit"
+    elseif result ==# 's'
+        execute "split"
+    endif
+    execute 'b ' . last_buf
+endfunction
+command! OpenLastClosed call g:OpenLastClosed()
+" mnemonic: UN-Quit
+nmap <leader>unq :OpenLastClosed<CR>
+
+let g:gitsessions_auto_create_sessions = 1
+let g:gitsessions_use_nested_load = 1
+
+let g:airline_theme='darkimproved'
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.maxlinenr = ''
+let g:airline#extensions#branch#displayed_head_limit = 20
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+
+let g:tagbar_position='vertical rightb'
+let g:tagbar_autoclose=1
+nmap <leader>tbt :TagbarToggle<CR>
+
+set nofileignorecase
+set nowildignorecase
+set wildmode=longest,list,full
+set autoindent
+set shiftwidth=4
+set softtabstop=4
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
+set tabstop=4
+set showmatch
+set incsearch
+set nojoinspaces
+set cursorline
+set splitright
+set splitbelow
+
+set expandtab     " vim-sensible sets smarttab instead, undo that nonsense
+set nosmarttab
+
+" show invisible chars (tab, trailing spaces, and non-breaking space)
+exec "set listchars=tab:\uBB\uB7,trail:\uB7,nbsp:▾"
+set list
+
+" put something appropriate in the window title bar
+set title titlestring=
+
+set number
+set relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+au BufRead,BufNewFile *.tt        set filetype=tt2html
+au BufRead,BufNewFile *.tt2       set filetype=tt2html
+au BufRead,BufNewFile Makefile.PL set filetype=perl
+
+" intelligent tab-completion
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "    " " matches my expandtab etc settings above
+    else
+        return "\<c-n>"
+    endif
+endfunction
+" make tab-completion work better for perl
+autocmd FileType perl setlocal iskeyword+=:
+autocmd FileType perl setlocal complete+=klib/*,kt/*,klocal/*
+
+" this is done for us by vim-sensible, but I might decide to change that in the
+" future and turn it on globally, in which case this is needed for perl
+" projects
+"
+" autocmd FileType perl setlocal complete-=i
+
+" auto-inserting line breaks in code is hateful
+autocmd FileType perl,sh,sql,rust,c,cpp,xs,markdown,vim,conf setlocal textwidth=0
+
+" { and } go to start of prev/next sub definition in perl
+" {} and }} go to end of prev/next sub definition in perl
+autocmd FileType perl nnoremap <buffer> { ^:call search('sub.*{', 'b')<CR>
+autocmd FileType perl nnoremap <buffer> } $:call search('sub.*{', 'e')<CR>
+autocmd FileType perl nmap <buffer> {} {%
+autocmd FileType perl nmap <buffer> }} }%
+" {f and }f go to start of prev/next fn in rust
+autocmd FileType rust nnoremap <buffer> {f ^:call search('fn.*{', 'b')<CR>
+autocmd FileType rust nnoremap <buffer> }f $:call search('fn.*{', 'e')<CR>
+" {i and }i go to start of prev/next impl in rust
+autocmd FileType rust nnoremap <buffer> {i ^:call search('impl.*{', 'b')<CR>
+autocmd FileType rust nnoremap <buffer> }i $:call search('impl.*{', 'e')<CR>
+" {s and }s go to start of prev/next struct in rust
+autocmd FileType rust nnoremap <buffer> {s ^:call search('struct.*{', 'b')<CR>
+autocmd FileType rust nnoremap <buffer> }s $:call search('struct.*{', 'e')<CR>
+
+" for gitgutter
+autocmd FileType perl,sh,sql,rust,c,cpp,xs,markdown,vim,conf setlocal signcolumn=yes
+set updatetime=100      " otherwise gitgutter is a bit rubbish
+let g:gitgutter_map_keys = 0
+nmap ) <Plug>(GitGutterNextHunk)
+nmap ( <Plug>(GitGutterPrevHunk)
+" mnemonic: Git Hunk Stage
+nmap <leader>ghs <Plug>(GitGutterStageHunk)
+" mnemonic: Git Hunk Revert
+nmap <leader>ghr <Plug>(GitGutterUndoHunk)
+" mnemonic: Git Hunk View
+nmap <leader>ghv <Plug>(GitGutterPreviewHunk)
+function! g:GGbase(...)
+    " called with no args?
+    if a:0 == 0
+        let g:gitgutter_diff_base = ""
+    else
+        let g:gitgutter_diff_base = a:1
+    endif
+    " now force gitgutter to update
+    GitGutter
+endfunction
+command! -nargs=* GGbase call g:GGbase(<q-args>)
+
+" for anyfold
+autocmd Filetype * AnyFoldActivate     " for all filetypes
+let g:anyfold_fold_display=0           " don't show anyfold's minimal fold info, use normal foldtext
+set foldlevel=99                       " all open by default
+set foldtext=gitgutter#fold#foldtext() " indicate changed code in folds
+
+" the default is too dark for a dark terminal background
+highlight vimComment  ctermfg=LightBlue
+highlight perlComment ctermfg=LightBlue
+highlight shComment   ctermfg=LightBlue
+highlight rubyComment ctermfg=LightBlue
+highlight confComment ctermfg=LightBlue
+
+" red on black, and still visible when the current line is highlighted
+hi        Todo        ctermfg=9 ctermbg=0
+
+highlight SignColumn      ctermbg=17
+highlight GitGutterAdd    ctermbg=Black   ctermfg=Green
+highlight GitGutterChange ctermbg=Black   ctermfg=Yellow
+highlight GitGutterDelete ctermbg=Black   ctermfg=Red
+
+highlight LineNr cterm=NONE ctermfg=DarkGrey ctermbg=none
+
+highlight CursorLine term=bold cterm=bold ctermbg=242
+
+" :Diff
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! Diff call s:DiffWithSaved()
+
+" :VTerm / :Term
+"
+" neovim's :terminal, unlike vim's, has no ++curwin (it always opens in the
+" current window) and no ++close (the window has to be closed by hand). So we
+" open the terminal after making the split and use a buffer-local TermClose
+" autocmd to wipe the buffer - and thus close the window - when bash exits,
+" which is what vim's ++close did.
+function! s:VerticalTerm()
+    vsplit
+    terminal bash -l
+    autocmd TermClose <buffer> ++nested exe 'bwipeout! ' . expand('<abuf>')
+    startinsert
+endfunction
+function! s:HorizontalTerm()
+    split
+    terminal bash -l
+    autocmd TermClose <buffer> ++nested exe 'bwipeout! ' . expand('<abuf>')
+    startinsert
+endfunction
+com! VTerm call s:VerticalTerm()
+com! Term call s:HorizontalTerm()
+
+" \mw to mark a window, \pw to swap marked and current
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf
+endfunction
+
+nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
+nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set number
+    autocmd WinLeave * set nonumber
+augroup END
+
+let g:session_autosave = "yes"
+let g:session_autoload = "yes"
+
+" A command to perltidy and return the cursor whence it came.
+" This allows 3 modes of use:
+"    - In normal mode :Tidy will tidy the whole buffer
+"    - In :command mode, you can say :4,11 Tidy to tidy line 4 to 11
+"    - In Visual mode, hit Ctr+t or :Tidy to tidy the selected block
+"
+" Change the <C-t> mappings at the bottom to choose a different shortcut. ;)
+"
+" Courtesy of TehJim xxx *muwhaa*
+"
+function! g:PerlTidyWithoutMovingTheCursor(...)
+    let b:cursorPos = getpos('.')
+
+    " If we were called with params...
+    if a:0 == 2
+        execute "".a:1.",".a:2."!perltidy"
+
+    " In normal mode, we want to do the whole buffer
+    else
+        :%!perltidy
+    endif
+
+    redraw!
+    call cursor(b:cursorPos[1], b:cursorPos[2])
+endfunction
+command! -range=% -nargs=* Tidy call g:PerlTidyWithoutMovingTheCursor(<line1>,<line2>)
+vmap <C-t> :!perltidy<CR>
+
+" Strip trailing spaces (mnemonic: Kill Space Invaders)
+nmap <leader>ksi :let dc_ksi_w=winsaveview()<Bar>:keeppatterns :%s/\s\+$//e<Bar>:keeppatterns :%s/\n\n\n\+/\r\r/e<Bar>call winrestview(dc_ksi_w)<CR>
+
+" C-j/k to scroll the whole buffer without moving cursor
+nmap <C-j> <C-y>
+nmap <C-k> <C-e>
+" p/P to auto-reindent what is pasted
+" https://vim.fandom.com/wiki/Format_pasted_text_automatically
+nnoremap p ]p
+nnoremap P ]P
+
+" vim-commentary
+"
+" the default mappings are silly. The mere existence of this  will
+" prevent the plugin from creating them.
+nmap gc <nop>
+" com<movement> to comment out a bunch of lines
+xmap <leader>com  <Plug>Commentary
+nmap <leader>com  <Plug>Commentary
+omap <leader>com  <Plug>Commentary
+" <number><leader>comc to comment out <number> lines
+nmap <leader>comc <Plug>CommentaryLine
+" comu to uncomment the current commented block
+nmap <leader>comu <Plug>Commentary<Plug>Commentary

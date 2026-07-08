@@ -33,6 +33,12 @@ function main {
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugClean'   -c 'qall'
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugInstall' -c 'qall'
             vim -c 'let g:gitsessions_auto_create_sessions=0' -c ':PlugUpdate'  -c 'qall'
+            if command -v nvim >/dev/null 2>&1; then
+                nvim --headless -c 'let g:gitsessions_auto_create_sessions=0' -c 'PlugUpgrade' -c 'qall'
+                nvim --headless -c 'let g:gitsessions_auto_create_sessions=0' -c 'PlugClean!'  -c 'qall'
+                nvim --headless -c 'let g:gitsessions_auto_create_sessions=0' -c 'PlugInstall' -c 'qall'
+                nvim --headless -c 'let g:gitsessions_auto_create_sessions=0' -c 'PlugUpdate'  -c 'qall'
+            fi
             run_post_install=1
         else
             wtf
@@ -45,7 +51,7 @@ function main {
                 # if we've auto-downloaded an updated plug.vim that would mess with `git pull`
                 # so just nuke local changes anywhere except my desktop
                 [ "$2" == "configurations" ] && [ "$(hostname)" != "harrow.local" ] && \
-                    git restore vim/dot-vim/autoload/plug.vim
+                    git restore vim/dot-vim/autoload/plug.vim dot-config/nvim/autoload/plug.vim
 
                 git pull
                 if [ "$2" == "configurations" ]; then
