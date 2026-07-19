@@ -157,6 +157,7 @@ function install {
     install_symlink $HOME/bin/sleep-screen           $CHECKOUT_DIR/../shellscripts/mac-sleep-screen
     install_symlink $HOME/bin/stamp-optimizer        $CHECKOUT_DIR/../perlscripts/stamp-optimizer
     install_symlink $HOME/bin/tcat                   $CHECKOUT_DIR/../shellscripts/tcat
+    install_symlink $HOME/bin/tsq                    $CHECKOUT_DIR/../shellscripts/tsq
     install_symlink $HOME/bin/utm                    $CHECKOUT_DIR/../shellscripts/utm
     install_symlink $HOME/bin/vbox                   $CHECKOUT_DIR/../shellscripts/vbox
     install_symlink $HOME/bin/video-2-audio          $CHECKOUT_DIR/../shellscripts/video-2-audio
