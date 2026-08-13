@@ -14,20 +14,13 @@ Plug 'glts/vim-radical'         " gA to show representations of a number
 
 Plug 'tpope/vim-repeat'         " repeat plugin commands with .
 
-Plug 'tpope/vim-surround'       " cs"' to change surrounding " to ' etc, :help surround
-
 Plug 'airblade/vim-gitgutter'   " show git status per line in the gutter
-Plug 'mileszs/ack.vim'          " :Ack
 Plug 'DrHyde/gitsessions.vim'   " fork of wting/gitsessions.vim which can also auto-create sessions
-Plug 'preservim/tagbar'
-Plug 'bling/vim-airline'        " status bar. Replaces ...
+Plug 'bling/vim-airline'        " status bar
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'        " make fugitive's GBrowse work with github
-Plug 'tommcdo/vim-fubitive'     " ... and likewise for Bitbucket
-Plug 'pseewald/anyfold'         " folding. Replaces ...
+Plug 'pseewald/anyfold'         " folding
 Plug 'tpope/vim-commentary'     " gc<motion> to comment out a bunch of lines, or gc in visual mode
 Plug 'godlygeek/tabular'        " :Tab /... to tabularize (auto-align) stuff
-Plug 'zirrostig/vim-schlepp'
 Plug 'preservim/nerdtree'
 
 Plug 'wellle/context.vim'
@@ -51,11 +44,6 @@ let NERDTreeQuitOnOpen     = 1
 let NERDTreeCustomOpenArgs = {'file': {'reuse': 'all', 'where': 'v'}, 'dir': {}}
 " auto-close NT if it's the last buffer open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-vmap <silent> <S-UP>     <Plug>SchleppIndentUp
-vmap <silent> <S-DOWN>   <Plug>SchleppIndentDown
-vmap <silent> <S-LEFT>   <Plug>SchleppLeft
-vmap <silent> <S-RIGHT>  <Plug>SchleppRight
 
 " indent/outdent the current line
 nnoremap > >l
@@ -98,10 +86,6 @@ endif
 let g:airline_symbols.maxlinenr = ''
 let g:airline#extensions#branch#displayed_head_limit = 20
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-
-let g:tagbar_position='vertical rightb'
-let g:tagbar_autoclose=1
-nmap <leader>tbt :TagbarToggle<CR>
 
 set nofileignorecase
 set nowildignorecase
