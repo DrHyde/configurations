@@ -1,5 +1,5 @@
 ---
 comment: "Ignore stuff that seems to just hang in tests"
 match:
-  distribution: "(Catalyst|Hyperman)"
+  distribution: "(Catalyst|Hyperman|Netdisco)"
 disabled: 1
