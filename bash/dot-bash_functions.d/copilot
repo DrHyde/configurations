@@ -8,6 +8,8 @@ copilot() {
         COPILOT_PROVIDER_BASE_URL=http://cowshed:11434/v1 \
         COPILOT_MODEL=qwen3-coder:30b \
         COPILOT_PROVIDER_API_KEY= \
+        COPILOT_PROVIDER_MAX_PROMPT_TOKENS=262144 \
+        COPILOT_PROVIDER_MAX_OUTPUT_TOKENS=8192 \
         $(which copilot) "$@"
     else
         echo Running copilot without setting up env
