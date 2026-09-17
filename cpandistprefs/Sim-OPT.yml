@@ -1,0 +1,5 @@
+---
+comment: "Ignore GLBRUNE/Sim-OPT because it chews all the memory while failing"
+match:
+  distribution: "^GLBRUNE/Sim-OPT"
+disabled: 1
