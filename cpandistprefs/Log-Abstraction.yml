@@ -1,0 +1,7 @@
+---
+comment: "Ignore Log-Abstraction on 32-bit-int perls"
+match:
+  distribution: "NHORNE/Log-Abstraction"
+  perlconfig:
+    ivsize: 4
+disabled: 1
