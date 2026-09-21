@@ -1,4 +1,4 @@
-# bash
+#!bash
 
 complete -F __vbox_bash_completions vbox
 
@@ -7,8 +7,11 @@ __vbox_bash_completions () {
     local thisword="${COMP_WORDS[COMP_CWORD]}";
 
     # if there's only one word on the command line
-    if [ "$COMP_CWORD" -eq 1 ]; then
+    if [[ "$COMP_CWORD" -eq 1 ]]; then
+        COMPREPLY=($(compgen -W "backup list status start stop detach bounce local" -- "$thisword"));
+    elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "local" ]]; then
         COMPREPLY=($(compgen -W "backup list status start stop detach bounce" -- "$thisword"));
+
     # otherwise if we've got two words
     elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "list" ]]; then
         COMPREPLY=($(compgen -W "all started stopped up" -- "$thisword"));
@@ -20,5 +23,18 @@ __vbox_bash_completions () {
         COMPREPLY=($(compgen -W "all $(vbox list up)" -- "$thisword"));
     elif [[ "$COMP_CWORD" -ge 2 && "${COMP_WORDS[1]}" == "bounce" ]]; then
         COMPREPLY=($(compgen -W "all $(vbox list up)" -- "$thisword"));
+
+    # now deal with 'vbox local ...'
+    elif [[ "$COMP_CWORD" -eq 3 && "${COMP_WORDS[1]}" == "local" && "${COMP_WORDS[2]}" == "list" ]]; then
+        COMPREPLY=($(compgen -W "all started stopped up" -- "$thisword"));
+    elif [[ "$COMP_CWORD" -ge 3 && "${COMP_WORDS[1]}" == "local" && "${COMP_WORDS[2]}" == "start" ]]; then
+        COMPREPLY=($(compgen -W "all $(vbox local list stopped)" -- "$thisword"));
+    elif [[ "$COMP_CWORD" -ge 3 && "${COMP_WORDS[1]}" == "local" && "${COMP_WORDS[2]}" == "stop" ]]; then
+        COMPREPLY=($(compgen -W "all $(vbox local list up)" -- "$thisword"));
+    elif [[ "$COMP_CWORD" -ge 3 && "${COMP_WORDS[1]}" == "local" && "${COMP_WORDS[2]}" == "detach" ]]; then
+        COMPREPLY=($(compgen -W "all $(vbox local list up)" -- "$thisword"));
+    elif [[ "$COMP_CWORD" -ge 3 && "${COMP_WORDS[1]}" == "local" && "${COMP_WORDS[2]}" == "bounce" ]]; then
+        COMPREPLY=($(compgen -W "all $(vbox local list up)" -- "$thisword"));
+
     fi
 }
