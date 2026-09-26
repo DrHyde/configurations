@@ -1,1 +1,2 @@
 .mode box
+PRAGMA foreign_keys = ON
