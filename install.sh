@@ -93,10 +93,11 @@ function install {
     )
     install_symlink $HOME/.ackrc                 $CHECKOUT_DIR/dot-ackrc
     install_symlink $HOME/.parallel              $CHECKOUT_DIR/dot-parallel
-    install_symlink $HOME/.yt-dlp              $CHECKOUT_DIR/dot-yt-dlp
+    install_symlink $HOME/.yt-dlp                $CHECKOUT_DIR/dot-yt-dlp
     install_symlink $HOME/.perldb                $CHECKOUT_DIR/dot-perldb
     install_symlink $HOME/.treerc                $CHECKOUT_DIR/dot-treerc
     install_symlink $HOME/.screenrc              $CHECKOUT_DIR/dot-screenrc
+    install_symlink $HOME/.sqliterc              $CHECKOUT_DIR/dot-sqliterc
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
     install_symlink $HOME/.vimrc-basic           $CHECKOUT_DIR/vim/dot-vimrc-basic
