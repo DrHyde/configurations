@@ -148,6 +148,7 @@ function install {
     install_symlink $HOME/bin/man-prettifier         $CHECKOUT_DIR/../shellscripts/man-prettifier
     install_symlink $HOME/bin/mirror                 $CHECKOUT_DIR/../perlscripts/mirror/mirror.pl
     install_symlink $HOME/bin/mkv-2-mp4              $CHECKOUT_DIR/../shellscripts/mkv-2-mp4
+    install_symlink $HOME/bin/mp4-2-m4a              $CHECKOUT_DIR/../shellscripts/mp4-2-m4a
     install_symlink $HOME/bin/perlbrew-cron.sh       $CHECKOUT_DIR/../shellscripts/perlbrew-cron.sh
     install_symlink $HOME/bin/perltidy               $CHECKOUT_DIR/../shellscripts/perltidy
     install_symlink $HOME/bin/pfetch                 $CHECKOUT_DIR/../shellscripts/pfetch
