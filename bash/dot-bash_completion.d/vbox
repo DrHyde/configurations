@@ -8,19 +8,21 @@ __vbox_bash_completions () {
 
     # if there's only one word on the command line
     if [[ "$COMP_CWORD" -eq 1 ]]; then
-        COMPREPLY=($(compgen -W "backup list status start stop detach bounce local" -- "$thisword"));
+        COMPREPLY=($(compgen -W "backup list status start stop attach detach bounce local" -- "$thisword"));
     elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "local" ]]; then
-        COMPREPLY=($(compgen -W "backup list status start stop detach bounce" -- "$thisword"));
+        COMPREPLY=($(compgen -W "backup list status start stop attach detach bounce" -- "$thisword"));
 
     # otherwise if we've got two words
     elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "list" ]]; then
-        COMPREPLY=($(compgen -W "all started stopped up" -- "$thisword"));
+        COMPREPLY=($(compgen -W "all started stopped up headed headless" -- "$thisword"));
     elif [[ "$COMP_CWORD" -ge 2 && "${COMP_WORDS[1]}" == "start" ]]; then
         COMPREPLY=($(compgen -W "all $(vbox list stopped)" -- "$thisword"));
     elif [[ "$COMP_CWORD" -ge 2 && "${COMP_WORDS[1]}" == "stop" ]]; then
         COMPREPLY=($(compgen -W "all $(vbox list up)" -- "$thisword"));
+    elif [[ "$COMP_CWORD" -ge 2 && "${COMP_WORDS[1]}" == "attach" ]]; then
+        COMPREPLY=($(compgen -W "all $(vbox list headless)" -- "$thisword"));
     elif [[ "$COMP_CWORD" -ge 2 && "${COMP_WORDS[1]}" == "detach" ]]; then
-        COMPREPLY=($(compgen -W "all $(vbox list up)" -- "$thisword"));
+        COMPREPLY=($(compgen -W "all $(vbox list headed)" -- "$thisword"));
     elif [[ "$COMP_CWORD" -ge 2 && "${COMP_WORDS[1]}" == "bounce" ]]; then
         COMPREPLY=($(compgen -W "all $(vbox list up)" -- "$thisword"));
 
