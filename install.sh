@@ -93,10 +93,11 @@ function install {
     )
     install_symlink $HOME/.ackrc                 $CHECKOUT_DIR/dot-ackrc
     install_symlink $HOME/.parallel              $CHECKOUT_DIR/dot-parallel
-    install_symlink $HOME/.yt-dlp              $CHECKOUT_DIR/dot-yt-dlp
+    install_symlink $HOME/.yt-dlp                $CHECKOUT_DIR/dot-yt-dlp
     install_symlink $HOME/.perldb                $CHECKOUT_DIR/dot-perldb
     install_symlink $HOME/.treerc                $CHECKOUT_DIR/dot-treerc
     install_symlink $HOME/.screenrc              $CHECKOUT_DIR/dot-screenrc
+    install_symlink $HOME/.sqliterc              $CHECKOUT_DIR/dot-sqliterc
     install_symlink $HOME/.vim                   $CHECKOUT_DIR/vim/dot-vim
     install_symlink $HOME/.vimrc                 $CHECKOUT_DIR/vim/dot-vimrc
     install_symlink $HOME/.vimrc-basic           $CHECKOUT_DIR/vim/dot-vimrc-basic
@@ -147,6 +148,7 @@ function install {
     install_symlink $HOME/bin/man-prettifier         $CHECKOUT_DIR/../shellscripts/man-prettifier
     install_symlink $HOME/bin/mirror                 $CHECKOUT_DIR/../perlscripts/mirror/mirror.pl
     install_symlink $HOME/bin/mkv-2-mp4              $CHECKOUT_DIR/../shellscripts/mkv-2-mp4
+    install_symlink $HOME/bin/mp4-2-m4a              $CHECKOUT_DIR/../shellscripts/mp4-2-m4a
     install_symlink $HOME/bin/perlbrew-cron.sh       $CHECKOUT_DIR/../shellscripts/perlbrew-cron.sh
     install_symlink $HOME/bin/perltidy               $CHECKOUT_DIR/../shellscripts/perltidy
     install_symlink $HOME/bin/pfetch                 $CHECKOUT_DIR/../shellscripts/pfetch

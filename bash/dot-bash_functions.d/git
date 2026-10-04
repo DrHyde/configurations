@@ -11,6 +11,8 @@ git() {
         $(which git) remote show origin | awk '/HEAD branch/ {print $NF}'
     elif [[ "$1" == "defaultbranch" ]]; then
         $(which git) checkout $(git showdefaultbranch)
+    elif [[ "$1" == "showcurrentbranch" ]]; then
+        git rev-parse --abbrev-ref HEAD
     elif [[ "$1" == "root-hash" ]]; then
         $(which git) hash-object -t tree /dev/null
     elif [[ "$1" == "diff" ]]; then
@@ -56,7 +58,7 @@ git() {
 
         if [[ "$1" != "--amend" ]]; then
             local DEFAULT_BRANCH=$(git showdefaultbranch)
-            local CURRENT_BRANCH=$($(which git) rev-parse --abbrev-ref HEAD)
+            local CURRENT_BRANCH=$(git showcurrentbranch)
 
             if [[ "$CURRENT_BRANCH" = "$DEFAULT_BRANCH" ]]; then
               if [ "$COMMIT_TO_DEFAULT_BRANCH" ] ; then
