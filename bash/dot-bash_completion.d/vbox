@@ -8,9 +8,9 @@ __vbox_bash_completions () {
 
     # if there's only one word on the command line
     if [[ "$COMP_CWORD" -eq 1 ]]; then
-        COMPREPLY=($(compgen -W "backup list status start stop attach detach bounce local" -- "$thisword"));
+        COMPREPLY=($(compgen -W "backup compress list status start stop attach detach bounce local" -- "$thisword"));
     elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "local" ]]; then
-        COMPREPLY=($(compgen -W "backup list status start stop attach detach bounce" -- "$thisword"));
+        COMPREPLY=($(compgen -W "backup compress list status start stop attach detach bounce" -- "$thisword"));
 
     # otherwise if we've got two words
     elif [[ "$COMP_CWORD" -eq 2 && "${COMP_WORDS[1]}" == "list" ]]; then
@@ -28,13 +28,15 @@ __vbox_bash_completions () {
 
     # now deal with 'vbox local ...'
     elif [[ "$COMP_CWORD" -eq 3 && "${COMP_WORDS[1]}" == "local" && "${COMP_WORDS[2]}" == "list" ]]; then
-        COMPREPLY=($(compgen -W "all started stopped up" -- "$thisword"));
+        COMPREPLY=($(compgen -W "all started stopped up headed headless" -- "$thisword"));
     elif [[ "$COMP_CWORD" -ge 3 && "${COMP_WORDS[1]}" == "local" && "${COMP_WORDS[2]}" == "start" ]]; then
         COMPREPLY=($(compgen -W "all $(vbox local list stopped)" -- "$thisword"));
     elif [[ "$COMP_CWORD" -ge 3 && "${COMP_WORDS[1]}" == "local" && "${COMP_WORDS[2]}" == "stop" ]]; then
         COMPREPLY=($(compgen -W "all $(vbox local list up)" -- "$thisword"));
+    elif [[ "$COMP_CWORD" -ge 3 && "${COMP_WORDS[1]}" == "local" && "${COMP_WORDS[2]}" == "attach" ]]; then
+        COMPREPLY=($(compgen -W "all $(vbox local list headless)" -- "$thisword"));
     elif [[ "$COMP_CWORD" -ge 3 && "${COMP_WORDS[1]}" == "local" && "${COMP_WORDS[2]}" == "detach" ]]; then
-        COMPREPLY=($(compgen -W "all $(vbox local list up)" -- "$thisword"));
+        COMPREPLY=($(compgen -W "all $(vbox local list headed)" -- "$thisword"));
     elif [[ "$COMP_CWORD" -ge 3 && "${COMP_WORDS[1]}" == "local" && "${COMP_WORDS[2]}" == "bounce" ]]; then
         COMPREPLY=($(compgen -W "all $(vbox local list up)" -- "$thisword"));
 
