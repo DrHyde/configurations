@@ -126,6 +126,9 @@ function install {
     install_symlink $HOME/bin/ignore-up-to           $CHECKOUT_DIR/../shellscripts/ignore-up-to
     install_symlink $HOME/bin/killall                $CHECKOUT_DIR/../shellscripts/killall
     install_symlink $HOME/bin/ffaddsubs              $CHECKOUT_DIR/../shellscripts/ffaddsubs
+    install_symlink $HOME/bin/ffhasaudio             $CHECKOUT_DIR/../shellscripts/ffhasstream
+    install_symlink $HOME/bin/ffhasvideo             $CHECKOUT_DIR/../shellscripts/ffhasstream
+    install_symlink $HOME/bin/ffhassubs              $CHECKOUT_DIR/../shellscripts/ffhasstream
     install_symlink $HOME/bin/ffverify               $CHECKOUT_DIR/../shellscripts/ffverify
     install_symlink $HOME/bin/fps                    $CHECKOUT_DIR/../shellscripts/fps
     install_symlink $HOME/bin/get-cpan-river-4-5     $CHECKOUT_DIR/../shellscripts/get-cpan-river-4-5
