@@ -159,6 +159,7 @@ function install {
     install_symlink $HOME/bin/releasemodule          $CHECKOUT_DIR/../shellscripts/releasemodule
     install_symlink $HOME/bin/rotator                $CHECKOUT_DIR/../perlscripts/rotator
     install_symlink $HOME/bin/shtimeout              $CHECKOUT_DIR/../shellscripts/shtimeout
+    install_symlink $HOME/bin/ssh-multi              $CHECKOUT_DIR/../shellscripts/ssh-multi
     install_symlink $HOME/bin/sixkcd                 $CHECKOUT_DIR/../shellscripts/sixkcd
     install_symlink $HOME/bin/sleep-screen           $CHECKOUT_DIR/../shellscripts/mac-sleep-screen
     install_symlink $HOME/bin/stamp-optimizer        $CHECKOUT_DIR/../perlscripts/stamp-optimizer
