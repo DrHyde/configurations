@@ -550,7 +550,7 @@ function! s:reorg_rtp()
 
   let s:middle = get(s:, 'middle', &rtp)
   let rtps     = map(s:loaded_names(), 's:rtp(g:plugs[v:val])')
-  let afters   = filter(map(copy(rtps), 'globpath(v:val, "after")'), '!empty(v:val)')
+  let afters   = map(filter(copy(rtps), 'isdirectory(v:val."/after")'), 's:path(v:val."/after")')
   let rtp      = join(map(rtps, 'escape(v:val, ",")'), ',')
                  \ . ','.s:middle.','
                  \ . join(map(afters, 'escape(v:val, ",")'), ',')
@@ -570,10 +570,14 @@ function! s:doautocmd(...)
 endfunction
 
 function! s:dobufread(names)
+  " Nothing to detect in an unnamed empty buffer, e.g. the one on startup
+  if empty(bufname('%')) && line('$') == 1 && empty(getline(1))
+    return
+  endif
   for name in a:names
     let path = s:rtp(g:plugs[name])
     for dir in ['ftdetect', 'ftplugin', 'after/ftdetect', 'after/ftplugin']
-      if len(finddir(dir, path))
+      if isdirectory(path.'/'.dir)
         if exists('#BufRead')
           doautocmd BufRead
         endif
@@ -1192,8 +1196,8 @@ function! s:update_impl(pull, force, args) abort
   endif
 
   let use_job = s:nvim || s:vim8
-  let python = (has('python') || has('python3')) && !use_job
-  let ruby = has('ruby') && !use_job && (v:version >= 703 || v:version == 702 && has('patch374')) && !(s:is_win && has('gui_running')) && threads > 1 && s:check_ruby()
+  let python = !use_job && (has('python3') || has('python'))
+  let ruby = !use_job && (v:version >= 703 || v:version == 702 && has('patch374')) && !(s:is_win && has('gui_running')) && threads > 1 && has('ruby') && s:check_ruby()
 
   let s:update = {
     \ 'start':   reltime(),
@@ -1229,7 +1233,7 @@ function! s:update_impl(pull, force, args) abort
   let s:submodule_opt = s:git_version_requirement(2, 8) ? ' --jobs='.threads : ''
 
   " Python version requirement (>= 2.7)
-  if python && !has('python3') && !ruby && !use_job && s:update.threads > 1
+  if python && !ruby && s:update.threads > 1 && !has('python3')
     redir => pyv
     silent python import platform; print platform.python_version()
     redir END
@@ -1643,7 +1647,7 @@ endwhile
 endfunction
 
 function! s:update_python()
-let py_exe = has('python') ? 'python' : 'python3'
+let py_exe = has('python3') ? 'python3' : 'python'
 execute py_exe "<< EOF"
 import datetime
 import functools
