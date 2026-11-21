@@ -176,7 +176,7 @@ function install {
         if [ "$(uname -p)" == "i386" ]; then
             install_symlink $HOME/bin/utmctl /Applications/UTM.app/Contents/MacOS/utmctl
         else
-            printf "  ${red}ARGH I DON'T KNOW HOW TO LINK$NC\n"
+            printf "  ${red}ARGH I DON'T KNOW HOW TO LINK UTM$NC\n"
         fi
     fi
 
@@ -195,7 +195,7 @@ function install {
             if [ "$(uname -p)" == "i386" ]; then
                 install_hardlink /usr/local/share/man/man1/hardlink.1 /usr/local/opt/util-linux/share/man/man1/hardlink.1
             else
-                printf "  ${red}ARGH I DON'T KNOW HOW TO LINK$NC\n"
+                install_hardlink /opt/homebrew/share/man/man1/hardlink.1 /opt/homebrew/opt/util-linux/share/man/man1/hardlink.1
             fi
         fi
     )
@@ -381,7 +381,7 @@ function look_for_updates {
                 if [ "$(uname -p)" == "i386" ]; then
                     printf "  (cd /usr/local; ln -s ../opt/util-linux/bin/hardlink bin/hardlink)"
                 else
-                    printf "  ARGH I DON'T KNOW HOW TO LINK"
+                    printf "  (cd /opt/homebrew/bin; ln -s ../opt/util-linux/bin/hardlink hardlink)"
                 fi
                 printf "$NC\n"
                 printf "  yes, that's util-linux, on a Mac"
