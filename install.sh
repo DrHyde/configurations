@@ -242,6 +242,11 @@ function install {
     if [[ "$(uname)" == "Darwin" ]]; then
         mkdir $HOME/Library/KeyBindings 2>/dev/null || true
         copy_if_not_equal $CHECKOUT_DIR/karabiner/DefaultKeyBinding.dict $HOME/Library/KeyBindings/DefaultKeyBinding.dict
+
+        mkdir $HOME/Documents/SwiftBar 2>/dev/null
+        for i in $(ls swiftbar); do
+            install_symlink $HOME/Documents/SwiftBar/$i $CHECKOUT_DIR/swiftbar/$i
+        done
     fi
 
     grep perlbrew              ~/.profile >/dev/null 2>&1 || add 'source ~/perl5/perlbrew/etc/bashrc'
@@ -364,12 +369,15 @@ function look_for_updates {
 
     wait
 
-    for wanted in dig tree img2sixel cpulimit hyperfine hardlink fzf ctags ngrok karabiner duf diff-so-fancy trurl copilot; do
+    for wanted in dig tree img2sixel cpulimit hyperfine hardlink fzf ctags ngrok swiftbar karabiner duf diff-so-fancy trurl copilot; do
         if [[ "$wanted" == "ngrok" && "$(uname)" =~ ^(SunOS|NetBSD|OpenBSD)$ ]]; then
             true
         elif [[ "$wanted" == "karabiner" && "$(uname)" == "Darwin" ]]; then
             ps auxww|grep -v grep|grep -qi karabiner || \
             printf "${red}Install Karabiner: brew install --cask karabiner-elements$NC\n"
+        elif [[ "$wanted" == "swiftbar" && "$(uname)" == "Darwin" ]]; then
+            ps auxww|grep -v grep|grep -qi dwiswiftbar || \
+            printf "${red}Install SwiftBar: brew install swiftbar$NC\n"
         elif [[ "$(which $wanted 2>/dev/null)" == "" || "$(which $wanted 2>/dev/null)" == "no $wanted in"* ]]; then
             if [[ "$wanted" == "img2sixel" && "$(uname)" == "Darwin" ]]; then
                 printf "${red}Install libsixel:\n  brew install libsixel$NC\n"
