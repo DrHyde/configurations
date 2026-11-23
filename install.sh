@@ -376,7 +376,7 @@ function look_for_updates {
             ps auxww|grep -v grep|grep -qi karabiner || \
             printf "${red}Install Karabiner: brew install --cask karabiner-elements$NC\n"
         elif [[ "$wanted" == "swiftbar" && "$(uname)" == "Darwin" ]]; then
-            ps auxww|grep -v grep|grep -qi dwiswiftbar || \
+            ps auxww|grep -v grep|grep -qi swiftbar || \
             printf "${red}Install SwiftBar: brew install swiftbar$NC\n"
         elif [[ "$(which $wanted 2>/dev/null)" == "" || "$(which $wanted 2>/dev/null)" == "no $wanted in"* ]]; then
             if [[ "$wanted" == "img2sixel" && "$(uname)" == "Darwin" ]]; then
