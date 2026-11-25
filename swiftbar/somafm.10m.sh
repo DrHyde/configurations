@@ -10,12 +10,17 @@ if [ "$1" = "play" ]; then
   echo "${3//_/ }" > "$STATE"
   nohup "$MPV" --no-video --really-quiet "$2" >/dev/null 2>&1 &
   exit 0
-fi
-
-if [ "$1" = "stop" ]; then
+elif [ "$1" = "stop" ]; then
   pkill -x mpv
   rm -f "$STATE"
   exit 0
+elif [ "$1" = "nowplaying" ]; then
+    if [ -f "$STATE" ]; then
+        channelid=$(curl -s https://somafm.com/channels.json | jq -r ".channels[] | select(.title == \"$(cat "$STATE")\") | .id")
+        open "https://somafm.com/$channelid/songhistory.html"
+    else
+        exit 0
+    fi
 fi
 
 station() {  # usage: station "Display Name" streamname
@@ -39,3 +44,4 @@ station "Suburbs of Goa" https://somafm.com/suburbsofgoa.pls
 station "The Dark Zone" https://somafm.com/darkzone256.pls
 echo "---"
 echo "Stop | bash=$0 param1=stop terminal=false refresh=true"
+echo "Now playing | bash=$0 param1=nowplaying terminal=false refresh=true"
