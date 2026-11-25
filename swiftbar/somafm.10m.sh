@@ -35,7 +35,7 @@ else
     echo "📻 Soma FM"
 fi
 echo "---"
-station "Defcon radio" https://somafm.com/defcon256.pls
+station "DEF CON Radio" https://somafm.com/defcon256.pls
 station "Doomed" https://somafm.com/doomed256.pls
 station "Groove Salad" https://somafm.com/groovesalad256.pls
 station "Heavyweight Reggae" https://somafm.com/reggae256.pls
